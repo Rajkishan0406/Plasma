@@ -25,13 +25,15 @@ class SettingFragment : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
 
+        logout = view.findViewById(R.id.logout_btn)
 
-       /* logout.setOnClickListener(View.OnClickListener {
+
+        logout.setOnClickListener(View.OnClickListener {
             val intent = Intent(getActivity(), MainActivity::class.java)
             mAuth.signOut()
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        })*/
+        })
 
         return view
     }
