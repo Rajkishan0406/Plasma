@@ -1,0 +1,95 @@
+package com.example.plasma.Authentication
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentTransaction
+import com.example.plasma.DashboardActivity
+import com.example.plasma.R
+import com.google.firebase.auth.FirebaseAuth
+import soup.neumorphism.NeumorphButton
+import soup.neumorphism.NeumorphCardView
+
+class LoginFragment : Fragment() {
+
+    lateinit var new_User : TextView
+    lateinit var email : EditText
+    lateinit var pass : EditText
+    lateinit var btn : NeumorphButton
+    lateinit var pro : ProgressBar
+    lateinit var top_card : CardView
+    lateinit var forgot : TextView
+    lateinit var newi : ForgotPassword
+
+    lateinit var mAuth : FirebaseAuth
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        var view = inflater.inflate(R.layout.fragment_login, container, false)
+
+        top_card = view.findViewById(R.id.top_card)
+
+        val animation = AnimationUtils.loadAnimation(activity, R.anim.top_to_down)
+        top_card.startAnimation(animation)
+
+        mAuth = FirebaseAuth.getInstance()
+        email = view.findViewById(R.id.email)
+        pass = view.findViewById(R.id.password)
+        btn = view.findViewById(R.id.login_btn)
+        pro = view.findViewById(R.id.login_progress_bar)
+        forgot = view.findViewById(R.id.forgot_password_textview)
+
+        newi = ForgotPassword()
+
+        forgot.setOnClickListener(View.OnClickListener {
+            newi.show(childFragmentManager,"bottom sheet")
+        })
+
+        btn.setOnClickListener(View.OnClickListener {
+            if(email.text.toString().length == 0 || pass.text.toString().length == 0)
+                Toast.makeText(activity,"Enter email and Password",Toast.LENGTH_SHORT).show()
+            else {
+                pro.visibility = View.VISIBLE
+                mAuth.signInWithEmailAndPassword(email.text.toString(), pass.text.toString())
+                    .addOnSuccessListener {
+                        pro.visibility = View.INVISIBLE
+                        var intent = Intent(activity,DashboardActivity::class.java)
+                        startActivity(intent)
+                    }.addOnFailureListener {
+                    Toast.makeText(activity, "" + it.message.toString(), Toast.LENGTH_SHORT).show()
+                        pro.visibility = View.INVISIBLE
+                }
+            }
+        })
+
+        new_User = view.findViewById(R.id.New_User_textview)
+        new_User.setOnClickListener(View.OnClickListener {
+            setFragmentSignup(SignUpFragment())
+        })
+
+        return view
+    }
+
+    private fun setFragmentSignup(forgotFragment: SignUpFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_auth_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
+
+}

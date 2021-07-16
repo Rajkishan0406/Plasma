@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Authentication.LoginFragment">
+
+
+    <FrameLayout
+        android:id="@+id/login_frame1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/top_card"
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="@color/teal_700"
+                android:layout_height="600dp"
+                app:cardCornerRadius="60dp"
+                android:layout_marginTop="-80dp">
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_centerHorizontal="true"
+                app:cardCornerRadius="50dp"
+                android:layout_marginTop="100dp"
+                android:layout_height="70dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_baseline_format_color_reset_24"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+                    <TextView
+                        android:id="@+id/forgot_password_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginRight="25dp"
+                        android:text="Forgot Password?"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_700"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/New_User_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginBottom="80dp"
+                        android:layout_alignParentBottom="true"
+                        android:text="New User"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_700"
+                        android:textSize="15dp" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/signup_card"
+                android:layout_marginLeft="28dp"
+                android:textSize="32dp"
+                android:layout_marginBottom="2dp"
+                android:text="SignIn"
+                android:textColor="@color/light"/>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/signup_card"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="12dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="150dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/text_login"
+                        android:id="@+id/emialll"
+                        android:layout_marginTop="18dp"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        android:hint="Email"
+                        android:layout_marginLeft="10dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawableLeft="@drawable/ic_baseline_email_24"
+                            android:drawablePadding="6dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/emialll"
+                        android:layout_marginRight="10dp"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        android:layout_marginTop="18dp"
+                        android:hint="Password"
+                        android:layout_marginLeft="10dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawableLeft="@drawable/ic_baseline_lock_24"
+                            android:inputType="textPassword"
+                            android:drawablePadding="6dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ProgressBar
+                        android:id="@+id/login_progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_above="@+id/login_btn"
+                        android:layout_marginBottom="10dp"
+                        android:visibility="invisible"/>
+
+
+                    <soup.neumorphism.NeumorphButton
+                        android:id="@+id/login_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        style="@style/Widget.Neumorph.Button"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginLeft="50dp"
+                        android:text="Login"
+                        app:neumorph_lightSource="rightTop"
+                        android:textColor="@color/design_default_color_primary"
+                        app:neumorph_shapeType="basin"
+                        android:textSize="25dp"
+                        android:textAllCaps="false"
+                        android:textAlignment="center"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="10dp">
+
+
+                    </soup.neumorphism.NeumorphButton>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+</FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
