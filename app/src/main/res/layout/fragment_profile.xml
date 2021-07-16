@@ -60,6 +60,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:padding="1dp"
+                android:visibility="invisible"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
@@ -67,6 +68,21 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/boy2" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_girl"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:padding="1dp"
+                android:visibility="invisible"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/girl" />
 
         </RelativeLayout>
 
@@ -361,6 +377,7 @@
                     android:textColor="@color/red"/>
 
                 <TextView
+                    android:id="@+id/number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -396,6 +413,7 @@
                 android:textColor="@color/red"/>
 
             <TextView
+                android:id="@+id/dob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -502,6 +520,14 @@
         </LinearLayout>
 
         </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/profile_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 

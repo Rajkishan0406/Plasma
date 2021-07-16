@@ -1,6 +1,7 @@
 package com.example.plasma.Authentication
 
 import android.app.DatePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,7 +32,10 @@ class ProfileCreationFragment : Fragment() {
     lateinit var no : CardView
     lateinit var sub : NeumorphButton
     lateinit var msg : TextView
+    lateinit var male : CardView
+    lateinit var female : CardView
 
+    var sex = "" as String
     var hashset = HashSet<String>(8)
     var status  = "" as String
     var y = ""
@@ -72,23 +76,41 @@ class ProfileCreationFragment : Fragment() {
         number  = view.findViewById(R.id.number)
         yes = view.findViewById(R.id.Yes_Number)
         no = view.findViewById(R.id.No_Number)
+        male = view.findViewById(R.id.Male)
+        female = view.findViewById(R.id.Female)
         sub = view.findViewById(R.id.submit)
         msg = view.findViewById(R.id.text_for_number)
+
+        male.setOnClickListener(View.OnClickListener {
+            sex = "male"
+            male.setCardBackgroundColor(Color.LTGRAY)
+            female.setCardBackgroundColor(Color.WHITE)
+        })
+
+        female.setOnClickListener(View.OnClickListener {
+            sex = "female"
+            female.setCardBackgroundColor(Color.LTGRAY)
+            male.setCardBackgroundColor(Color.WHITE)
+        })
 
         yes.setOnClickListener(View.OnClickListener {
             status = "Yes"
             msg.setText("Do You Want Your Number To Display In Our App, For Direct Conatct? YES")
+            yes.setCardBackgroundColor(Color.LTGRAY)
+            no.setCardBackgroundColor(Color.WHITE)
         })
 
         no.setOnClickListener(View.OnClickListener {
             status = "No"
             msg.setText("Do You Want Your Number To Display In Our App, For Direct Conatct? NO")
+            no.setCardBackgroundColor(Color.LTGRAY)
+            yes.setCardBackgroundColor(Color.WHITE)
         })
 
         sub.setOnClickListener(View.OnClickListener {
             if(name.text.toString().length == 0 || state.text.toString().length == 0 || city.text.toString().length == 0 ||
                     d.text.toString().length == 0 || blood.text.toString().length == 0 || number.text.toString().length == 0
-                    || status.length == 0){
+                    || status.length == 0 || sex.length == 0){
                 Toast.makeText(activity,"Please fill all details",Toast.LENGTH_SHORT).show()
             }
             else if(number.text.toString().length != 10){
@@ -105,6 +127,7 @@ class ProfileCreationFragment : Fragment() {
                 data.child("Profile").child("Blood_Grp").setValue(blood.text.trim().toString())
                 data.child("Profile").child("Number").setValue(number.text.trim().toString())
                 data.child("Profile").child("Status").setValue(status)
+                data.child("Profile").child("Sex").setValue(sex)
                 Toast.makeText(activity,"Personal Details Filled Successfully",Toast.LENGTH_SHORT).show()
                 setFragmentCovid(CovidDetailsFragment())
             }

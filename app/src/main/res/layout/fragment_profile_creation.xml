@@ -216,7 +216,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:padding="10dp"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -227,10 +227,9 @@
                     android:id="@+id/Yes_Number"
                     android:layout_width="150dp"
                     android:layout_height="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/green"
                     app:cardCornerRadius="25dp"
                     app:cardElevation="2dp">
 
@@ -245,7 +244,7 @@
                             android:layout_centerVertical="true"
                             android:text="YES"
                             android:textAlignment="center"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/black" />
 
                     </RelativeLayout>
 
@@ -256,10 +255,9 @@
                     android:layout_width="150dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/red"
                     app:cardCornerRadius="25dp"
                     app:cardElevation="2dp">
 
@@ -274,7 +272,7 @@
                             android:layout_centerVertical="true"
                             android:text="NO"
                             android:textAlignment="center"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/black" />
 
                     </RelativeLayout>
 
@@ -284,6 +282,81 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender:"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/Male"
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:text="Male"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/Female"
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:text="Female"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
