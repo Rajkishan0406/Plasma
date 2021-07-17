@@ -1,5 +1,6 @@
 package com.example.plasma.Dashboard
 
+import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
@@ -8,8 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentTransaction
 import com.airbnb.lottie.LottieAnimationView
+import com.example.plasma.Authentication.ProfileCreationFragment
+import com.example.plasma.Authentication.SignUpFragment
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -18,6 +23,7 @@ import org.w3c.dom.Text
 class ProfileFragment : Fragment() {
 
     lateinit var personal : CardView
+    lateinit var update_personal : CardView
     lateinit var covid : CardView
     lateinit var personal_frame : FrameLayout
     lateinit var covid_frame : FrameLayout
@@ -25,6 +31,7 @@ class ProfileFragment : Fragment() {
     lateinit var Girl : LottieAnimationView
     lateinit var name : TextView
     lateinit var state : TextView
+    lateinit var pd : TextView
     lateinit var city : TextView
     lateinit var dob : TextView
     lateinit var blood : TextView
@@ -44,12 +51,14 @@ class ProfileFragment : Fragment() {
         data = FirebaseDatabase.getInstance().getReference("Details").child(id)
 
         progress = view.findViewById(R.id.profile_progressbar)
+        update_personal = view.findViewById(R.id.edit_personal_details)
         Boy = view.findViewById(R.id.lottie_boy)
         Girl = view.findViewById(R.id.lottie_girl)
         name = view.findViewById(R.id.user_name)
         state = view.findViewById(R.id.state)
         city = view.findViewById(R.id.City)
         dob = view.findViewById(R.id.dob)
+        pd = view.findViewById(R.id.details)
         blood = view.findViewById(R.id.blood_grp)
         contact = view.findViewById(R.id.number)
 
@@ -57,6 +66,7 @@ class ProfileFragment : Fragment() {
         covid_frame = view.findViewById(R.id.CoronA_Frame)
 
         data.addValueEventListener(object : ValueEventListener{
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     data.child("Profile").addValueEventListener(object : ValueEventListener{
@@ -65,7 +75,10 @@ class ProfileFragment : Fragment() {
                             name.setText(snapshot.child("Name").getValue() as String)
                             state.setText(snapshot.child("State").getValue() as String)
                             city.setText(snapshot.child("City").getValue() as String)
-                            dob.setText(snapshot.child("DOB").getValue() as String)
+                            var d = snapshot.child("DOB").getValue() as String
+                            if(d.length == 8)
+                                d = "0" + d
+                            dob.setText(d)
                             blood.setText(snapshot.child("Blood_Grp").getValue() as String)
                             contact.setText(snapshot.child("Number").getValue() as String)
                             progress.visibility = View.INVISIBLE
@@ -86,6 +99,7 @@ class ProfileFragment : Fragment() {
                     })
                 }
                 else{
+                    pd.setText("Add Personal Details")
                     Toast.makeText(activity,"Profile not Added",Toast.LENGTH_SHORT).show()
                     progress.visibility = View.INVISIBLE
                 }
@@ -95,6 +109,10 @@ class ProfileFragment : Fragment() {
                 TODO("Not yet implemented")
             }
 
+        })
+
+        update_personal.setOnClickListener(View.OnClickListener {
+                setFragmentProfileCreation(UpdateProfileFragment())
         })
 
         covid = view.findViewById(R.id.covid_details)
@@ -119,6 +137,16 @@ class ProfileFragment : Fragment() {
         })
 
         return view
+    }
+
+    private fun setFragmentProfileCreation(forgotFragment: UpdateProfileFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
     }
 
 }
