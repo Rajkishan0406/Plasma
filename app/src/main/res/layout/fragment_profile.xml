@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="26dp"
-                android:text="Raj Kishan"
+                android:text=""
                 android:layout_margin="20dp"/>
 
             <TextView
@@ -40,7 +40,7 @@
                 android:textSize="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="5dp"
-                android:text="Bihar"/>
+                android:text=""/>
 
             <TextView
                 android:id="@+id/City"
@@ -50,7 +50,7 @@
                 android:layout_marginLeft="20dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:layout_marginBottom="15dp"
-                android:text="Muzaffarpur"
+                android:text=""
                 android:textSize="22dp"
                 android:textColor="@color/white"/>
 
@@ -135,7 +135,6 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="30dp"
-                            android:text="22/04/2021"
                             android:textSize="20dp"/>
 
                     </RelativeLayout>
@@ -168,7 +167,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="30dp"
-                                android:text="First Dose"
                                 android:textColor="@color/green"
                                 android:textSize="20dp"/>
 
@@ -210,7 +208,6 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="30dp"
-                            android:text="No"
                             android:textSize="20dp"/>
 
                     </RelativeLayout>
@@ -348,7 +345,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:text="B+"
+                android:text=""
                 android:textSize="20dp"/>
 
         </RelativeLayout>
@@ -382,7 +379,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="30dp"
-                    android:text="8298328476"
                     android:textSize="20dp"/>
 
             </RelativeLayout>
@@ -418,7 +414,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:text="04/06/1999"
                 android:textSize="20dp"/>
 
         </RelativeLayout>

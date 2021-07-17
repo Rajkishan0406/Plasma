@@ -138,9 +138,8 @@ class CovidDetailsFragment : Fragment() {
             }
             else{
                 pro.visibility = View.VISIBLE
-                data.child("Report_Day").setValue(d)
-                data.child("Report_Month").setValue(m)
-                data.child("Report_Year").setValue(y)
+                var ddd = d + "/" + m + "/" + y
+                data.child("Report_Date").setValue(ddd)
                 data.child("Disease").setValue(prob.text.toString())
                 data.child("First_Dose").setValue(first_yes.toString())
                 data.child("Second_Dose").setValue(second_yes.toString())

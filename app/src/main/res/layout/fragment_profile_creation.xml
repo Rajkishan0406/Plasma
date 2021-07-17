@@ -216,7 +216,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -227,7 +226,7 @@
                     android:id="@+id/Yes_Number"
                     android:layout_width="150dp"
                     android:layout_height="25dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="25dp"
@@ -255,7 +254,7 @@
                     android:layout_width="150dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="25dp"
@@ -292,7 +291,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -303,7 +301,7 @@
                     android:id="@+id/Male"
                     android:layout_width="150dp"
                     android:layout_height="25dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="25dp"
@@ -331,7 +329,7 @@
                     android:layout_width="150dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="25dp"

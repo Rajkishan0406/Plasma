@@ -3,6 +3,7 @@ package com.example.plasma.Dashboard
 import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,10 @@ class ProfileFragment : Fragment() {
     lateinit var contact : TextView
     lateinit var progress : ProgressBar
 
+    lateinit var disease : TextView
+    lateinit var vc : TextView
+    lateinit var report : TextView
+
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
 
@@ -61,6 +66,10 @@ class ProfileFragment : Fragment() {
         pd = view.findViewById(R.id.details)
         blood = view.findViewById(R.id.blood_grp)
         contact = view.findViewById(R.id.number)
+
+        disease = view.findViewById(R.id.Disease)
+        vc = view.findViewById(R.id.Vaccination)
+        report = view.findViewById(R.id.date_of_report)
 
         personal_frame = view.findViewById(R.id.PersonaL_Frame)
         covid_frame = view.findViewById(R.id.CoronA_Frame)
@@ -97,6 +106,35 @@ class ProfileFragment : Fragment() {
                         }
 
                     })
+
+                    data.child("Covid").addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.exists()){
+                                disease.setText(snapshot.child("Disease").getValue() as String)
+                                report.setText(snapshot.child("Report_Date").getValue() as String)
+                                var vacc = snapshot.child("First_Dose").getValue() as String
+                                Log.i("vcc", vacc)
+                                if(vacc.equals("1")){
+                                    vacc = snapshot.child("Second_Dose").getValue() as String
+                                    if(vacc.equals("1")){
+                                        vc.setText("Second Dose")
+                                    }
+                                    else{
+                                        vc.setText("First Dose")
+                                    }
+                                }
+                                else{
+                                    vc.setText("Not Yet")
+                                }
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+
                 }
                 else{
                     pd.setText("Add Personal Details")
