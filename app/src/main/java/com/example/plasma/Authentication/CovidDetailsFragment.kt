@@ -145,8 +145,6 @@ class CovidDetailsFragment : Fragment() {
                 data.child("Second_Dose").setValue(second_yes.toString())
                 data.child("Age").setValue(age_yes.toString())
                 storeimage(id)
-                //var intent = Intent(activity, DashboardActivity::class.java)
-                //startActivity(intent)
             }
         })
 
@@ -168,6 +166,8 @@ class CovidDetailsFragment : Fragment() {
                     data = FirebaseDatabase.getInstance().getReference("Details").child(id)
                     data.child("Covid").child("Token").setValue(r)
                     pro.visibility = View.INVISIBLE
+                    var intent = Intent(activity, DashboardActivity::class.java)
+                    startActivity(intent)
                 }
                 checker = -1
                 Log.i("image upload : ", "Successfull")

@@ -215,7 +215,9 @@
                 </soup.neumorphism.NeumorphCardView>
 
                     <soup.neumorphism.NeumorphCardView
+                        android:id="@+id/report_card"
                         android:layout_width="100dp"
+                        android:visibility="invisible"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
                         app:neumorph_shapeType="basin"

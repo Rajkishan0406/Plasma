@@ -20,6 +20,8 @@ import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.w3c.dom.Text
+import soup.neumorphism.NeumorphButton
+import soup.neumorphism.NeumorphCardView
 
 class ProfileFragment : Fragment() {
 
@@ -37,6 +39,7 @@ class ProfileFragment : Fragment() {
     lateinit var dob : TextView
     lateinit var blood : TextView
     lateinit var contact : TextView
+    lateinit var report_card : NeumorphCardView
     lateinit var progress : ProgressBar
 
     lateinit var disease : TextView
@@ -66,6 +69,7 @@ class ProfileFragment : Fragment() {
         pd = view.findViewById(R.id.details)
         blood = view.findViewById(R.id.blood_grp)
         contact = view.findViewById(R.id.number)
+        report_card = view.findViewById(R.id.report_card)
 
         disease = view.findViewById(R.id.Disease)
         vc = view.findViewById(R.id.Vaccination)
@@ -110,8 +114,12 @@ class ProfileFragment : Fragment() {
                     data.child("Covid").addValueEventListener(object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if(snapshot.exists()){
+                                report_card.visibility = View.VISIBLE
                                 disease.setText(snapshot.child("Disease").getValue() as String)
-                                report.setText(snapshot.child("Report_Date").getValue() as String)
+                                var rr = snapshot.child("Report_Date").getValue() as String
+                                if(rr.length == 8)
+                                    rr = "0" + rr
+                                report.setText(rr)
                                 var vacc = snapshot.child("First_Dose").getValue() as String
                                 Log.i("vcc", vacc)
                                 if(vacc.equals("1")){
@@ -174,10 +182,26 @@ class ProfileFragment : Fragment() {
             covid_frame.visibility = View.INVISIBLE
         })
 
+        report_card.setOnClickListener(View.OnClickListener {
+            if(report.text.toString().length > 0){
+                setFragmentReport(ReportFragment())
+            }
+        })
+
         return view
     }
 
     private fun setFragmentProfileCreation(forgotFragment: UpdateProfileFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
+
+    private fun setFragmentReport(forgotFragment: ReportFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)
