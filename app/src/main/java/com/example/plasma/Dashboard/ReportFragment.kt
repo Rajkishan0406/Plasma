@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.ortiz.touchview.TouchImageView
 import com.squareup.picasso.Picasso
 
 class ReportFragment : Fragment() {
@@ -19,7 +20,7 @@ class ReportFragment : Fragment() {
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
     lateinit var storage : StorageReference
-    lateinit var image : ImageView
+    lateinit var image : TouchImageView
     lateinit var pro : ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
