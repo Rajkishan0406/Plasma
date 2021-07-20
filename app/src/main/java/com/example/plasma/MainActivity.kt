@@ -14,11 +14,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        setFragment(LoginFragment())
+        setFragment(ProfileCreationFragment())
 
     }
 
-    private fun setFragment(loginFragment: LoginFragment) {
+    private fun setFragment(loginFragment: ProfileCreationFragment) {
         var ft: FragmentTransaction = supportFragmentManager.beginTransaction();
         ft.replace(R.id.main_auth_frame,loginFragment)
         ft.commit()

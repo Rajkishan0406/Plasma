@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
+import com.airbnb.lottie.LottieAnimationView
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -34,6 +35,8 @@ class ProfileCreationFragment : Fragment() {
     lateinit var msg : TextView
     lateinit var male : CardView
     lateinit var female : CardView
+    lateinit var Male_anim : LottieAnimationView
+    lateinit var Female_anim : LottieAnimationView
 
     var sex = "" as String
     var hashset = HashSet<String>(8)
@@ -74,6 +77,8 @@ class ProfileCreationFragment : Fragment() {
         dob = view.findViewById(R.id.calendar)
         blood = view.findViewById(R.id.blood_group)
         number  = view.findViewById(R.id.number)
+        Male_anim = view.findViewById(R.id.lottie_boy)
+        Female_anim = view.findViewById(R.id.lottie_girl)
         yes = view.findViewById(R.id.Yes_Number)
         no = view.findViewById(R.id.No_Number)
         male = view.findViewById(R.id.Male)
@@ -83,14 +88,14 @@ class ProfileCreationFragment : Fragment() {
 
         male.setOnClickListener(View.OnClickListener {
             sex = "male"
-            male.setCardBackgroundColor(Color.LTGRAY)
-            female.setCardBackgroundColor(Color.WHITE)
+            Male_anim.visibility = View.VISIBLE
+            Female_anim.visibility = View.INVISIBLE
         })
 
         female.setOnClickListener(View.OnClickListener {
             sex = "female"
-            female.setCardBackgroundColor(Color.LTGRAY)
-            male.setCardBackgroundColor(Color.WHITE)
+            Male_anim.visibility = View.INVISIBLE
+            Female_anim.visibility = View.VISIBLE
         })
 
         yes.setOnClickListener(View.OnClickListener {
