@@ -160,14 +160,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <androidx.cardview.widget.CardView
+                    <soup.neumorphism.NeumorphCardView
                         android:id="@+id/Yes_Number"
                         android:layout_width="150dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="10dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        app:cardCornerRadius="25dp"
+                        android:layout_height="55dp"
+                        android:layout_marginRight="10dp"
                         app:cardElevation="2dp">
 
                         <RelativeLayout
@@ -181,21 +178,18 @@
                                 android:layout_centerVertical="true"
                                 android:text="YES"
                                 android:textAlignment="center"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/green" />
 
                         </RelativeLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </soup.neumorphism.NeumorphCardView>
 
-                    <androidx.cardview.widget.CardView
+                    <soup.neumorphism.NeumorphCardView
                         android:id="@+id/No_Number"
                         android:layout_width="150dp"
-                        android:layout_height="25dp"
+                        android:layout_height="55dp"
                         android:layout_alignParentRight="true"
-                        android:layout_margin="10dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        app:cardCornerRadius="25dp"
+                        android:layout_marginRight="10dp"
                         app:cardElevation="2dp">
 
                         <RelativeLayout
@@ -209,11 +203,11 @@
                                 android:layout_centerVertical="true"
                                 android:text="NO"
                                 android:textAlignment="center"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/red" />
 
                         </RelativeLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </soup.neumorphism.NeumorphCardView>
 
                 </RelativeLayout>
 
@@ -281,7 +275,8 @@
                 android:text="Blood Group"
                 android:textSize="20dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="5dp"
+                android:textColor="@color/red"
+                android:layout_marginLeft="8dp"
                 android:layout_marginBottom="2dp"/>
 
             <HorizontalScrollView

@@ -29,8 +29,8 @@ class ProfileCreationFragment : Fragment() {
     lateinit var dob : CardView
     lateinit var d : TextView
     lateinit var number : EditText
-    lateinit var yes : CardView
-    lateinit var no : CardView
+    lateinit var yes : NeumorphCardView
+    lateinit var no : NeumorphCardView
     lateinit var sub : NeumorphButton
     lateinit var msg : TextView
     lateinit var male : CardView
@@ -192,16 +192,14 @@ class ProfileCreationFragment : Fragment() {
 
         yes.setOnClickListener(View.OnClickListener {
             status = "Yes"
-            msg.setText("Do You Want Your Number To Display In Our App, For Direct Conatct? YES")
-            yes.setCardBackgroundColor(Color.LTGRAY)
-            no.setCardBackgroundColor(Color.WHITE)
+            yes.setShapeType(1)
+            no.setShapeType(0)
         })
 
         no.setOnClickListener(View.OnClickListener {
             status = "No"
-            msg.setText("Do You Want Your Number To Display In Our App, For Direct Conatct? NO")
-            no.setCardBackgroundColor(Color.LTGRAY)
-            yes.setCardBackgroundColor(Color.WHITE)
+            no.setShapeType(1)
+            yes.setShapeType(0)
         })
 
         sub.setOnClickListener(View.OnClickListener {
