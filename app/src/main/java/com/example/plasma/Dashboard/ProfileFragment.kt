@@ -45,6 +45,7 @@ class ProfileFragment : Fragment() {
     lateinit var disease : TextView
     lateinit var vc : TextView
     lateinit var report : TextView
+    var progress_status = 0 as Int
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -95,6 +96,7 @@ class ProfileFragment : Fragment() {
                             blood.setText(snapshot.child("Blood_Grp").getValue() as String)
                             contact.setText(snapshot.child("Number").getValue() as String)
                             progress.visibility = View.INVISIBLE
+                            progress_status = 1
                             if(sex.equals("male")){
                                 Boy.visibility = View.VISIBLE
                                 Girl.visibility = View.INVISIBLE
@@ -148,6 +150,7 @@ class ProfileFragment : Fragment() {
                     pd.setText("Add Personal Details")
                     Toast.makeText(activity,"Profile not Added",Toast.LENGTH_SHORT).show()
                     progress.visibility = View.INVISIBLE
+                    progress_status = 1
                 }
             }
 
@@ -158,7 +161,9 @@ class ProfileFragment : Fragment() {
         })
 
         update_personal.setOnClickListener(View.OnClickListener {
+            if(progress_status == 1) {
                 setFragmentProfileCreation(UpdateProfileFragment())
+            }
         })
 
         covid = view.findViewById(R.id.covid_details)
