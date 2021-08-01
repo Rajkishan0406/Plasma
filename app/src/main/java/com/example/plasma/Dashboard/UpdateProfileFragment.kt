@@ -64,6 +64,7 @@ class UpdateProfileFragment : Fragment() {
     var y = ""
     var m = ""
     var D = ""
+    var bundle =  Bundle()
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -77,6 +78,7 @@ class UpdateProfileFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
+
 
         //blood group addition
         a_pos = view.findViewById(R.id.A_positive_update)
@@ -111,6 +113,25 @@ class UpdateProfileFragment : Fragment() {
         female = view.findViewById(R.id.Female_update)
         sub = view.findViewById(R.id.submit_update)
         msg = view.findViewById(R.id.text_for_number_update)
+
+        bundle = this.requireArguments()
+        name.setText(bundle.getString("name"))
+        state.setText(bundle.getString("state"))
+        city.setText(bundle.getString("city"))
+        d.setText(bundle.getString("dob"))
+        number.setText(bundle.getString("contact"))
+        var s = bundle.getString("sex")
+
+        if(s.equals("male")){
+            sex = "male"
+            Male_anim.visibility = View.VISIBLE
+            Female_anim.visibility = View.INVISIBLE
+        }
+        else{
+            sex = "female"
+            Male_anim.visibility = View.INVISIBLE
+            Female_anim.visibility = View.VISIBLE
+        }
 
         a_pos.setOnClickListener(View.OnClickListener {
             allWhite()
@@ -250,7 +271,7 @@ class UpdateProfileFragment : Fragment() {
     private fun setFragmentProfile(forgotFragment: ProfileFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
-            ft.replace(R.id.main_auth_frame, forgotFragment)
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
         }
         if (ft != null) {
             ft.commit()

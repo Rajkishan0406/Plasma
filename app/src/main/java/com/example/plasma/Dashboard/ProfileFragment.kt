@@ -46,6 +46,7 @@ class ProfileFragment : Fragment() {
     lateinit var vc : TextView
     lateinit var report : TextView
     var progress_status = 0 as Int
+    var sex = "" as String
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -85,7 +86,7 @@ class ProfileFragment : Fragment() {
                 if(snapshot.exists()){
                     data.child("Profile").addValueEventListener(object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            var sex = snapshot.child("Sex").getValue() as String
+                            sex = snapshot.child("Sex").getValue() as String
                             name.setText(snapshot.child("Name").getValue() as String)
                             state.setText(snapshot.child("State").getValue() as String)
                             city.setText(snapshot.child("City").getValue() as String)
@@ -162,7 +163,17 @@ class ProfileFragment : Fragment() {
 
         update_personal.setOnClickListener(View.OnClickListener {
             if(progress_status == 1) {
-                setFragmentProfileCreation(UpdateProfileFragment())
+                var frag = UpdateProfileFragment()
+                val bundle = Bundle()
+                bundle.putString("name", name.text.toString())
+                bundle.putString("state", state.text.toString())
+                bundle.putString("city", city.text.toString())
+                bundle.putString("dob", dob.text.toString())
+                bundle.putString("sex", sex)
+                bundle.putString("blood", blood.text.toString())
+                bundle.putString("contact", contact.text.toString())
+                frag.setArguments(bundle)
+                setFragmentProfileCreation(frag)
             }
         })
 
