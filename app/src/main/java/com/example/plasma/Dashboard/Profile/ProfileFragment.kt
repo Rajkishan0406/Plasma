@@ -1,8 +1,7 @@
-package com.example.plasma.Dashboard
+package com.example.plasma.Dashboard.Profile
 
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,13 +13,9 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.airbnb.lottie.LottieAnimationView
-import com.example.plasma.Authentication.ProfileCreationFragment
-import com.example.plasma.Authentication.SignUpFragment
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import org.w3c.dom.Text
-import soup.neumorphism.NeumorphButton
 import soup.neumorphism.NeumorphCardView
 
 class ProfileFragment : Fragment() {

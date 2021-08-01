@@ -2,14 +2,10 @@ package com.example.plasma
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation
-import com.example.plasma.Authentication.LoginFragment
 import com.example.plasma.Dashboard.ChatFragment
 import com.example.plasma.Dashboard.HomeFragment
-import com.example.plasma.Dashboard.ProfileFragment
+import com.example.plasma.Dashboard.Profile.ProfileFragment
 import com.example.plasma.Dashboard.SettingFragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 

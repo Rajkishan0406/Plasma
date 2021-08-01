@@ -1,4 +1,4 @@
-package com.example.plasma.Dashboard
+package com.example.plasma.Dashboard.Profile
 
 import android.app.DatePickerDialog
 import android.graphics.Color
@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.airbnb.lottie.LottieAnimationView
-import com.example.plasma.Authentication.CovidDetailsFragment
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference

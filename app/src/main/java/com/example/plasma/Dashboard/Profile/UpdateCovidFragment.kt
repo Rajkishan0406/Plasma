@@ -1,4 +1,4 @@
-package com.example.plasma.Dashboard
+package com.example.plasma.Dashboard.Profile
 
 import android.app.Activity
 import android.app.DatePickerDialog
