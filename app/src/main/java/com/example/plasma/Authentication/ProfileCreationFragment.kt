@@ -220,6 +220,7 @@ class ProfileCreationFragment : Fragment() {
                 data.child("Profile").child("Number").setValue(number.text.trim().toString())
                 data.child("Profile").child("Status").setValue(status)
                 data.child("Profile").child("Sex").setValue(sex)
+                data.child("PlasmaRequest").setValue("0")
                 Toast.makeText(activity,"Personal Details Filled Successfully",Toast.LENGTH_SHORT).show()
                 setFragmentCovid(CovidDetailsFragment())
             }

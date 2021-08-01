@@ -83,58 +83,44 @@ class ProfileFragment : Fragment() {
                 if(snapshot.exists()){
                     data.child("Profile").addValueEventListener(object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            sex = snapshot.child("Sex").getValue() as String
-                            name.setText(snapshot.child("Name").getValue() as String)
-                            state.setText(snapshot.child("State").getValue() as String)
-                            city.setText(snapshot.child("City").getValue() as String)
-                            var d = snapshot.child("DOB").getValue() as String
-                            if(d.length == 8)
-                                d = "0" + d
-                            dob.setText(d)
-                            blood.setText(snapshot.child("Blood_Grp").getValue() as String)
-                            contact.setText(snapshot.child("Number").getValue() as String)
-                            progress.visibility = View.INVISIBLE
-                            progress_status = 1
-                            if(sex.equals("male")){
-                                Boy.visibility = View.VISIBLE
-                                Girl.visibility = View.INVISIBLE
+                            if (snapshot.exists()) {
+                                if(snapshot.hasChild("Sex")) {
+                                    sex = snapshot.child("Sex").getValue() as String
+                                    if (sex.equals("male")) {
+                                        Boy.visibility = View.VISIBLE
+                                        Girl.visibility = View.INVISIBLE
+                                    }
+                                    else {
+                                        Boy.visibility = View.INVISIBLE
+                                        Girl.visibility = View.VISIBLE
+                                    }
+                                }
+                                if(snapshot.hasChild("Name"))
+                                    name.setText(snapshot.child("Name").getValue() as String)
+                                if(snapshot.hasChild("State"))
+                                    state.setText(snapshot.child("State").getValue() as String)
+                                if(snapshot.hasChild("City"))
+                                    city.setText(snapshot.child("City").getValue() as String)
+                                if(snapshot.hasChild("DOB")) {
+                                    var d = snapshot.child("DOB").getValue() as String
+                                    if (d.length == 8)
+                                        d = "0" + d
+                                    dob.setText(d)
+                                }
+                                if(snapshot.hasChild("Blood_Grp"))
+                                    blood.setText(snapshot.child("Blood_Grp").getValue() as String)
+                                if(snapshot.hasChild("Number"))
+                                    contact.setText(snapshot.child("Number").getValue() as String)
+                                progress.visibility = View.INVISIBLE
+                                progress_status = 1
                             }
                             else{
-                                Boy.visibility = View.INVISIBLE
-                                Girl.visibility = View.VISIBLE
+                                pd.setText("Add Personal Details")
+                                Toast.makeText(activity,"Profile not Added",Toast.LENGTH_SHORT).show()
+                                progress.visibility = View.INVISIBLE
+                                progress_status = 1
                             }
-                        }
 
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
-                        }
-
-                    })
-
-                    data.child("Covid").addValueEventListener(object : ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if(snapshot.exists()){
-                                report_card.visibility = View.VISIBLE
-                                disease.setText(snapshot.child("Disease").getValue() as String)
-                                var rr = snapshot.child("Report_Date").getValue() as String
-                                if(rr.length == 8)
-                                    rr = "0" + rr
-                                report.setText(rr)
-                                var vacc = snapshot.child("First_Dose").getValue() as String
-                                Log.i("vcc", vacc)
-                                if(vacc.equals("1")){
-                                    vacc = snapshot.child("Second_Dose").getValue() as String
-                                    if(vacc.equals("1")){
-                                        vc.setText("Second Dose")
-                                    }
-                                    else{
-                                        vc.setText("First Dose")
-                                    }
-                                }
-                                else{
-                                    vc.setText("Not Yet")
-                                }
-                            }
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -151,12 +137,71 @@ class ProfileFragment : Fragment() {
                     progress_status = 1
                 }
             }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+
+
+        data.addValueEventListener(object : ValueEventListener{
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    data.child("Covid").addValueEventListener(object : ValueEventListener{
+                        @RequiresApi(Build.VERSION_CODES.O)
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.exists()){
+                                report_card.visibility = View.VISIBLE
+                                if(snapshot.hasChild("Disease")) {
+                                    var DiS = snapshot.child("Disease").getValue() as String
+                                    disease.setText(DiS)
+                                }
+                                if(snapshot.hasChild("Report_Date")) {
+                                    var rr = snapshot.child("Report_Date").getValue() as String
+                                    if (rr.length == 8)
+                                        rr = "0" + rr
+                                    report.setText(rr)
+                                }
+                                if(snapshot.hasChild("First_Dose")) {
+                                    var vacc = snapshot.child("First_Dose").getValue() as String
+                                    Log.i("vcc", vacc)
+                                    if (vacc.equals("1")) {
+                                        if (snapshot.hasChild("Second_Dose")) {
+                                            vacc = snapshot.child("Second_Dose").getValue() as String
+                                            if (vacc.equals("1")) {
+                                                vc.setText("Second Dose")
+                                            } else {
+                                                vc.setText("First Dose")
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        vc.setText("Not Yet")
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+                }
+                else{
+
+                }
+            }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
 
         })
+
+
+
 
         update_personal.setOnClickListener(View.OnClickListener {
             if(progress_status == 1) {
@@ -176,7 +221,11 @@ class ProfileFragment : Fragment() {
 
         update_covid.setOnClickListener(View.OnClickListener {
             if(progress_status == 1){
-                setFragmentCovidUpdation(UpdateCovidFragment())
+                var frag = UpdateCovidFragment()
+                val bundle = Bundle()
+                bundle.putString("reportdate",report.text.toString())
+                frag.setArguments(bundle)
+                setFragmentCovidUpdation(frag)
             }
         })
 

@@ -20,9 +20,12 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var PR : PlasmaRequestModel = plasmarequest[position]
+        var PR = plasmarequest[position]
 
-
+        holder.name.text = PR.Name
+        holder.blood.text = PR.Blood
+        holder.city.text = PR.City
+        holder.state.text = PR.State
 
     }
 

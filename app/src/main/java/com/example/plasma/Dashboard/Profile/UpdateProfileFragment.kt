@@ -37,6 +37,7 @@ class UpdateProfileFragment : Fragment() {
     lateinit var female : CardView
     lateinit var Male_anim : LottieAnimationView
     lateinit var Female_anim : LottieAnimationView
+    var plasmaRequest = 0 as Int
 
     //blood group neumorphCard
     lateinit var a_pos : NeumorphCardView
@@ -119,6 +120,8 @@ class UpdateProfileFragment : Fragment() {
         city.setText(bundle.getString("city"))
         d.setText(bundle.getString("dob"))
         number.setText(bundle.getString("contact"))
+        if(bundle.getString("name").toString().length > 0)
+            plasmaRequest = 1
         var s = bundle.getString("sex")
 
         if(s.equals("male")){
@@ -151,7 +154,7 @@ class UpdateProfileFragment : Fragment() {
         ab_pos.setOnClickListener(View.OnClickListener {
             allWhite()
             allFlat()
-            Blood = "AB"
+            Blood = "AB+"
             AB_pos.setTextColor(Color.RED)
             ab_pos.setShapeType(1)
         })
@@ -230,6 +233,8 @@ class UpdateProfileFragment : Fragment() {
                 Toast.makeText(activity,"Wrong number format!", Toast.LENGTH_SHORT).show()
             }
             else{
+                if(plasmaRequest == 0)
+                    data.child("PlasmaRequest").setValue("0")
                 data.child("Profile").child("Name").setValue(name.text.trim().toString())
                 data.child("Profile").child("State").setValue(state.text.trim().toString())
                 data.child("Profile").child("City").setValue(city.text.trim().toString())

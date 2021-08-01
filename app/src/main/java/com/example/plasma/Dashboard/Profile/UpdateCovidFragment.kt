@@ -45,6 +45,7 @@ class UpdateCovidFragment : Fragment() {
     var checker = 0
     lateinit var storage : StorageReference
     var image_added = 0
+    var plasmarequest = 0 as Int
 
     var age_yes = 0 as Int
     var first_yes = 0 as Int
@@ -71,6 +72,10 @@ class UpdateCovidFragment : Fragment() {
         upload = view.findViewById(R.id.image_uploaded_update)
         pro = view.findViewById(R.id.progress_update)
 
+        var bundle = Bundle()
+        var repo = bundle.getString("reportdate")
+        if(repo.toString().length > 0)
+            plasmarequest = 1
 
         image.setOnClickListener(View.OnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
@@ -84,7 +89,7 @@ class UpdateCovidFragment : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
-        data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it).child("Covid") }!!
+        data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
         storage = FirebaseStorage.getInstance().getReference(id)
 
         date.setOnClickListener(View.OnClickListener {
@@ -131,12 +136,8 @@ class UpdateCovidFragment : Fragment() {
             }
             else{
                 pro.visibility = View.VISIBLE
-                var ddd = d + "/" + m + "/" + y
-                data.child("Report_Date").setValue(ddd)
-                data.child("Disease").setValue(prob.text.toString())
-                data.child("First_Dose").setValue(first_yes.toString())
-                data.child("Second_Dose").setValue(second_yes.toString())
-                data.child("Age").setValue(age_yes.toString())
+                if(plasmarequest == 0)
+                    data.child("PlasmaRequest").setValue("0")
                 storeimage(id)
             }
         })
@@ -158,6 +159,18 @@ class UpdateCovidFragment : Fragment() {
                     var data: DatabaseReference
                     data = FirebaseDatabase.getInstance().getReference("Details").child(id)
                     data.child("Covid").child("Token").setValue(r)
+                    var ddd = d + "/" + m + "/" + y
+                    data.child("Covid").child("Report_Date").setValue(ddd)
+                    data.child("Covid").child("Disease").setValue(prob.text.toString())
+                    if(first_yes == 1)
+                        data.child("Covid").child("First_Dose").setValue("1")
+                    else
+                        data.child("Covid").child("First_Dose").setValue("0")
+                    if(second_yes == 1)
+                        data.child("Covid").child("Second_Dose").setValue("1")
+                    else
+                        data.child("Covid").child("Second_Dose").setValue("2")
+                    data.child("Covid").child("Age").setValue(age_yes.toString())
                     pro.visibility = View.INVISIBLE
                     var intent = Intent(activity, DashboardActivity::class.java)
                     startActivity(intent)

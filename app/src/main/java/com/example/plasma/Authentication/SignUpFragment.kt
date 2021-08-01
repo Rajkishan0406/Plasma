@@ -14,6 +14,8 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import soup.neumorphism.NeumorphButton
 
 class SignUpFragment : Fragment() {
@@ -25,6 +27,7 @@ class SignUpFragment : Fragment() {
     lateinit var pro : ProgressBar
 
     lateinit var mAuth : FirebaseAuth
+    lateinit var data : DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
