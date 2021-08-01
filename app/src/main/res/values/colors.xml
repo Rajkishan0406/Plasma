@@ -11,8 +11,8 @@
     <color name="green">#6FDC10</color>
     <color name="light">#E3E4E1</color>
 
-    <color name="home">#5B37B7</color>
-    <color name="chat">#C9379D</color>
+    <color name="chat">#5B37B7</color>
+    <color name="home">#C9379D</color>
     <color name="profile">#E6A919</color>
     <color name="setting">#1194AA</color>
 </resources>

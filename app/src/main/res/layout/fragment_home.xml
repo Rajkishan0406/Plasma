@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Dashboard.HomeFragment">
 
-    <TextView
-        android:id="@+id/user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="16dp"
-        android:text="Home Fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       app:cardBackgroundColor="@color/red"
+       android:layout_height="70dp">
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:textAlignment="center"
+               android:textColor="@color/white"
+               android:textStyle="bold"
+               android:fontFamily="sans-serif-condensed-light"
+               android:gravity="center"
+               android:layout_margin="10dp"
+               android:text="Plasma Request"
+               android:textSize="20dp"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:layout_alignParentRight="true"
+               android:drawableLeft="@drawable/ic_baseline_filter_list_24"
+               android:textColor="@color/white"
+               android:gravity="center"
+               android:drawablePadding="5dp"
+               android:textAlignment="center"
+               android:layout_margin="10dp"
+               android:textSize="20dp"
+               android:text="Filter"
+               />
+
+       </RelativeLayout>
+
+   </androidx.cardview.widget.CardView>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

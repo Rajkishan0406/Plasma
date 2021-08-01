@@ -27,6 +27,7 @@ class ProfileFragment : Fragment() {
 
     lateinit var personal : CardView
     lateinit var update_personal : CardView
+    lateinit var update_covid : CardView
     lateinit var covid : CardView
     lateinit var personal_frame : FrameLayout
     lateinit var covid_frame : FrameLayout
@@ -68,6 +69,7 @@ class ProfileFragment : Fragment() {
         state = view.findViewById(R.id.state)
         city = view.findViewById(R.id.City)
         dob = view.findViewById(R.id.dob)
+        update_covid = view.findViewById(R.id.update_covid_details)
         pd = view.findViewById(R.id.details)
         blood = view.findViewById(R.id.blood_grp)
         contact = view.findViewById(R.id.number)
@@ -177,6 +179,12 @@ class ProfileFragment : Fragment() {
             }
         })
 
+        update_covid.setOnClickListener(View.OnClickListener {
+            if(progress_status == 1){
+                setFragmentCovidUpdation(UpdateCovidFragment())
+            }
+        })
+
         covid = view.findViewById(R.id.covid_details)
         personal = view.findViewById(R.id.personal_details)
 
@@ -208,6 +216,16 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setFragmentProfileCreation(forgotFragment: UpdateProfileFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
+
+    private fun setFragmentCovidUpdation(forgotFragment: UpdateCovidFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)
