@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/profile"
-    android:padding="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/light"
     app:cardCornerRadius="5dp">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/User_Name"
@@ -26,7 +30,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/red"
+            android:layout_marginRight="20dp"
             android:text="Blood Group"
             android:textSize="18dp"/>
 
@@ -48,6 +54,33 @@
             android:text="State"
             android:textSize="16dp"/>
 
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="125dp"
+            android:layout_height="35dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Message"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 
