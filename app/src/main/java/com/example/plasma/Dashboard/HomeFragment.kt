@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +22,10 @@ class HomeFragment : Fragment() {
     lateinit var recyclerview : RecyclerView
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    lateinit var progress : ProgressBar
     lateinit var plasmaArrayList : ArrayList<PlasmaRequestModel>
+    lateinit var request_size : TextView
+    var size = 0 as Int
 
 
     override fun onCreateView(
@@ -32,6 +36,8 @@ class HomeFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_home, container, false)
 
         mAuth = FirebaseAuth.getInstance()
+        progress = view.findViewById(R.id.progress_load)
+        request_size = view.findViewById(R.id.total_count)
         data = FirebaseDatabase.getInstance().getReference("Details")
 
         recyclerview = view.findViewById(R.id.recyclerview_plasma_request)
@@ -59,6 +65,9 @@ class HomeFragment : Fragment() {
                 }
                 val adapter = PlasmaRequestAdapter(plasmaArrayList)
                 recyclerview.adapter = adapter
+                progress.visibility = View.INVISIBLE
+                var x = plasmaArrayList.size as Int
+                request_size.setText("Total Request : "+x)
             }
 
             override fun onCancelled(error: DatabaseError) {

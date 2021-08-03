@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Dashboard.SettingFragment">
+    tools:context=".Dashboard.Setting.SettingFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/logout_btn"
@@ -38,6 +38,45 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Logout"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/request_plasma_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/light"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/logout_btn">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_baseline_format_color_reset_24"/>
+
+            <TextView
+                android:id="@+id/apply_plasma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Apply For Plasma"
                 android:textSize="20dp" />
 
         </RelativeLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="bottom"
+    android:layout_height="360dp"
+    android:background="@color/light"
+    tools:context=".Dashboard.Setting.RequestApplyBottomNavFragment">
+
+
+    <ProgressBar
+        android:id="@+id/Request_Plasma_ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <FrameLayout
+        android:id="@+id/cancel_request"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/wew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="35dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:text="Are you sure? You want to cancel your plasma request"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/cancel_request_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.Neumorph.Button"
+                android:layout_marginRight="50dp"
+                android:layout_below="@+id/wew"
+                app:neumorph_backgroundColor="@color/white"
+                android:layout_marginLeft="50dp"
+                android:text="Yes"
+                app:neumorph_lightSource="rightTop"
+                android:textColor="@color/design_default_color_primary"
+                app:neumorph_shapeType="basin"
+                android:textSize="24dp"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="10dp"/>
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/Request_Plasma"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wwe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="45dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:text="Do you want to request for Plasma Donor?"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/plasma_request_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.Neumorph.Button"
+                android:layout_marginRight="50dp"
+                app:neumorph_backgroundColor="@color/white"
+                android:layout_marginLeft="50dp"
+                android:text="Yes"
+                android:layout_marginTop="100dp"
+                android:layout_below="@+id/wwe"
+                app:neumorph_lightSource="rightTop"
+                android:textColor="@color/design_default_color_primary"
+                app:neumorph_shapeType="basin"
+                android:textSize="24dp"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:layout_marginBottom="10dp"/>
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frame3"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="45dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:textColor="@color/red"
+                android:textSize="18dp"
+                android:text="You have to update your covid report before applying for Plasma"/>
+
+
+
+
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

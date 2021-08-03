@@ -10,17 +10,23 @@
     app:cardCornerRadius="5dp">
 
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        android:alpha="0.2"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <TextView
             android:id="@+id/User_Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rajvi Singh Rathor"
+            android:textColor="@color/black"
             android:fontFamily="sans-serif-condensed-medium"
             android:textSize="20dp"
             android:layout_margin="5dp"/>
@@ -40,8 +46,10 @@
             android:id="@+id/User_City"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_location_on_24"
             android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
             android:text="City"
             android:textSize="20dp"/>
 
@@ -50,9 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/User_City"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="14dp"
             android:text="State"
-            android:textSize="16dp"/>
+            android:textSize="10dp"/>
 
 
         <androidx.cardview.widget.CardView
