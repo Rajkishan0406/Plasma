@@ -34,6 +34,7 @@ class LoginFragment : Fragment() {
     lateinit var forgot : TextView
     lateinit var newi : ForgotPassword
     lateinit var data : DatabaseReference
+    var found = 0 as Int
 
     lateinit var mAuth : FirebaseAuth
 
@@ -101,7 +102,7 @@ class LoginFragment : Fragment() {
 
 
     private fun extractPlasmaRequest() {
-        data = FirebaseDatabase.getInstance().getReference("details")
+        data = FirebaseDatabase.getInstance().getReference("Details")
         var id = mAuth.currentUser?.uid
         if (id != null) {
             data.child(id).addValueEventListener(object : ValueEventListener{
@@ -116,15 +117,8 @@ class LoginFragment : Fragment() {
                                         val editor = pref.edit()
                                         editor.putString("Request", request)
                                         editor.apply()
-                                        Log.i("request",request)
-                                    }
-                                } else {
-                                    var pref = PreferenceManager.getDefaultSharedPreferences(activity)
-                                    pref.apply {
-                                        val editor = pref.edit()
-                                        editor.putString("Request", "0")
-                                        editor.apply()
-                                        Log.i("request","0")
+                                        Log.i("request", request)
+                                        found = 1;
                                     }
                                 }
                             }

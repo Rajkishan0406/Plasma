@@ -3,6 +3,7 @@ package com.example.plasma.Dashboard.Setting
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class SettingFragment : Fragment() {
     lateinit var request : CardView
     lateinit var newi : RequestApplyBottomNavFragment
     lateinit var text_apply : TextView
+    var found = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +44,11 @@ class SettingFragment : Fragment() {
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
         var requestPlasma = pref.getString("Request","0")
+        Log.i("Request : "," "+requestPlasma)
 
-        if(requestPlasma.equals("1"))
+        if(requestPlasma.equals("1")) {
             text_apply.setText("Cancel Plasma Request")
+        }
 
 
         request.setOnClickListener(View.OnClickListener {
@@ -53,9 +57,13 @@ class SettingFragment : Fragment() {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if (snapshot.exists()) {
                                 newi = RequestApplyBottomNavFragment()
+                                found = 1
                                 newi.show(childFragmentManager, "bottom sheet")
-                            } else {
-                                Toast.makeText(activity, "Please update your account", Toast.LENGTH_SHORT).show()
+                            }
+                            else{
+                                if(found == 0){
+                                    Toast.makeText(activity,"Please add your account Details first",Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
 
@@ -64,11 +72,19 @@ class SettingFragment : Fragment() {
                         }
 
                     })
+
                 }
         })
 
 
         logout.setOnClickListener(View.OnClickListener {
+                var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+                pref.apply {
+                    val editor = pref.edit()
+                    editor.putString("Request", "0")
+                    editor.apply()
+                    Log.i("request", "0")
+                }
             val intent = Intent(getActivity(), MainActivity::class.java)
             mAuth.signOut()
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

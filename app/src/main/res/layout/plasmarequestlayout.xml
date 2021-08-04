@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/purple_700"
-        android:alpha="0.2"/>
+        android:alpha="0.3"/>
 
 
     <RelativeLayout
@@ -67,7 +67,7 @@
             android:layout_width="125dp"
             android:layout_height="35dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="10dp"
+            app:cardElevation="15dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_alignParentRight="true"
