@@ -2,6 +2,7 @@ package com.example.plasma.Dashboard.Setting
 
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -72,10 +73,12 @@ class RequestApplyBottomNavFragment : BottomSheetDialogFragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
                         progress.visibility = View.INVISIBLE
+                        Log.i("Covid details ","Present")
                         frame2.visibility = View.VISIBLE
                     }
                     else{
                         progress.visibility = View.INVISIBLE
+                        Log.i("Covid details not ","Present")
                         frame3.visibility = View.VISIBLE
                     }
                 }

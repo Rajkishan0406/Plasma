@@ -3,6 +3,7 @@ package com.example.plasma.Dashboard.Profile
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -291,6 +292,13 @@ class ProfileFragment : Fragment() {
                                     delete_it = 1
                                     Log.i("image deleted ","Successfully")
                                     mAuth.currentUser!!.delete().addOnCompleteListener(OnCompleteListener {
+                                        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+                                        pref.apply {
+                                            val editor = pref.edit()
+                                            editor.putString("Request", "0")
+                                            editor.apply()
+                                            Log.i("request", "0")
+                                        }
                                         Toast.makeText(activity, "Account Deleted Successfully", Toast.LENGTH_SHORT).show()
                                         val intent = Intent(getActivity(), MainActivity::class.java)
                                         getActivity()?.startActivity(intent)

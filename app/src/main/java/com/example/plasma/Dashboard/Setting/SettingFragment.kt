@@ -52,16 +52,19 @@ class SettingFragment : Fragment() {
 
 
         request.setOnClickListener(View.OnClickListener {
+            Log.i("Clicked"," ho rha hai")
+            found = 0
                 if (id != null) {
                     data.child(id).child("Profile").addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            if (snapshot.exists()) {
+                            if (snapshot.exists() && found == 0) {
                                 newi = RequestApplyBottomNavFragment()
                                 found = 1
                                 newi.show(childFragmentManager, "bottom sheet")
                             }
                             else{
                                 if(found == 0){
+                                    found = 1
                                     Toast.makeText(activity,"Please add your account Details first",Toast.LENGTH_SHORT).show()
                                 }
                             }
