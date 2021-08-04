@@ -6,15 +6,14 @@
     android:layout_margin="8dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/light"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="8dp">
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/purple_700"
-        android:alpha="0.3"/>
+        android:alpha="0.2"/>
 
 
     <RelativeLayout
@@ -38,6 +37,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:textColor="@color/red"
+            android:textStyle="bold"
             android:layout_marginRight="20dp"
             android:text="Blood Group"
             android:textSize="18dp"/>

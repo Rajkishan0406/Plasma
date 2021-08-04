@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="270dp">
 
 
     <ProgressBar
@@ -22,8 +22,8 @@
     <FrameLayout
         android:id="@+id/cancel_request"
         android:layout_width="match_parent"
-        android:visibility="invisible"
-        android:layout_height="match_parent">
+        android:visibility="visible"
+        android:layout_height="270dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:layout_marginLeft="35dp"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:text="Are you sure? You want to cancel your plasma request"/>
+            android:text="Are you sure? You want to cancel your plasma request?"/>
 
             <soup.neumorphism.NeumorphButton
                 android:id="@+id/cancel_request_button"
@@ -57,7 +57,7 @@
                 android:textSize="24dp"
                 android:textAllCaps="false"
                 android:textAlignment="center"
-                android:layout_marginTop="100dp"/>
+                android:layout_marginTop="30dp"/>
 
 
         </RelativeLayout>
@@ -69,7 +69,7 @@
         android:id="@+id/Request_Plasma"
         android:layout_width="match_parent"
         android:visibility="invisible"
-        android:layout_height="match_parent">
+        android:layout_height="270dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                 app:neumorph_backgroundColor="@color/white"
                 android:layout_marginLeft="50dp"
                 android:text="Yes"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="30dp"
                 android:layout_below="@+id/wwe"
                 app:neumorph_lightSource="rightTop"
                 android:textColor="@color/design_default_color_primary"
@@ -116,7 +116,7 @@
         android:id="@+id/frame3"
         android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="270dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
