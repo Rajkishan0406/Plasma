@@ -1,5 +1,6 @@
 package com.example.plasma.Dashboard.Profile
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,10 +14,19 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.airbnb.lottie.LottieAnimationView
+import com.example.plasma.MainActivity
 import com.example.plasma.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import soup.neumorphism.NeumorphCardView
+import java.nio.file.Files.delete
 
 class ProfileFragment : Fragment() {
 
@@ -37,6 +47,8 @@ class ProfileFragment : Fragment() {
     lateinit var contact : TextView
     lateinit var report_card : NeumorphCardView
     lateinit var progress : ProgressBar
+    lateinit var delete : CardView
+    lateinit var storage : StorageReference
 
     lateinit var disease : TextView
     lateinit var vc : TextView
@@ -55,6 +67,7 @@ class ProfileFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid as String
         data = FirebaseDatabase.getInstance().getReference("Details").child(id)
+        storage = FirebaseStorage.getInstance().getReference(id)
 
         progress = view.findViewById(R.id.profile_progressbar)
         update_personal = view.findViewById(R.id.edit_personal_details)
@@ -69,6 +82,7 @@ class ProfileFragment : Fragment() {
         blood = view.findViewById(R.id.blood_grp)
         contact = view.findViewById(R.id.number)
         report_card = view.findViewById(R.id.report_card)
+        delete = view.findViewById(R.id.delete_account)
 
         disease = view.findViewById(R.id.Disease)
         vc = view.findViewById(R.id.Vaccination)
@@ -254,6 +268,48 @@ class ProfileFragment : Fragment() {
             if(report.text.toString().length > 0){
                 setFragmentReport(ReportFragment())
             }
+        })
+
+        delete.setOnClickListener(View.OnClickListener {
+            MaterialAlertDialogBuilder(this.requireContext())
+                    .setTitle("Alert")
+                    .setMessage("Are you sure you want to delete your Account? Once you delete all your data will be deleted")
+                    .setNegativeButton("Cancel") { dialog, which ->
+                        Log.i("Message : ", "Canceled")
+                    }
+                    .setPositiveButton("Delete") { dialog, which ->
+                        Log.i("Message : ", "Deleted")
+                        progress.visibility = View.VISIBLE
+                        var data: DatabaseReference
+                        var delete_it = 0 as Int
+                        data = FirebaseDatabase.getInstance().getReference("Details").child(id)
+                        if (delete_it == 0) {
+                            data.removeValue().addOnCompleteListener(OnCompleteListener {
+                                Log.i("data deleted ","Successfully")
+                                storage.delete().addOnCompleteListener(OnCompleteListener {
+                                    progress.visibility = View.INVISIBLE
+                                    delete_it = 1
+                                    Log.i("image deleted ","Successfully")
+                                    mAuth.currentUser!!.delete().addOnCompleteListener(OnCompleteListener {
+                                        Toast.makeText(activity, "Account Deleted Successfully", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(getActivity(), MainActivity::class.java)
+                                        getActivity()?.startActivity(intent)
+                                    }).addOnFailureListener { OnFailureListener {
+                                        Toast.makeText(activity,"Please Login again to delete account",Toast.LENGTH_LONG).show()
+                                        progress.visibility = View.INVISIBLE
+                                        mAuth.signOut()
+                                    } }
+                                }).addOnFailureListener(OnFailureListener {
+                                   Log.i("Something"," went wrong in deleting image")
+                                   // Toast.makeText(activity, "Something went wrong in deleting image", Toast.LENGTH_SHORT).show()
+                                })
+                            }).addOnFailureListener(OnFailureListener {
+                                progress.visibility = View.INVISIBLE
+                                Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
+                            })
+                        }
+                    }
+                    .show()
         })
 
         return view

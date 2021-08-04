@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     lateinit var mAuth : FirebaseAuth
-    var go = 0
 
     public override fun onStart() {
         super.onStart()
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(MainActivity@this, DashboardActivity::class.java)
             startActivity(intent)
         }
-        go = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        if(go == 1)
             setFragment(LoginFragment())
 
     }

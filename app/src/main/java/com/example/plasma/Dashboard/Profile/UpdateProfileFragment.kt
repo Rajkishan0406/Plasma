@@ -129,7 +129,7 @@ class UpdateProfileFragment : Fragment() {
             Male_anim.visibility = View.VISIBLE
             Female_anim.visibility = View.INVISIBLE
         }
-        else{
+        if(s.equals("female")){
             sex = "female"
             Male_anim.visibility = View.INVISIBLE
             Female_anim.visibility = View.VISIBLE
