@@ -99,6 +99,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_plasma_request"
         android:layout_width="match_parent"
+        android:layoutAnimation="@anim/layout_animation"
         android:layout_height="match_parent"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"/>
