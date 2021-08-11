@@ -281,6 +281,13 @@ class ProfileFragment : Fragment() {
                     .setPositiveButton("Delete") { dialog, which ->
                         Log.i("Message : ", "Deleted")
                         progress.visibility = View.VISIBLE
+                        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+                        pref.apply {
+                            val editor = pref.edit()
+                            editor.putString("Request", "0")
+                            editor.apply()
+                            Log.i("request", "0")
+                        }
                         var data: DatabaseReference
                         var delete_it = 0 as Int
                         data = FirebaseDatabase.getInstance().getReference("Details").child(id)
@@ -292,13 +299,6 @@ class ProfileFragment : Fragment() {
                                     delete_it = 1
                                     Log.i("image deleted ","Successfully")
                                     mAuth.currentUser!!.delete().addOnCompleteListener(OnCompleteListener {
-                                        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
-                                        pref.apply {
-                                            val editor = pref.edit()
-                                            editor.putString("Request", "0")
-                                            editor.apply()
-                                            Log.i("request", "0")
-                                        }
                                         Toast.makeText(activity, "Account Deleted Successfully", Toast.LENGTH_SHORT).show()
                                         val intent = Intent(getActivity(), MainActivity::class.java)
                                         getActivity()?.startActivity(intent)
@@ -308,9 +308,20 @@ class ProfileFragment : Fragment() {
                                         mAuth.signOut()
                                     } }
                                 }).addOnFailureListener(OnFailureListener {
-                                   Log.i("Something"," went wrong in deleting image")
-                                   // Toast.makeText(activity, "Something went wrong in deleting image", Toast.LENGTH_SHORT).show()
-                                })
+                                    progress.visibility = View.INVISIBLE
+                                    delete_it = 1
+                                    Log.i("image not deleted ","Successfully")
+                                    mAuth.currentUser!!.delete().addOnCompleteListener(OnCompleteListener {
+                                        Toast.makeText(activity, "Account Deleted Successfully", Toast.LENGTH_SHORT).show()
+                                        mAuth.signOut()
+                                        val intent = Intent(getActivity(), MainActivity::class.java)
+                                        getActivity()?.startActivity(intent)
+                                    }).addOnFailureListener { OnFailureListener {
+                                        Toast.makeText(activity,"Please Login again to delete account",Toast.LENGTH_LONG).show()
+                                        progress.visibility = View.INVISIBLE
+                                        mAuth.signOut()
+                                    } }
+                                    })
                             }).addOnFailureListener(OnFailureListener {
                                 progress.visibility = View.INVISIBLE
                                 Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()

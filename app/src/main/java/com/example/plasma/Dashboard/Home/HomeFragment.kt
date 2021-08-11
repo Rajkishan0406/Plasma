@@ -1,4 +1,4 @@
-package com.example.plasma.Dashboard
+package com.example.plasma.Dashboard.Home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -58,7 +58,8 @@ class HomeFragment : Fragment() {
                                 var city = plasmarequestSnapshot.child("Profile").child("City").getValue() as String
                                 var state = plasmarequestSnapshot.child("Profile").child("State").getValue() as String
                                 var blood = plasmarequestSnapshot.child("Profile").child("Blood_Grp").getValue() as String
-                                plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood))
+                                var id = plasmarequestSnapshot.child("Profile").child("Id").getValue() as String
+                                plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood,id))
                             }
                         }
                     }

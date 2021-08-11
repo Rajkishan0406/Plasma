@@ -243,6 +243,7 @@ class UpdateProfileFragment : Fragment() {
                 data.child("Profile").child("Number").setValue(number.text.trim().toString())
                 data.child("Profile").child("Status").setValue(status)
                 data.child("Profile").child("Sex").setValue(sex)
+                data.child("Profile").child("Id").setValue(id)
                 Toast.makeText(activity,"Personal Details Updated Successfully", Toast.LENGTH_SHORT).show()
                 setFragmentProfile(ProfileFragment())
             }

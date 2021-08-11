@@ -1,10 +1,14 @@
 package com.example.plasma.Dashboard.Adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +31,21 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
         holder.city.text = PR.City
         holder.state.text = PR.State
 
+        var id = PR.Id
+
+        holder.itemView.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                var activity = v!!.context as AppCompatActivity
+                val IDF = RequestProfileFragment()
+                var bun : Bundle
+                bun = Bundle()
+                bun.putString("Id",id)
+                IDF.arguments = bun
+                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+            }
+        })
+
+
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +58,8 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
         var city  = itemView.findViewById(R.id.User_City) as TextView
         var state = itemView.findViewById(R.id.User_State) as TextView
         var blood = itemView.findViewById(R.id.User_Blood) as TextView
+        var card = itemView.findViewById(R.id.card) as CardView
+
 
     }
 

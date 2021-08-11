@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Dashboard.Home.RulesAndRegulationFragment">
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/donate"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        style="@style/Widget.Neumorph.Button"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:text="Donate Plasma"
+        android:layout_marginTop="20dp"
+        app:neumorph_lightSource="rightTop"
+        android:textColor="@color/design_default_color_primary"
+        app:neumorph_shapeType="basin"
+        android:textSize="22dp"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"/>
+
+
+</RelativeLayout>
