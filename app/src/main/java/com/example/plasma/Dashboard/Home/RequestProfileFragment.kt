@@ -148,7 +148,12 @@ class RequestProfileFragment : Fragment() {
         }
 
         doc.setOnClickListener(View.OnClickListener {
-            setFragmentReport(ReportFragment())
+            var IDF = ReportFragment()
+            var bun : Bundle
+            bun = Bundle()
+            bun.putString("User_Id",id)
+            IDF.arguments = bun
+            setFragmentReport(IDF)
         })
 
         donate = view.findViewById(R.id.donate_btn)

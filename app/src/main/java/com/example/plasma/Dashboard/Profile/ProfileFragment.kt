@@ -267,7 +267,12 @@ class ProfileFragment : Fragment() {
 
         report_card.setOnClickListener(View.OnClickListener {
             if(report.text.toString().length > 0){
-                setFragmentReport(ReportFragment())
+                var IDF = ReportFragment()
+                var bun : Bundle
+                bun = Bundle()
+                bun.putString("User_Id",id)
+                IDF.arguments = bun
+                setFragmentReport(IDF)
             }
         })
 

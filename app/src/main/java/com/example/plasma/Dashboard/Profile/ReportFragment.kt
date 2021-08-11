@@ -28,9 +28,10 @@ class ReportFragment : Fragment() {
         // Inflate the layout for this fragment
         var view =  inflater.inflate(R.layout.fragment_report, container, false)
 
-        mAuth = FirebaseAuth.getInstance()
-        var id = mAuth.currentUser?.uid as String
-        data = FirebaseDatabase.getInstance().getReference("Details").child(id)
+        var bun = Bundle()
+        bun = this.requireArguments()
+        var id : String? = bun.getString("User_Id")
+        data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
         storage = FirebaseStorage.getInstance().getReference(id)
         image = view.findViewById(R.id.report_image)
         pro = view.findViewById(R.id.progress_image)
