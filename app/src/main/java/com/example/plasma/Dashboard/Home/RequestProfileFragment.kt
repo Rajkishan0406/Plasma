@@ -160,7 +160,12 @@ class RequestProfileFragment : Fragment() {
 
         donate.setOnClickListener(View.OnClickListener {
             //firstly show all needed information before donating blood.....
-            setFragmentRules(RulesAndRegulationFragment())
+            var IDF = RulesAndRegulationFragment()
+            var bun : Bundle
+            bun = Bundle()
+            bun.putString("User_Id",id)
+            IDF.arguments = bun
+            setFragmentRules(IDF)
         })
 
         return view;
