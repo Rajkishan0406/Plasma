@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.ForgotPassword
+import com.example.plasma.Dashboard.Profile.ReportFragment
 import com.example.plasma.MainActivity
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +25,7 @@ class SettingFragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var logout : CardView
     lateinit var request : CardView
+    lateinit var donation_give : CardView
     lateinit var newi : RequestApplyBottomNavFragment
     lateinit var text_apply : TextView
     var found = 0
@@ -39,8 +42,13 @@ class SettingFragment : Fragment() {
         data = FirebaseDatabase.getInstance().getReference("Details")
 
         logout = view.findViewById(R.id.logout_btn)
+        donation_give = view.findViewById(R.id.donation_give)
         text_apply = view.findViewById(R.id.apply_plasma)
         request = view.findViewById(R.id.request_plasma_btn)
+
+        donation_give.setOnClickListener(View.OnClickListener {
+            setFragmentDonation_Give(Donation_Give_Fragment())
+        })
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
         var requestPlasma = pref.getString("Request","0")
@@ -96,4 +104,16 @@ class SettingFragment : Fragment() {
 
         return view
     }
+
+    private fun setFragmentDonation_Give(forgotFragment: Donation_Give_Fragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
+
+
 }

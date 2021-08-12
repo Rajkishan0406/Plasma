@@ -24,8 +24,6 @@ class RequestProfileFragment : Fragment() {
 
     lateinit var bun : Bundle
     lateinit var donate : NeumorphButton
-    lateinit var mAuth : FirebaseAuth
-    lateinit var data : DatabaseReference
     lateinit var name : TextView
     lateinit var age : TextView
     lateinit var gender : TextView
@@ -41,6 +39,8 @@ class RequestProfileFragment : Fragment() {
     lateinit var pro :ProgressBar
 
     var sex = "" as String
+    lateinit var mAuth : FirebaseAuth
+    lateinit var data : DatabaseReference
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +51,7 @@ class RequestProfileFragment : Fragment() {
         // bundle code for extracting user id....
         bun = Bundle()
         bun = this.requireArguments()
-        var id : String? = bun.getString("Id")
+        var id : String? = bun.getString("Id") as String
 
 
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -157,6 +157,13 @@ class RequestProfileFragment : Fragment() {
         })
 
         donate = view.findViewById(R.id.donate_btn)
+        mAuth = FirebaseAuth.getInstance()
+
+        var Present_User_Id = mAuth.currentUser?.uid as String
+
+        if(id.equals(Present_User_Id)){
+            donate.visibility = View.INVISIBLE
+        }
 
         donate.setOnClickListener(View.OnClickListener {
             //firstly show all needed information before donating blood.....

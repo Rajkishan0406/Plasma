@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Dashboard.Setting.Donation_Give_Fragment">
+
+    <ProgressBar
+        android:id="@+id/progress_donation_give"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+  <androidx.cardview.widget.CardView
+      android:id="@+id/card_response"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:cardCornerRadius="0dp"
+      app:cardBackgroundColor="@color/light"
+      app:cardElevation="9dp">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/black"
+              android:textSize="20dp"
+              android:text="Your Donation Responses"
+              android:layout_margin="8dp"/>
+
+      </RelativeLayout>
+
+  </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_donation_give"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/card_response"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="2dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"/>
+
+
+</RelativeLayout>
