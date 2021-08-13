@@ -41,6 +41,7 @@ class RequestProfileFragment : Fragment() {
     var sex = "" as String
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    var number = "" as String
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +85,8 @@ class RequestProfileFragment : Fragment() {
                             city.setText(snapshot.child("City").getValue() as String)
                         if(snapshot.hasChild("Blood_Grp"))
                             blood.setText(snapshot.child("Blood_Grp").getValue() as String)
+                        if(snapshot.hasChild("Number"))
+                            number = snapshot.child("Number").getValue() as String
                         if(snapshot.hasChild("Sex")) {
                             sex = snapshot.child("Sex").getValue() as String
                             if (sex.equals("male")) {
@@ -171,6 +174,7 @@ class RequestProfileFragment : Fragment() {
             var bun : Bundle
             bun = Bundle()
             bun.putString("User_Id",id)
+            bun.putString("Number",number)
             IDF.arguments = bun
             setFragmentRules(IDF)
         })
