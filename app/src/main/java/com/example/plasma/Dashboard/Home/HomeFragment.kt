@@ -1,6 +1,8 @@
 package com.example.plasma.Dashboard.Home
 
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.TextureView
@@ -26,14 +28,15 @@ class HomeFragment : Fragment() {
     lateinit var plasmaArrayList : ArrayList<PlasmaRequestModel>
     lateinit var request_size : TextView
     var size = 0 as Int
+    lateinit var frag : FilterFragment
+    lateinit var filter : TextView
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
 
         mAuth = FirebaseAuth.getInstance()
         progress = view.findViewById(R.id.progress_load)
@@ -46,11 +49,21 @@ class HomeFragment : Fragment() {
 
         plasmaArrayList = arrayListOf<PlasmaRequestModel>()
 
+        filter = view.findViewById(R.id.filter)
+
+        frag = FilterFragment()
+        filter.setOnClickListener(View.OnClickListener {
+            frag.show(childFragmentManager,"bottom sheet")
+        })
+
         data.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 plasmaArrayList.clear()
-                if(snapshot.exists()){
-                    for(plasmarequestSnapshot in snapshot.children) {
+                var CITY = pref.getString("City", "0") as String
+                var STATE = pref.getString("State", "0") as String
+                var BLOOD = pref.getString("Blood", "0") as String
+                if (snapshot.exists()) {
+                    for (plasmarequestSnapshot in snapshot.children) {
                         if (plasmarequestSnapshot.hasChild("PlasmaRequest")) {
                             var ss = plasmarequestSnapshot.child("PlasmaRequest").getValue() as String
                             if (ss.equals("1")) {
@@ -59,16 +72,33 @@ class HomeFragment : Fragment() {
                                 var state = plasmarequestSnapshot.child("Profile").child("State").getValue() as String
                                 var blood = plasmarequestSnapshot.child("Profile").child("Blood_Grp").getValue() as String
                                 var id = plasmarequestSnapshot.child("Profile").child("Id").getValue() as String
-                                plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood,id))
+                                if (CITY.toString().equals("0") && STATE.toString().equals("0") && BLOOD.toString().equals("0"))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                else {
+                                    if (CITY.toString().equals(city) && STATE.toString().equals("0") && BLOOD.toString().equals("0"))
+                                        plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    if (STATE.toString().equals(state) && CITY.toString().equals("0") && BLOOD.toString().equals("0"))
+                                        plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    if (BLOOD.toString().equals(blood) && CITY.toString().equals("0") && STATE.toString().equals("0"))
+                                        plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    if (BLOOD.toString().equals(blood) && CITY.toString().equals(city) && STATE.toString().equals("0"))
+                                        plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    if (BLOOD.toString().equals(blood) && CITY.toString().equals("0") && STATE.toString().equals(state))
+                                        plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    if (BLOOD.toString().equals("0") && CITY.toString().equals(city) && STATE.toString().equals(state))
+                                        plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    if (BLOOD.toString().equals(blood) && CITY.toString().equals(city) && STATE.toString().equals(state))
+                                        plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                }
                             }
                         }
                     }
+                    val adapter = PlasmaRequestAdapter(plasmaArrayList)
+                    recyclerview.adapter = adapter
+                    progress.visibility = View.INVISIBLE
+                    var x = plasmaArrayList.size as Int
+                    request_size.setText("Total Request : " + x)
                 }
-                val adapter = PlasmaRequestAdapter(plasmaArrayList)
-                recyclerview.adapter = adapter
-                progress.visibility = View.INVISIBLE
-                var x = plasmaArrayList.size as Int
-                request_size.setText("Total Request : "+x)
             }
 
             override fun onCancelled(error: DatabaseError) {

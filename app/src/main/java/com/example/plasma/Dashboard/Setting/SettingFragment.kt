@@ -92,6 +92,9 @@ class SettingFragment : Fragment() {
                 var pref = PreferenceManager.getDefaultSharedPreferences(activity)
                 pref.apply {
                     val editor = pref.edit()
+                    editor.putString("Blood","0")
+                    editor.putString("City","0")
+                    editor.putString("State","0")
                     editor.putString("Request", "0")
                     editor.apply()
                     Log.i("request", "0")
