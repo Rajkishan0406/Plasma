@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
+import com.example.plasma.Dashboard.Setting.Donation_G_DetailsFragment
 import com.example.plasma.R
 
 class DonationGiveAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : RecyclerView.Adapter<DonationGiveAdapter.ViewHolder>() {
@@ -30,17 +31,17 @@ class DonationGiveAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : 
 
         var id = PR.Id
 
-      /*  holder.itemView.setOnClickListener(object : View.OnClickListener {
+        holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 var activity = v!!.context as AppCompatActivity
-                val IDF = RequestProfileFragment()
+                val IDF = Donation_G_DetailsFragment()
                 var bun : Bundle
                 bun = Bundle()
                 bun.putString("Id",id)
                 IDF.arguments = bun
                 activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
             }
-        })*/
+        })
     }
 
     override fun getItemCount(): Int {

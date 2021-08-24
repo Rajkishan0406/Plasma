@@ -58,7 +58,6 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
         var city  = itemView.findViewById(R.id.User_City) as TextView
         var state = itemView.findViewById(R.id.User_State) as TextView
         var blood = itemView.findViewById(R.id.User_Blood) as TextView
-        var card = itemView.findViewById(R.id.card) as CardView
 
 
     }
