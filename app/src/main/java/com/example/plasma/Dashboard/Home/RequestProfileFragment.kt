@@ -72,7 +72,7 @@ class RequestProfileFragment : Fragment() {
         doc = view.findViewById(R.id.reportcard)
         pro = view.findViewById(R.id.progress)
 
-
+        //Personal details
         if (id != null) {
             data.child(id).child("Profile").addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -110,7 +110,7 @@ class RequestProfileFragment : Fragment() {
             })
         }
 
-
+        //Covid details
         if (id != null) {
             data.child(id).child("Covid").addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
