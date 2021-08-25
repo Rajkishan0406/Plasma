@@ -42,6 +42,8 @@ class RequestProfileFragment : Fragment() {
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
     var number = "" as String
+    var aage = "" as String
+    var ggender = "" as String
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -173,10 +175,37 @@ class RequestProfileFragment : Fragment() {
             var IDF = RulesAndRegulationFragment()
             var bun : Bundle
             bun = Bundle()
-            bun.putString("User_Id",id)
-            bun.putString("Number",number)
-            IDF.arguments = bun
-            setFragmentRules(IDF)
+            //Age
+            data.child(Present_User_Id).child("Covid").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        aage = snapshot.child("Age").getValue() as String
+                        //Gender
+                        data.child(Present_User_Id).child("Profile").addValueEventListener(object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if(snapshot.exists()){
+                                    ggender = snapshot.child("Sex").getValue() as String
+
+                                    if(aage.equals("1")) {
+                                        bun.putString("User_Id", id)
+                                        bun.putString("Number", number)
+                                        bun.putString("Gender", ggender)
+                                        IDF.arguments = bun
+                                        setFragmentRules(IDF)
+                                    }
+                                    else{
+                                        Toast.makeText(activity,"you can't donate plasma as you are below 18",Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                            override fun onCancelled(error: DatabaseError) {}
+                        })
+
+
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
         })
 
         return view;
