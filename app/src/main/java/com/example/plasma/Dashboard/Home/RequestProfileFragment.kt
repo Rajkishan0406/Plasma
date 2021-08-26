@@ -19,6 +19,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import soup.neumorphism.NeumorphButton
 import soup.neumorphism.NeumorphCardView
+import java.util.*
 
 class RequestProfileFragment : Fragment() {
 
@@ -44,6 +45,7 @@ class RequestProfileFragment : Fragment() {
     var number = "" as String
     var aage = "" as String
     var ggender = "" as String
+    var year = "" as String
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -89,6 +91,11 @@ class RequestProfileFragment : Fragment() {
                             blood.setText(snapshot.child("Blood_Grp").getValue() as String)
                         if(snapshot.hasChild("Number"))
                             number = snapshot.child("Number").getValue() as String
+                        year = snapshot.child("DOB").getValue() as String
+                        var cal = Calendar.getInstance().get(Calendar.YEAR)
+                        year = year.substring(year.toString().length - 4, year.toString().length)
+                        var Year = cal - year.toInt()
+                        age.setText("Age : "+Year)
                         if(snapshot.hasChild("Sex")) {
                             sex = snapshot.child("Sex").getValue() as String
                             if (sex.equals("male")) {
@@ -151,6 +158,7 @@ class RequestProfileFragment : Fragment() {
                 }
             })
         }
+
 
         doc.setOnClickListener(View.OnClickListener {
             var IDF = ReportFragment()
