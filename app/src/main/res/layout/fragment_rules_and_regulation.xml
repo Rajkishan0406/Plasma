@@ -6,6 +6,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard.Home.RulesAndRegulationFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
     <FrameLayout
         android:visibility="invisible"
         android:id="@+id/male_frame"
@@ -20,7 +32,7 @@
         android:id="@+id/first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         app:cardElevation="10dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -34,7 +46,7 @@
                 android:id="@+id/disease_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="12dp"
                 android:text="Do you have any Chronic Kidney/ heart / lung / liver disease ?"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
@@ -44,6 +56,7 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
                 app:neumorph_shapeType="flat"
                 android:layout_below="@+id/disease_text">
 
@@ -67,6 +80,7 @@
                 android:id="@+id/disease_text_No"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
                 app:neumorph_shapeType="flat"
@@ -96,7 +110,7 @@
         android:id="@+id/second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         app:cardElevation="10dp"
         android:layout_below="@+id/first"
         android:layout_marginLeft="8dp"
@@ -111,7 +125,7 @@
                 android:id="@+id/cancer_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="12dp"
                 android:text="Are you a Cancer Survivor ?"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
@@ -120,6 +134,8 @@
                 android:id="@+id/cancer_text_Yes"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 app:neumorph_shapeType="flat"
                 android:layout_below="@+id/cancer_text">
 
@@ -142,6 +158,7 @@
             <soup.neumorphism.NeumorphCardView
                 android:id="@+id/cancer_text_No"
                 android:layout_width="150dp"
+                android:layout_marginTop="16dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
@@ -173,7 +190,7 @@
         android:id="@+id/three"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/second"
         app:cardElevation="10dp"
         android:layout_marginLeft="8dp"
@@ -194,12 +211,14 @@
                 android:textSize="18dp"/>
 
             <EditText
+                android:id="@+id/weight_text_male"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/weight_text"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
+                android:inputType="number"
                 android:padding="8dp"
                 android:hint="Weight"/>
 
@@ -249,7 +268,7 @@
                         android:id="@+id/female_Pregnant_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_margin="12dp"
                         android:text="Do you ever been pregnant?"
                         android:textColor="@color/black"
                         android:textSize="18dp"/>
@@ -258,6 +277,7 @@
                         android:id="@+id/female_Pregnant_text_Yes"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
                         android:layout_marginBottom="8dp"
                         app:neumorph_shapeType="flat"
                         android:layout_below="@+id/female_Pregnant_text">
@@ -282,6 +302,7 @@
                         android:id="@+id/female_Pregnant_text_No"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="8dp"
                         app:neumorph_shapeType="flat"
@@ -311,7 +332,7 @@
                 android:id="@+id/female_second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@id/female_first"
                 app:cardElevation="10dp"
                 android:layout_marginLeft="8dp"
@@ -326,7 +347,7 @@
                         android:id="@+id/female_disease_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_margin="12dp"
                         android:text="Do you have any Chronic Kidney/ heart / lung / liver disease ?"
                         android:textColor="@color/black"
                         android:textSize="18dp"/>
@@ -335,6 +356,7 @@
                         android:id="@+id/female_disease_text_Yes"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
                         app:neumorph_shapeType="flat"
                         android:layout_below="@+id/female_disease_text">
@@ -359,6 +381,7 @@
                         android:id="@+id/female_disease_text_No"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="8dp"
                         app:neumorph_shapeType="flat"
@@ -388,7 +411,7 @@
                 android:id="@+id/female_third"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 app:cardElevation="10dp"
                 android:layout_below="@+id/female_second"
                 android:layout_marginLeft="8dp"
@@ -412,6 +435,7 @@
                         android:id="@+id/female_cancer_text_Yes"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
                         app:neumorph_shapeType="flat"
                         android:layout_below="@+id/female_cancer_text">
 
@@ -435,6 +459,7 @@
                         android:id="@+id/female_cancer_text_No"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="8dp"
                         app:neumorph_shapeType="flat"
@@ -465,7 +490,7 @@
                 android:id="@+id/female_forth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 app:cardElevation="10dp"
                 android:layout_below="@id/female_third"
                 android:layout_marginLeft="8dp"
@@ -486,10 +511,12 @@
                         android:textSize="18dp"/>
 
                     <EditText
+                        android:id="@+id/female_weight_text_female"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/female_weight_text"
                         android:layout_marginLeft="8dp"
+                        android:inputType="number"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:padding="8dp"
@@ -514,6 +541,12 @@
 
     </FrameLayout>
 
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
     <soup.neumorphism.NeumorphButton
         android:id="@+id/donate"
         android:layout_width="match_parent"
@@ -522,14 +555,15 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:text="Donate Plasma"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         app:neumorph_lightSource="rightTop"
         android:textColor="@color/design_default_color_primary"
         app:neumorph_shapeType="basin"
         android:textSize="22dp"
+        android:layout_marginBottom="10dp"
         android:textAllCaps="false"
         android:textAlignment="center"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"/>
+        android:layout_alignParentBottom="true"/>
+
 
 </RelativeLayout>
