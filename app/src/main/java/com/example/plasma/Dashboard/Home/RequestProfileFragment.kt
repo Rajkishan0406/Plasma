@@ -1,5 +1,7 @@
 package com.example.plasma.Dashboard.Home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -31,6 +33,7 @@ class RequestProfileFragment : Fragment() {
     lateinit var blood : TextView
     lateinit var msg : CardView
     lateinit var call : CardView
+    lateinit var map : CardView
     lateinit var city : TextView
     lateinit var state : TextView
     lateinit var report : TextView
@@ -68,6 +71,7 @@ class RequestProfileFragment : Fragment() {
         blood = view.findViewById(R.id.blood)
         msg = view.findViewById(R.id.message)
         call = view.findViewById(R.id.call)
+        map = view.findViewById(R.id.map)
         city = view.findViewById(R.id.city)
         state = view.findViewById(R.id.state)
         report = view.findViewById(R.id.date_report)
@@ -159,6 +163,17 @@ class RequestProfileFragment : Fragment() {
             })
         }
 
+        //call feature
+        call.setOnClickListener(View.OnClickListener {
+            var intent = Intent(Intent.ACTION_CALL)
+            intent.setData(Uri.parse("tel:" + number))
+            activity?.startActivity(intent)
+        })
+
+        //Map call
+        map.setOnClickListener(View.OnClickListener {
+            // code later on...
+        })
 
         doc.setOnClickListener(View.OnClickListener {
             var IDF = ReportFragment()
