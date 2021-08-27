@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.SignUpFragment
+import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Profile.ReportFragment
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
@@ -170,6 +171,15 @@ class RequestProfileFragment : Fragment() {
             activity?.startActivity(intent)
         })
 
+        msg.setOnClickListener(View.OnClickListener {
+            var frag = ChatPageFragment()
+            var bun = Bundle()
+            bun.putString("Name",name.text.toString())
+            bun.putString("Id",id)
+            frag.setArguments(bun)
+            setFragmentChatPage(frag)
+        })
+
         //Map call
         map.setOnClickListener(View.OnClickListener {
             // code later on...
@@ -244,6 +254,15 @@ class RequestProfileFragment : Fragment() {
         }
     }
 
+    private fun setFragmentChatPage(forgotFragment: ChatPageFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
 
     private fun setFragmentReport(forgotFragment: ReportFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()

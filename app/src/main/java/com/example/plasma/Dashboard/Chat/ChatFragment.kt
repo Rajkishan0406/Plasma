@@ -1,4 +1,4 @@
-package com.example.plasma.Dashboard
+package com.example.plasma.Dashboard.Chat
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

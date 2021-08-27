@@ -3,9 +3,8 @@ package com.example.plasma
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
-import com.example.plasma.Dashboard.ChatFragment
+import com.example.plasma.Dashboard.Chat.ChatFragment
 import com.example.plasma.Dashboard.Home.HomeFragment
-import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Profile.ProfileFragment
 import com.example.plasma.Dashboard.Setting.SettingFragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar

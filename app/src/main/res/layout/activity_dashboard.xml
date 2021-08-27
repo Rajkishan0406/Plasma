@@ -25,4 +25,5 @@
         app:cnb_menuResource="@menu/bottom_menu"/>
 
 
+
 </RelativeLayout>

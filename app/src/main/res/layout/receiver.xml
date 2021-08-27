@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.8"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/receiver_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginLeft="10dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/teal_200"
+            android:alpha="0.5"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/receiver_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="225dp"
+                android:layout_margin="8dp"
+                android:textColor="@color/black"
+                android:text="Since many networks are partitioned into subnetworks and connect to other networks for wide-area communications, networks use specialized
+hosts, called gateways or routers, to forward packets between networks."/>
+
+            <TextView
+                android:id="@+id/receiver_time"
+                android:layout_below="@+id/receiver_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="5:36 AM 27/08/2021"
+                android:textSize="12dp"
+                android:layout_marginLeft="100dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

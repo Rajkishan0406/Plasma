@@ -28,7 +28,6 @@ class RequestApplyBottomNavFragment : BottomSheetDialogFragment() {
     lateinit var data : DatabaseReference
     lateinit var cancel : NeumorphButton
     lateinit var request : NeumorphButton
-    lateinit var card : CardView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
