@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         app:cardCornerRadius="0dp"
-        app:cardBackgroundColor="@color/chat">
+        app:cardBackgroundColor="@color/chat2">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,32 +59,233 @@
         app:cardCornerRadius="0dp"
         android:layout_marginTop="2dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/msg1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/teal_200"
+                android:layout_marginTop="8dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="11dp"
+                android:layout_marginLeft="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/ppp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="225dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/black"
+                    android:text="Since many networks are partitioned into subnetworks and connect to other networks for wide-area communications, networks use specialized
+hosts, called gateways or routers, to forward packets between networks."/>
+
+                    <TextView
+                        android:layout_below="@+id/ppp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="5:36 AM 27/08/2021"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="100dp"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/msg2"
+                android:layout_below="@+id/msg1"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/teal_700"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="11dp"
+                app:cardElevation="8dp"
+                android:layout_marginRight="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/pp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="225dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/black"
+                    android:text="But it doesn't work, the box could be more than 150 dp anyway.
+But it doesn't work, the box could be more than 150 dp anyway."/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pp"
+                    android:text="5:38 AM 27/08/2021"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:layout_marginLeft="100dp"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/msg3"
+                android:layout_below="@+id/msg2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/teal_200"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="11dp"
+                app:cardElevation="8dp"
+                android:layout_marginLeft="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/ppp2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="225dp"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:text="The network layer provides the means of transferring variable-length network packets from a
+source to a destination host via one or more networks."/>
+
+                    <TextView
+                        android:layout_below="@+id/ppp2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:text="5:41 AM 27/08/2021"
+                        android:layout_marginLeft="100dp"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/msg4"
+                android:layout_below="@+id/msg3"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/teal_700"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="11dp"
+                app:cardElevation="8dp"
+                android:layout_marginRight="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/pp2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="225dp"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:text="But Every host in the network must have a unique address that determines where
+it is"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pp2"
+                        android:textSize="12dp"
+                        android:text="5:48 AM 27/08/2021"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="100dp"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/msg5"
+                android:layout_below="@+id/msg4"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/teal_700"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="11dp"
+                app:cardElevation="8dp"
+                android:layout_marginRight="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/pp3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="225dp"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:text="Functions of the network layer include"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pp3"
+                        android:text="5:51 AM 27/08/2021"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="100dp"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
 
 
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/msg_card"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="25dp"
-        android:layout_marginRight="65dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="8dp"
+        android:layout_marginRight="10dp"
+        app:boxCornerRadiusBottomEnd="28dp"
+        android:maxHeight="125dp"
+        app:boxCornerRadiusBottomStart="28dp"
+        app:boxCornerRadiusTopStart="28dp"
+        app:boxCornerRadiusTopEnd="28dp"
+        android:layout_marginTop="18dp"
         android:layout_marginBottom="8dp"
-        android:alpha="0.8"
-        app:cardBackgroundColor="@color/chat">
+        android:layout_marginLeft="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
-
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/message"
             android:layout_width="match_parent"
-            android:textColor="@color/white"
-            android:maxHeight="120dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:maxHeight="125dp"/>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/send_card"
