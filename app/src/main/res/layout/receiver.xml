@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:alpha="0.8"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -9,7 +9,8 @@
         android:id="@+id/receiver_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="8dp"
         app:cardElevation="8dp"
         app:cardCornerRadius="10dp"
         android:layout_marginLeft="10dp">
@@ -42,7 +43,7 @@ hosts, called gateways or routers, to forward packets between networks."/>
                 android:textColor="@color/white"
                 android:text="5:36 AM 27/08/2021"
                 android:textSize="12dp"
-                android:layout_marginLeft="100dp"/>
+                android:layout_marginLeft="15dp"/>
 
         </RelativeLayout>
 
