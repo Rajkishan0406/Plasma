@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
 import com.example.plasma.R
@@ -32,6 +33,7 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
         holder.state.text = PR.State
 
         var id = PR.Id
+        var name = PR.Name
 
         holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -45,6 +47,18 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
             }
         })
 
+        holder.msg.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                var activity = v!!.context as AppCompatActivity
+                val IDF = ChatPageFragment()
+                var bun : Bundle
+                bun = Bundle()
+                bun.putString("Name",name)
+                bun.putString("Id",id)
+                IDF.arguments = bun
+                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+            }
+        })
 
     }
 
@@ -58,7 +72,7 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
         var city  = itemView.findViewById(R.id.User_City) as TextView
         var state = itemView.findViewById(R.id.User_State) as TextView
         var blood = itemView.findViewById(R.id.User_Blood) as TextView
-
+        var msg = itemView.findViewById(R.id.Message_card) as CardView
 
     }
 

@@ -11,10 +11,14 @@ import com.example.plasma.R
 
 class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
+    var from = "" as String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.sender,parent,false)
-        return ChatAdapter.ViewHolder(v)
+        val V = LayoutInflater.from(parent.context).inflate(R.layout.receiver,parent,false)
+        if(from.equals("S"))
+            return ChatAdapter.ViewHolder(v)
+        return ChatAdapter.ViewHolder(V)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -22,6 +26,8 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
 
         holder.message.text = PR.Message
         holder.time.text = PR.Time
+
+        from = PR.From.toString()
     }
 
     override fun getItemCount(): Int {
@@ -29,8 +35,8 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        var message = itemView.findViewById(R.id.sender_text) as TextView
-        var time  = itemView.findViewById(R.id.sender_time) as TextView
+        var message = itemView.findViewById(R.id.text) as TextView
+        var time  = itemView.findViewById(R.id.time) as TextView
 
 
     }

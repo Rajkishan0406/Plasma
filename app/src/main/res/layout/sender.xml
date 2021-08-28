@@ -27,7 +27,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/sender_text"
+                android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="225dp"
@@ -37,15 +37,17 @@
 But it doesn't work, the box could be more than 150 dp anyway."/>
 
             <TextView
-                android:id="@+id/sender_time"
+                android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sender_text"
+                android:layout_below="@+id/text"
                 android:text="5:38 AM 27/08/2021"
                 android:textColor="@color/white"
-                android:textSize="12dp"
+                android:textSize="10dp"
                 android:maxWidth="225dp"
-                android:layout_marginLeft="15dp"/>
+                android:minWidth="100dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"/>
 
         </RelativeLayout>
 
