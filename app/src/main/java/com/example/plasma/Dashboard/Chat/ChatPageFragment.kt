@@ -74,8 +74,8 @@ class ChatPageFragment : Fragment() {
                             for(snap in snapshot.children){
                                 var m = snap.getValue() as String
                                 from = m.substring(0,1)
-                                time = m.substring(1,17)
-                                msg = m.substring(17,m.length)
+                                time = m.substring(1,9)
+                                msg = m.substring(20,m.length)
                                 chatArrayList.add(ChatModel(msg,time,from))
                             }
                         }
@@ -91,8 +91,8 @@ class ChatPageFragment : Fragment() {
         send.setOnClickListener(View.OnClickListener {
             var text = Msg.text.toString()
             if(text.length > 0){
-                val sdf = SimpleDateFormat("yyyy_MM_dd_hh:mm:ss")
-                val Sdf = SimpleDateFormat("hh:mm dd/MM/yyyy")
+                val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
+                val Sdf = SimpleDateFormat("hh:mm a dd/MM/yyyy")
                 val d = sdf.format(Date())
                 val D = Sdf.format(Date())
                 var sender = "S" + D + text

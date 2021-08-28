@@ -7,61 +7,32 @@
     tools:context=".Dashboard.Chat.ChatFragment">
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/detail_card"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        app:cardCornerRadius="0dp"
-        app:cardBackgroundColor="@color/chat2">
+    <TextView
+        android:id="@+id/User_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:text="User Name"
+        android:textColor="@color/chat2"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="22dp"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/User_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Virat Kohli"
-                android:textColor="@color/black"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="25dp"
-                android:textStyle="bold"
-                android:textSize="22dp"/>
-
-            <ImageView
-                android:id="@+id/setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_settings"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/teal_200"/>
-
-        </RelativeLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:layout_marginTop="-10dp"
-            android:background="@drawable/wallpaper"
-            />
+    <ImageView
+        android:id="@+id/setting"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_baseline_settings_2_o"
+        android:layout_marginRight="12dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/message_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/detail_card"
+        android:layout_below="@+id/User_Name"
         android:layout_above="@+id/msg_card"/>
        
 
