@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : RecyclerView.Adapter<PlasmaRequestAdapter.ViewHolder>() {
 
+    lateinit var mAuth : FirebaseAuth
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.plasmarequestlayout,parent,false)
@@ -47,16 +48,21 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
             }
         })
 
+        mAuth = FirebaseAuth.getInstance()
+        var User_id = mAuth.currentUser?.uid as String
+
         holder.msg.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                var activity = v!!.context as AppCompatActivity
-                val IDF = ChatPageFragment()
-                var bun : Bundle
-                bun = Bundle()
-                bun.putString("Name",name)
-                bun.putString("Id",id)
-                IDF.arguments = bun
-                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+                if(!id.equals(User_id)) {
+                    var activity = v!!.context as AppCompatActivity
+                    val IDF = ChatPageFragment()
+                    var bun: Bundle
+                    bun = Bundle()
+                    bun.putString("Name", name)
+                    bun.putString("Id", id)
+                    IDF.arguments = bun
+                    activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame, IDF).addToBackStack(null).commit()
+                }
             }
         })
 

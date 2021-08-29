@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
@@ -43,6 +44,19 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>) : Rec
             }
         })
 
+        holder.card.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                var activity = v!!.context as AppCompatActivity
+                val IDF = ChatPageFragment()
+                var bun : Bundle
+                bun = Bundle()
+                bun.putString("Name",PR.Name)
+                bun.putString("Id",PR.Id)
+                IDF.arguments = bun
+                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+            }
+        })
+
     }
 
     override fun getItemCount(): Int {
@@ -55,6 +69,7 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>) : Rec
         var time  = itemView.findViewById(R.id.time) as TextView
         var blood  = itemView.findViewById(R.id.blood) as TextView
         var msg  = itemView.findViewById(R.id.last_msg) as TextView
+        var card  = itemView.findViewById(R.id.click_to_move) as CardView
 
     }
 

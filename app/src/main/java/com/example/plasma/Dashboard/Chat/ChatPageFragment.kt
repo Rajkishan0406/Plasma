@@ -92,7 +92,11 @@ class ChatPageFragment : Fragment() {
         //sending msg
         send.setOnClickListener(View.OnClickListener {
             var text = Msg.text.toString()
-            if(text.length > 100){
+            if(id.equals(User_Id)){
+                Toast.makeText(activity,"You can't message to yourself!!",Toast.LENGTH_SHORT).show()
+                Msg.setText("")
+            }
+            else if(text.length > 100){
                 Toast.makeText(activity,"Message length must be less then 120 characters",Toast.LENGTH_SHORT).show()
             }
             else if(text.length > 0){

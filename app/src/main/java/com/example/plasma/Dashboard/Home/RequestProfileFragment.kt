@@ -64,7 +64,8 @@ class RequestProfileFragment : Fragment() {
 
 
         data = FirebaseDatabase.getInstance().getReference("Details")
-
+        mAuth = FirebaseAuth.getInstance()
+        var User_id = mAuth.currentUser?.uid
 
         name = view.findViewById(R.id.name)
         age = view.findViewById(R.id.age)
@@ -166,18 +167,22 @@ class RequestProfileFragment : Fragment() {
 
         //call feature
         call.setOnClickListener(View.OnClickListener {
-            var intent = Intent(Intent.ACTION_CALL)
-            intent.setData(Uri.parse("tel:" + number))
-            activity?.startActivity(intent)
+            if(!id.equals(User_id)) {
+                var intent = Intent(Intent.ACTION_CALL)
+                intent.setData(Uri.parse("tel:" + number))
+                activity?.startActivity(intent)
+            }
         })
 
         msg.setOnClickListener(View.OnClickListener {
-            var frag = ChatPageFragment()
-            var bun = Bundle()
-            bun.putString("Name",name.text.toString())
-            bun.putString("Id",id)
-            frag.setArguments(bun)
-            setFragmentChatPage(frag)
+            if(!id.equals(User_id)) {
+                var frag = ChatPageFragment()
+                var bun = Bundle()
+                bun.putString("Name", name.text.toString())
+                bun.putString("Id", id)
+                frag.setArguments(bun)
+                setFragmentChatPage(frag)
+            }
         })
 
         //Map call
