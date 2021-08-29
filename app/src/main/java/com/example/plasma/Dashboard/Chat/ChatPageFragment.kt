@@ -70,13 +70,15 @@ class ChatPageFragment : Fragment() {
                         var time = ""
                         var msg = ""
                         var from = ""
+                        var day = ""
                         if(snapshot.exists()){
                             for(snap in snapshot.children){
                                 var m = snap.getValue() as String
                                 from = m.substring(0,1)
                                 time = m.substring(1,9)
+                                day = m.substring(10,15)
                                 msg = m.substring(20,m.length)
-                                chatArrayList.add(ChatModel(msg,time,from))
+                                chatArrayList.add(ChatModel(msg,time,from,day))
                             }
                         }
                     val adapter = ChatAdapter(chatArrayList)
@@ -90,7 +92,10 @@ class ChatPageFragment : Fragment() {
         //sending msg
         send.setOnClickListener(View.OnClickListener {
             var text = Msg.text.toString()
-            if(text.length > 0){
+            if(text.length > 100){
+                Toast.makeText(activity,"Message length must be less then 120 characters",Toast.LENGTH_SHORT).show()
+            }
+            else if(text.length > 0){
                 val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
                 val Sdf = SimpleDateFormat("hh:mm a dd/MM/yyyy")
                 val d = sdf.format(Date())
@@ -98,10 +103,12 @@ class ChatPageFragment : Fragment() {
                 var sender = "S" + D + text
                 if(User_Id != null && id != null) {
                     data.child(User_Id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
+                    data.child(User_Id).child("Chatting").child(id).child("Last_Message").setValue(sender)
                 }
                 var  receiver = "R" + D + text
                 if(User_Id != null && id != null) {
                     data.child(id).child("Chatting").child(User_Id).child("Message").child(d).setValue(receiver)
+                    data.child(id).child("Chatting").child(User_Id).child("Last_Message").setValue(receiver)
                 }
                 Msg.setText("")
             }

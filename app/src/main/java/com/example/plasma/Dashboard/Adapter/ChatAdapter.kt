@@ -16,11 +16,11 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
     var type2 = 1 as Int
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.sender, parent, false)
+        val V = LayoutInflater.from(parent.context).inflate(R.layout.receiver,parent,false)
         if(viewType == type1) {
-            val v = LayoutInflater.from(parent.context).inflate(R.layout.sender, parent, false)
             return ChatAdapter.ViewHolder(v)
         }else{
-            val V = LayoutInflater.from(parent.context).inflate(R.layout.receiver,parent,false)
             return ChatAdapter.ViewHolder(V)
         }
     }
@@ -33,7 +33,6 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
 
             holder.sender_message.text = PR.Message
             holder.sender_time.text = PR.Time
-
 
     }
 
@@ -48,6 +47,10 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
     }
 
     override fun getItemViewType(position: Int): Int {
+       /* if(!chatModel.get(position).day.equals(pre_day)){
+            pre_day = chatModel.get(position).day as String
+            return -1
+        }*/
         if(chatModel.get(position).From.equals("S")){
             return type1
         }

@@ -14,6 +14,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="8dp"
+                android:textIsSelectable="true"
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/background_right"
                 android:padding="10dp"
@@ -33,6 +34,12 @@ But it doesn't work, the box could be more than 150 dp anyway."/>
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/change_day"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>
