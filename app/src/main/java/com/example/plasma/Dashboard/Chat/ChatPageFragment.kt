@@ -59,7 +59,10 @@ class ChatPageFragment : Fragment() {
         //RecyclerView..
         recyclerview = view.findViewById(R.id.message_recyclerview)
         recyclerview.setHasFixedSize(true)
-        recyclerview.layoutManager = LinearLayoutManager(activity)
+        recyclerview.layoutManager = LinearLayoutManager(activity).apply {
+            stackFromEnd = true
+            reverseLayout = false
+        }
         chatArrayList = arrayListOf<ChatModel>()
 
 
