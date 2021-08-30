@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/block"
+        android:icon="@drawable/ic_baseline_block_24"
+        android:title="Block"/>
+
+    <item android:id="@+id/clear_chat"
+        android:icon="@drawable/ic_baseline_delete_outline_24"
+        android:title="Clear Chat"/>
+
+    <item android:id="@+id/theme"
+        android:icon="@drawable/ic_baseline_theaters_24"
+        android:title="Theme"/>
+
+
+</menu>

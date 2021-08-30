@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -28,6 +29,7 @@ class ChatFragment : Fragment() {
 
     lateinit var chatArrayList : ArrayList<ChatFragmentModel>
     lateinit var recyclerview : RecyclerView
+    lateinit var pro : ProgressBar
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +40,8 @@ class ChatFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         var User_Id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
+
+        pro = view.findViewById(R.id.load_progress)
 
 
         //RecyclerView..
@@ -71,6 +75,7 @@ class ChatFragment : Fragment() {
                                             MsG = MsG.substring(0,25) + "..."
                                         chatArrayList.add(ChatFragmentModel(name,time,blod,id,MsG))
                                     }
+                                    pro.visibility = View.INVISIBLE
                                     val adapter = ChatFragmentAdapter(chatArrayList)
                                     recyclerview.adapter = adapter
                                 }

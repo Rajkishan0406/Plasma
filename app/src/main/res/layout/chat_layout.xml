@@ -18,11 +18,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/name_card"
+                android:layout_width="60dp"
+                android:layout_marginLeft="5dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_height="60dp"
+                app:cardCornerRadius="60dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/charr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="26dp"
+                        android:textColor="@color/chat2"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="R"/>
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Raj Kishan"
+                android:layout_toRightOf="@+id/name_card"
                 android:textStyle="bold"
                 android:textColor="@color/chat2"
                 android:textSize="18dp"
@@ -42,11 +75,12 @@
             <TextView
                 android:id="@+id/last_msg"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="15dp"
                 android:text="Raj Kishan"
                 android:fontFamily="sans-serif-condensed-light"
                 android:layout_below="@+id/name"
                 android:maxWidth="250dp"
+                android:layout_toRightOf="@+id/name_card"
                 android:textColor="@color/black"
                 android:textSize="14dp"
                 android:layout_marginTop="8dp"
