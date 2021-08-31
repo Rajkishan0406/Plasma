@@ -345,7 +345,7 @@ class ProfileFragment : Fragment() {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)
         }
         if (ft != null) {
-            ft.addToBackStack(null).commit()
+            ft.commit()
         }
     }
 
@@ -355,7 +355,7 @@ class ProfileFragment : Fragment() {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)
         }
         if (ft != null) {
-            ft.addToBackStack(null).commit()
+            ft.commit()
         }
     }
 

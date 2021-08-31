@@ -39,7 +39,7 @@ class DonationGiveAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : 
                 bun = Bundle()
                 bun.putString("Id",id)
                 IDF.arguments = bun
-                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).commit()
             }
         })
     }

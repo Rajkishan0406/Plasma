@@ -44,7 +44,7 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
                 bun = Bundle()
                 bun.putString("Id",id)
                 IDF.arguments = bun
-                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).commit()
             }
         })
 
@@ -61,7 +61,7 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
                     bun.putString("Name", name)
                     bun.putString("Id", id)
                     IDF.arguments = bun
-                    activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame, IDF).addToBackStack(null).commit()
+                    activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame, IDF).commit()
                 }
             }
         })

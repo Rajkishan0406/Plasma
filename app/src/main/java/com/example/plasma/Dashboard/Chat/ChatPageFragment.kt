@@ -193,8 +193,6 @@ class ChatPageFragment : Fragment() {
 
         setting.setOnClickListener(View.OnClickListener {
             if(menu.isVisible) {
-                val animation = AnimationUtils.loadAnimation(activity, R.anim.frag_transaction_go)
-                menu.startAnimation(animation)
                 menu.visibility = View.INVISIBLE
             }
             else {
@@ -204,8 +202,6 @@ class ChatPageFragment : Fragment() {
 
         recyclerview.setOnClickListener(View.OnClickListener {
             if(menu.isVisible){
-                val animation = AnimationUtils.loadAnimation(activity, R.anim.frag_transaction_go)
-                menu.startAnimation(animation)
                 menu.visibility = View.INVISIBLE
             }
         })

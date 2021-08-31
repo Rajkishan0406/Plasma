@@ -46,7 +46,7 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>) : Rec
                 bun.putString("Name",PR.Name)
                 bun.putString("Id",PR.Id)
                 IDF.arguments = bun
-                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).commit()
             }
         })
 
@@ -59,7 +59,7 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>) : Rec
                 bun.putString("Name",PR.Name)
                 bun.putString("Id",PR.Id)
                 IDF.arguments = bun
-                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).commit()
             }
         })
 

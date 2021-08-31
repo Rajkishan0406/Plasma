@@ -80,6 +80,7 @@ class ChatFragment : Fragment() {
                                             MsG = ""
                                             time = ""
                                         }
+                                        if(MsG.length > 0) // for exculuding no message carview...
                                         chatArrayList.add(ChatFragmentModel(name,time,blod,id,MsG))
                                     }
                                     pro.visibility = View.INVISIBLE
