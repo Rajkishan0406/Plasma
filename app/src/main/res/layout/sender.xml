@@ -22,6 +22,11 @@
                 android:text="But it doesn't work, the box could be more than 150 dp anyway.
 But it doesn't work, the box could be more than 150 dp anyway."/>
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"

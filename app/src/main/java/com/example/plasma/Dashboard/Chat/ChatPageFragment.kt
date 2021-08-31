@@ -2,12 +2,14 @@ package com.example.plasma.Dashboard.Chat
 
 import android.os.Bundle
 import android.view.*
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Adapter.ChatAdapter
@@ -30,14 +32,20 @@ class ChatPageFragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var Msg : EditText
     lateinit var send : CardView
-    lateinit var setting : ImageView
     lateinit var block_card : CardView
     lateinit var unblock_card : CardView
+    lateinit var setting : ImageView
+    lateinit var menu : CardView
     lateinit var msg_card : TextInputLayout
+    lateinit var block : CardView
+    lateinit var clear : CardView
+    lateinit var theme : CardView
 
     lateinit var chatArrayList : ArrayList<ChatModel>
     lateinit var recyclerview : RecyclerView
-
+    var I_m_block = 0 as Int
+    var User_Id = "" as String
+    var id = "" as String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -47,21 +55,25 @@ class ChatPageFragment : Fragment() {
         //Bundle code...
         bun = this.requireArguments()
         var s = bun.getString("Name") as String
-        var id = bun.getString("Id") as String
+        id = bun.getString("Id") as String
 
         //Find View BY ID...
         name = view.findViewById(R.id.User_Name)
         Msg = view.findViewById(R.id.message)
         send = view.findViewById(R.id.send_card)
-        setting = view.findViewById(R.id.setting)
         msg_card = view.findViewById(R.id.msg_card)
         block_card = view.findViewById(R.id.block_card)
         unblock_card = view.findViewById(R.id.unblock_card)
+        setting = view.findViewById(R.id.setting)
+        menu = view.findViewById(R.id.menu_card)
+        block = view.findViewById(R.id.block)
+        clear = view.findViewById(R.id.clear_chat)
+        theme = view.findViewById(R.id.theme)
 
         //FireBase Intitializer...
         name.setText(s)
         mAuth = FirebaseAuth.getInstance()
-        var User_Id = mAuth.currentUser?.uid
+        User_Id = mAuth.currentUser?.uid.toString()
         data = FirebaseDatabase.getInstance().getReference("Details")
 
         if (User_Id != null) {
@@ -73,18 +85,21 @@ class ChatPageFragment : Fragment() {
                             send.visibility = View.INVISIBLE
                             block_card.visibility = View.VISIBLE
                             msg_card.visibility = View.INVISIBLE
+                            I_m_block = 1
                         }
                         else if(value.equals("1")){
                             unblock_card.visibility = View.VISIBLE
                             send.visibility = View.INVISIBLE
                             block_card.visibility = View.INVISIBLE
                             msg_card.visibility = View.INVISIBLE
+                            I_m_block = 2
                         }
                         else{
                             unblock_card.visibility = View.INVISIBLE
                             send.visibility = View.VISIBLE
                             block_card.visibility = View.INVISIBLE
                             msg_card.visibility = View.VISIBLE
+                            I_m_block = 0
                         }
                     }
                 }
@@ -176,29 +191,46 @@ class ChatPageFragment : Fragment() {
             }
         })
 
-        //setting menu
         setting.setOnClickListener(View.OnClickListener {
+            if(menu.isVisible) {
+                val animation = AnimationUtils.loadAnimation(activity, R.anim.frag_transaction_go)
+                menu.startAnimation(animation)
+                menu.visibility = View.INVISIBLE
+            }
+            else {
+                menu.visibility = View.VISIBLE
+            }
+        })
+
+        recyclerview.setOnClickListener(View.OnClickListener {
+            if(menu.isVisible){
+                val animation = AnimationUtils.loadAnimation(activity, R.anim.frag_transaction_go)
+                menu.startAnimation(animation)
+                menu.visibility = View.INVISIBLE
+            }
+        })
+
+        block.setOnClickListener(View.OnClickListener {
+            if(I_m_block == 0){
+                data.child(User_Id).child("Chatting").child(id).child("Block").setValue("1")
+                data.child(id).child("Chatting").child(User_Id).child("Block").setValue("-1")
+            }
+            else if(I_m_block == 1){
+                Toast.makeText(activity,"You can't blocked this user as that user already blocked you",Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        clear.setOnClickListener(View.OnClickListener {
+            data.child(User_Id).child("Chatting").child(id).child("Message").removeValue()
+            data.child(User_Id).child("Chatting").child(id).child("Last_Message").removeValue()
+            Toast.makeText(activity,"All chats are cleared",Toast.LENGTH_SHORT).show()
+        })
+
+        theme.setOnClickListener(View.OnClickListener {
 
         })
 
         return view
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.chat_menu,menu)
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == 1){
-            Toast.makeText(activity,"Block",Toast.LENGTH_SHORT).show()
-        }
-        else if(item.itemId == 2){
-            Toast.makeText(activity,"Clear Chat",Toast.LENGTH_SHORT).show()
-        }
-        else if(item.itemId == 3){
-            Toast.makeText(activity,"Theme",Toast.LENGTH_SHORT).show()
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

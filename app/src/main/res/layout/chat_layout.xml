@@ -95,9 +95,10 @@
                 android:text="05:46 AM"
                 android:textStyle="bold"
                 android:textSize="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginRight="8dp"/>
 
 

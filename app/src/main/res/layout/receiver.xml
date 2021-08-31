@@ -33,6 +33,11 @@ hosts, called gateways or routers, to forward packets between networks."/>
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="20dp"/>
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
 
     <TextView
         android:id="@+id/change_day"

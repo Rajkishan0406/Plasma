@@ -59,6 +59,7 @@ class ChatFragment : Fragment() {
                     var time = "" as String
                     var name = "" as String
                     var blod = "" as String
+                    var MsG = "" as String
                     if(snapshot.exists()){
                         for(snap in snapshot.children){
                             var id = snap.key as String
@@ -68,11 +69,17 @@ class ChatFragment : Fragment() {
                                     if(sp.exists()){
                                         name = sp.child("Name").getValue() as String
                                         blod = sp.child("Blood_Grp").getValue() as String
-                                        msg = snap.child("Last_Message").getValue() as String
-                                        time = msg.substring(1,9)
-                                        var MsG = msg.substring(20,msg.length)
-                                        if(MsG.length > 25)
-                                            MsG = MsG.substring(0,25) + "..."
+                                        if(snap.hasChild("Last_Message")) {
+                                            msg = snap.child("Last_Message").getValue() as String
+                                            time = msg.substring(1, 9)
+                                            MsG = msg.substring(20, msg.length)
+                                            if (MsG.length > 25)
+                                                MsG = MsG.substring(0, 25) + "..."
+                                        }
+                                        else{
+                                            MsG = ""
+                                            time = ""
+                                        }
                                         chatArrayList.add(ChatFragmentModel(name,time,blod,id,MsG))
                                     }
                                     pro.visibility = View.INVISIBLE
