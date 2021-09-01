@@ -1,13 +1,13 @@
 package com.example.plasma.Dashboard.Chat
 
+import android.graphics.Color
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +40,8 @@ class ChatPageFragment : Fragment() {
     lateinit var block : CardView
     lateinit var clear : CardView
     lateinit var theme : CardView
+    lateinit var theme_back : RelativeLayout
+    lateinit var image : ImageView
 
     lateinit var chatArrayList : ArrayList<ChatModel>
     lateinit var recyclerview : RecyclerView
@@ -69,6 +71,27 @@ class ChatPageFragment : Fragment() {
         block = view.findViewById(R.id.block)
         clear = view.findViewById(R.id.clear_chat)
         theme = view.findViewById(R.id.theme)
+        theme_back = view.findViewById(R.id.theme_back)
+        image = view.findViewById(R.id.send_image)
+
+        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+        var background = pref.getString("Theme","0")
+
+        if(background.equals("0")){
+            theme_back.setBackgroundColor(Color.WHITE)
+        }
+        if(background.equals("1")){
+            theme_back.setBackgroundColor(Color.GREEN)
+        }
+        if(background.equals("2")){
+            theme_back.setBackgroundColor(Color.CYAN)
+        }
+        if(background.equals("3")){
+            theme_back.setBackgroundColor(Color.YELLOW)
+        }
+        if(background.equals("4")){
+            theme_back.setBackgroundColor(Color.GRAY)
+        }
 
         //FireBase Intitializer...
         name.setText(s)
@@ -85,6 +108,7 @@ class ChatPageFragment : Fragment() {
                             send.visibility = View.INVISIBLE
                             block_card.visibility = View.VISIBLE
                             msg_card.visibility = View.INVISIBLE
+                            image.visibility = View.INVISIBLE
                             I_m_block = 1
                         }
                         else if(value.equals("1")){
@@ -92,6 +116,7 @@ class ChatPageFragment : Fragment() {
                             send.visibility = View.INVISIBLE
                             block_card.visibility = View.INVISIBLE
                             msg_card.visibility = View.INVISIBLE
+                            image.visibility = View.INVISIBLE
                             I_m_block = 2
                         }
                         else{
@@ -99,6 +124,7 @@ class ChatPageFragment : Fragment() {
                             send.visibility = View.VISIBLE
                             block_card.visibility = View.INVISIBLE
                             msg_card.visibility = View.VISIBLE
+                            image.visibility = View.VISIBLE
                             I_m_block = 0
                         }
                     }
@@ -214,16 +240,44 @@ class ChatPageFragment : Fragment() {
             else if(I_m_block == 1){
                 Toast.makeText(activity,"You can't blocked this user as that user already blocked you",Toast.LENGTH_SHORT).show()
             }
+            menu.visibility = View.INVISIBLE
         })
 
         clear.setOnClickListener(View.OnClickListener {
             data.child(User_Id).child("Chatting").child(id).child("Message").removeValue()
             data.child(User_Id).child("Chatting").child(id).child("Last_Message").removeValue()
             Toast.makeText(activity,"All chats are cleared",Toast.LENGTH_SHORT).show()
+            menu.visibility = View.INVISIBLE
         })
 
         theme.setOnClickListener(View.OnClickListener {
-
+            var c = background?.toInt()
+            if (c != null) {
+                c = (c+1)%5
+            }
+            background = c.toString()
+            var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+            pref.apply {
+                val editor = pref.edit()
+                editor.putString("Theme",c.toString())
+                editor.apply()
+            }
+            menu.visibility = View.INVISIBLE
+            if(background.equals("0")){
+                theme_back.setBackgroundColor(Color.WHITE)
+            }
+            if(background.equals("1")){
+                theme_back.setBackgroundColor(Color.GREEN)
+            }
+            if(background.equals("2")){
+                theme_back.setBackgroundColor(Color.CYAN)
+            }
+            if(background.equals("3")){
+                theme_back.setBackgroundColor(Color.YELLOW)
+            }
+            if(background.equals("4")){
+                theme_back.setBackgroundColor(Color.GRAY)
+            }
         })
 
         return view

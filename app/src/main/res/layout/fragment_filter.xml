@@ -13,15 +13,15 @@
         android:layout_height="wrap_content"
         android:text="  Filter"
         android:textSize="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:textColor="@drawable/gradient1"
         android:layout_marginLeft="8dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/city_card"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_toRightOf="@+id/filter"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="8dp"
         android:layout_height="25dp"
         app:cardElevation="5dp"
@@ -44,10 +44,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/state_card"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         app:cardCornerRadius="8dp"
         android:layout_toRightOf="@+id/city_card"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_height="25dp"
         app:cardElevation="5dp"
         android:layout_marginLeft="40dp">
@@ -69,10 +69,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/blood_card"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_toRightOf="@+id/state_card"
         app:cardElevation="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="8dp"
         android:layout_height="25dp"
         android:layout_marginLeft="40dp">
