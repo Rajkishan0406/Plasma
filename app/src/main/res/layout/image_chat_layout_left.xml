@@ -9,7 +9,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="2dp"
         android:visibility="visible"
-        android:padding="4dp"
+        android:padding="5dp"
         android:background="@drawable/background_left"
         android:adjustViewBounds="true"
         android:layout_marginLeft="8dp"
