@@ -108,7 +108,6 @@ class ChatPageFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         User_Id = mAuth.currentUser?.uid.toString()
         data = FirebaseDatabase.getInstance().getReference("Details")
-        storage = FirebaseStorage.getInstance().getReference("Message")
 
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").child(id).child("Block").addValueEventListener(object : ValueEventListener{
@@ -304,7 +303,12 @@ class ChatPageFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == pickImage) {
             imageUri = data?.data
+            val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
+            val d = sdf.format(Date())
             Toast.makeText(activity,"Sending...",Toast.LENGTH_SHORT).show()
+            storage =
+                    FirebaseStorage.getInstance().reference.child("Message")
+                            .child(d)
             storeimage(User_Id,id)
         }
     }
@@ -315,9 +319,8 @@ class ChatPageFragment : Fragment() {
         val d = sdf.format(Date())
         val D = Sdf.format(Date())
         imageUri?.let {
-            storage.child(d).putFile(it).addOnSuccessListener {
+            storage.putFile(it).addOnSuccessListener {
                 storage.downloadUrl.addOnSuccessListener {
-                    Log.i("message : "," "+it)
                     var r = "" as String
                     r = it.toString()
                     Log.i("Toekn : "," "+r)
