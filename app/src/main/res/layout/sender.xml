@@ -5,6 +5,21 @@
     android:alpha="0.8"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/background_left"
+        android:minWidth="0dp"
+        android:adjustViewBounds="true"
+        android:visibility="invisible"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:layout_above="@+id/text"
+        android:minHeight="0dp"/>
+
 
             <TextView
                 android:id="@+id/text"
@@ -13,19 +28,16 @@
                 android:maxWidth="225dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="3dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
                 android:layout_marginRight="8dp"
                 android:textIsSelectable="true"
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/background_right"
                 android:padding="10dp"
                 android:textColor="@color/white"
-                android:text="But it doesn't work, the box could be more than 150 dp anyway.
-But it doesn't work, the box could be more than 150 dp anyway."/>
+                android:text="About Image"/>
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
 
             <TextView
                 android:id="@+id/time"
@@ -40,11 +52,6 @@ But it doesn't work, the box could be more than 150 dp anyway."/>
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="5dp"/>
 
-    <TextView
-        android:id="@+id/change_day"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="invisible"/>
 
 
 </RelativeLayout>

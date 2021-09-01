@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_left"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="2dp"
-        android:src="@drawable/ic_baseline_delete_outline_24"
-        android:padding="5dp"
-        android:maxWidth="225dp"
-        android:maxHeight="350dp"/>
+        android:visibility="visible"
+        android:background="@drawable/background_left"
+        android:adjustViewBounds="true"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"/>
+
 
     <TextView
-        android:id="@+id/Time"
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="225dp"
+        android:visibility="invisible"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:layout_marginLeft="8dp"
+        android:textIsSelectable="true"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/background_left"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:text="About Image"/>
+
+    <TextView
+        android:id="@+id/time"
         android:layout_below="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +41,5 @@
         android:minWidth="100dp"
         android:layout_marginBottom="3dp"
         android:layout_marginLeft="20dp"/>
-
 
 </RelativeLayout>

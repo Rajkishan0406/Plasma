@@ -1,8 +1,12 @@
 package com.example.plasma.Dashboard.Chat
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.provider.MediaStore
 import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
@@ -17,10 +21,13 @@ import com.example.plasma.Dashboard.Adapter.PlasmaRequestAdapter
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.ChatModel
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
+import com.example.plasma.DashboardActivity
 import com.example.plasma.R
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,6 +49,9 @@ class ChatPageFragment : Fragment() {
     lateinit var theme : CardView
     lateinit var theme_back : RelativeLayout
     lateinit var image : ImageView
+    private var imageUri: Uri? = null
+    private val pickImage = 100
+    lateinit var storage : StorageReference
 
     lateinit var chatArrayList : ArrayList<ChatModel>
     lateinit var recyclerview : RecyclerView
@@ -98,6 +108,7 @@ class ChatPageFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         User_Id = mAuth.currentUser?.uid.toString()
         data = FirebaseDatabase.getInstance().getReference("Details")
+        storage = FirebaseStorage.getInstance().getReference("Message")
 
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").child(id).child("Block").addValueEventListener(object : ValueEventListener{
@@ -280,7 +291,50 @@ class ChatPageFragment : Fragment() {
             }
         })
 
+
+        image.setOnClickListener(View.OnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, pickImage)
+        })
+
         return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == pickImage) {
+            imageUri = data?.data
+            Toast.makeText(activity,"Sending...",Toast.LENGTH_SHORT).show()
+            storeimage(User_Id,id)
+        }
+    }
+
+    private fun storeimage(User_id: String, id : String) {
+        val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
+        val Sdf = SimpleDateFormat("hh:mm a dd/MM/yyyy")
+        val d = sdf.format(Date())
+        val D = Sdf.format(Date())
+        imageUri?.let {
+            storage.child(d).putFile(it).addOnSuccessListener {
+                storage.downloadUrl.addOnSuccessListener {
+                    Log.i("message : "," "+it)
+                    var r = "" as String
+                    r = it.toString()
+                    Log.i("Toekn : "," "+r)
+                    var da: DatabaseReference
+                    var sender = "s" + D + r
+                    da = FirebaseDatabase.getInstance().getReference("Details")
+                    da.child(User_id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
+                    sender = "r" + D + r
+                    da.child(id).child("Chatting").child(User_id).child("Message").child(d).setValue(sender)
+                }
+                Log.i("image upload : ", "Successfull")
+            }
+                    .addOnFailureListener(){
+                        Toast.makeText(activity, "Some thing went wrong!! please try again", Toast.LENGTH_SHORT).show()
+                        Log.i("image upload : ", "Fail")
+                        }
+        }
     }
 
 }

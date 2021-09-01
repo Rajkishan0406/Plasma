@@ -90,6 +90,7 @@ class ChatFragment : Fragment() {
                                 override fun onCancelled(error: DatabaseError) {}
                             })
                         }
+                        pro.visibility = View.INVISIBLE
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {}

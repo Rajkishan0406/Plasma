@@ -158,7 +158,6 @@
        
 
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/msg_card"
         android:layout_width="270dp"
@@ -172,7 +171,7 @@
         app:boxCornerRadiusTopEnd="28dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
 
@@ -190,11 +189,13 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:clickable="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="4dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:src="@drawable/ic_baseline_camera_alt_24"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="12dp"
-        android:layout_toRightOf="@+id/msg_card"/>
+        android:layout_toRightOf="@id/msg_card"
+        android:layout_marginBottom="12dp"/>
 
 
     <androidx.cardview.widget.CardView
@@ -218,7 +219,7 @@
             android:src="@drawable/ic_baseline_send_24"/>
 
     </androidx.cardview.widget.CardView>
-    
+
     <androidx.cardview.widget.CardView
         android:id="@+id/block_card"
         android:visibility="invisible"
