@@ -427,6 +427,7 @@
         android:id="@+id/donate_btn"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:visibility="invisible"
         style="@style/Widget.Neumorph.Button"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"

@@ -3,6 +3,7 @@ package com.example.plasma.Dashboard.Home
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -81,6 +82,25 @@ class RequestProfileFragment : Fragment() {
         disease = view.findViewById(R.id.Disease)
         doc = view.findViewById(R.id.reportcard)
         pro = view.findViewById(R.id.progress)
+        donate = view.findViewById(R.id.donate_btn)
+
+
+        if(id != null){
+            data.child(id).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        var check = snapshot.getValue() as String
+                        if(check.equals("0"))
+                            donate.visibility = View.INVISIBLE
+                        else {
+                            if(!id.equals(User_id))
+                                donate.visibility = View.VISIBLE
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
 
         //Personal details
         if (id != null) {
@@ -199,7 +219,6 @@ class RequestProfileFragment : Fragment() {
             setFragmentReport(IDF)
         })
 
-        donate = view.findViewById(R.id.donate_btn)
         mAuth = FirebaseAuth.getInstance()
 
         var Present_User_Id = mAuth.currentUser?.uid as String

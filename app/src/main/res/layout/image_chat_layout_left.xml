@@ -9,8 +9,8 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="2dp"
         android:visibility="visible"
-        android:padding="5dp"
-        android:background="@drawable/background_left"
+        android:padding="2dp"
+        android:background="@color/chat_background"
         android:adjustViewBounds="true"
         android:layout_marginLeft="8dp"
         android:scaleType="fitCenter"/>
