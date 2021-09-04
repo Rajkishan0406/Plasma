@@ -73,7 +73,7 @@
             android:layout_width="125dp"
             android:layout_height="35dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="15dp"
+            app:cardElevation="20dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_alignParentRight="true"

@@ -45,15 +45,17 @@
             android:layout_width="wrap_content"
             android:textColor="@color/white"
             android:layout_height="wrap_content"
-            android:textSize="24dp"/>
+            android:textSize="24dp"
+            android:fontFamily="@font/poppins_regular"/>
 
             <TextView
                 android:id="@+id/age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="18dp"
                 android:textColor="@color/white"
+                android:fontFamily="@font/poppins_light"
                 android:text="Age : 24"
                 android:textSize="18dp"/>
 
@@ -64,6 +66,7 @@
                 android:textColor="@color/white"
                 android:layout_below="@+id/age"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_light"
                 android:textSize="18dp"/>
 
          <TextView
@@ -73,7 +76,7 @@
              android:layout_centerVertical="true"
              android:layout_alignParentRight="true"
              android:textStyle="bold"
-             android:textColor="@color/red"
+             android:textColor="@color/warning_color"
              android:textSize="30dp"/>
 
         </RelativeLayout>
@@ -95,10 +98,11 @@
            <androidx.cardview.widget.CardView
                android:id="@+id/message"
                android:layout_width="180dp"
-               android:layout_height="45dp"
+               android:layout_height="50dp"
                android:clickable="true"
                android:foreground="?android:attr/selectableItemBackground"
                app:cardElevation="8dp"
+               app:cardBackgroundColor="@color/healthy_card_background"
                android:layout_marginTop="5dp"
                android:layout_marginBottom="18dp"
                android:layout_marginLeft="12dp"
@@ -121,6 +125,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Message"
+                       android:fontFamily="@font/poppins_regular"
                        android:layout_centerVertical="true"
                        android:layout_centerHorizontal="true"
                        android:textSize="20dp"/>
@@ -132,9 +137,10 @@
            <androidx.cardview.widget.CardView
                android:id="@+id/call"
                android:layout_width="150dp"
-               android:layout_height="45dp"
+               android:layout_height="50dp"
                android:visibility="invisible"
                app:cardElevation="8dp"
+               app:cardBackgroundColor="@color/healthy_card_background"
                android:clickable="true"
                android:foreground="?android:attr/selectableItemBackground"
                android:layout_alignParentRight="true"
@@ -159,6 +165,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Call"
+                       android:fontFamily="@font/poppins_regular"
                        android:layout_centerVertical="true"
                        android:layout_centerHorizontal="true"
                        android:textSize="20dp"/>
@@ -174,8 +181,9 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/map"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/healthy_card_background"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_alignParentRight="true"
@@ -200,6 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Map View"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:textSize="20dp"/>
@@ -239,6 +248,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:textSize="22dp"
+                android:fontFamily="@font/poppins_light"
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"/>
 
@@ -264,6 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/poppins_light"
                 android:textSize="22dp"
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"/>
@@ -432,8 +443,10 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:text="Donate Plasma"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginTop="20dp"
         app:neumorph_lightSource="rightTop"
+        app:neumorph_backgroundColor="@color/normal_card_background"
         android:textColor="@color/design_default_color_primary"
         app:neumorph_shapeType="basin"
         android:textSize="22dp"

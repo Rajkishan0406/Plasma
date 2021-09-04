@@ -330,10 +330,10 @@ class ChatPageFragment : Fragment() {
                     var sender = "s" + D + r
                     da = FirebaseDatabase.getInstance().getReference("Details")
                     da.child(User_id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
-                    da.child(User_id).child("Chatting").child(id).child("Last_Message").child(d).setValue("Image File")
+                    da.child(User_id).child("Chatting").child(id).child("Last_Message").setValue("Image File")
                     sender = "r" + D + r
                     da.child(id).child("Chatting").child(User_id).child("Message").child(d).setValue(sender)
-                    da.child(id).child("Chatting").child(User_id).child("Last_Message").child(d).setValue("Image File")
+                    da.child(id).child("Chatting").child(User_id).child("Last_Message").setValue("Image File")
                 }
                 Log.i("image upload : ", "Successfull")
             }
