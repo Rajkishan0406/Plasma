@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     android:clickable="true"
     android:id="@+id/card"
+    app:cardElevation="5dp"
     android:layoutAnimation="@anim/layout_animation"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="8dp">
@@ -14,7 +15,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/purple_700"
+        android:background="@color/positive_btn_text_color"
         android:alpha="0.2"/>
 
 
@@ -28,8 +29,8 @@
             android:layout_height="wrap_content"
             android:text="Rajvi Singh Rathor"
             android:textColor="@color/black"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:textSize="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="18dp"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -38,8 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
-            android:textColor="@color/red"
-            android:textStyle="bold"
+            android:textColor="@color/warning_color"
+            android:fontFamily="@font/poppins_semibold"
             android:layout_marginRight="20dp"
             android:text="Blood Group"
             android:textSize="18dp"/>
@@ -50,16 +51,18 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_location_on_24"
             android:layout_alignParentBottom="true"
+            android:fontFamily="@font/poppins_light"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:text="City"
-            android:textSize="20dp"/>
+            android:textSize="16dp"/>
 
         <TextView
             android:id="@+id/User_State"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/User_City"
+            android:fontFamily="@font/poppins_light"
             android:layout_marginLeft="14dp"
             android:text="State"
             android:textSize="10dp"/>
@@ -86,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:text="Message"
                     android:textStyle="bold"
+                    android:fontFamily="@font/poppins_light"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"/>
 
@@ -95,4 +99,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

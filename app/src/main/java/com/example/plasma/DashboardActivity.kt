@@ -27,7 +27,7 @@ class DashboardActivity : AppCompatActivity() {
                 R.id.home -> setFragmentHome(HomeFragment())
                 R.id.chat -> setFragmentChat(ChatFragment())
                 R.id.profile -> setFragmentProfile(ProfileFragment())
-                R.id.settings -> setFragmentSetting(CovidDetailFragment())
+                R.id.settings -> setFragmentSetting(SettingFragment())
 
             }
         }
@@ -54,7 +54,7 @@ class DashboardActivity : AppCompatActivity() {
         ft.commit()
     }
 
-    private fun setFragmentSetting(loginFragment: CovidDetailFragment) {
+    private fun setFragmentSetting(loginFragment: SettingFragment) {
         var ft: FragmentTransaction = supportFragmentManager.beginTransaction();
         ft.replace(R.id.main_dashboard_frame,loginFragment)
         ft.commit()

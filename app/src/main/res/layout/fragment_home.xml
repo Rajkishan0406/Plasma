@@ -42,9 +42,9 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:textAlignment="center"
-               android:textColor="@color/black"
+               android:textColor="@color/home"
                android:textStyle="bold"
-               android:fontFamily="sans-serif-condensed-light"
+               android:fontFamily="@font/poppins_regular"
                android:gravity="center"
                android:layout_margin="10dp"
                android:text="Plasma Request"
@@ -60,7 +60,7 @@
                 android:layout_marginBottom="3dp"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/purple_200"
+                app:cardBackgroundColor="@color/btn_warning_ripple_color"
                 app:cardCornerRadius="18dp">
 
 
@@ -71,6 +71,7 @@
                     android:drawableLeft="@drawable/ic_baseline_filter_list_24"
                     android:textColor="@color/black"
                     android:gravity="center"
+                    android:fontFamily="@font/poppins_light"
                     android:drawablePadding="5dp"
                     android:textAlignment="center"
                     android:layout_margin="5dp"
@@ -98,8 +99,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginBottom="10dp"
-        android:textColor="@color/home"
+        android:textColor="@color/positive_btn_text_color"
         android:layout_marginRight="25dp"
         android:text="Total Request : ---"/>
 

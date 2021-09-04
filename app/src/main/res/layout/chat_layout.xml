@@ -5,14 +5,14 @@
     android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/click_to_move"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="5dp"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/light">
+        app:cardBackgroundColor="@color/healthy_card_background">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,9 +39,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:textSize="26dp"
-                        android:textColor="@color/chat2"
-                        android:fontFamily="sans-serif-condensed-medium"
+                        android:textSize="24dp"
+                        android:textColor="@color/positive_btn_text_color"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="R"/>
 
 
@@ -56,9 +56,9 @@
                 android:layout_height="wrap_content"
                 android:text="Raj Kishan"
                 android:layout_toRightOf="@+id/name_card"
-                android:textStyle="bold"
-                android:textColor="@color/chat2"
-                android:textSize="18dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/positive_btn_text_color"
+                android:textSize="16dp"
                 android:layout_margin="8dp"/>
 
             <TextView
@@ -66,9 +66,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A+"
+                android:fontFamily="@font/poppins_semibold"
                 android:textStyle="bold"
-                android:textColor="@color/red"
-                android:textSize="22dp"
+                android:textColor="@color/warning_color"
+                android:textSize="18dp"
                 android:layout_alignParentRight="true"
                 android:layout_margin="8dp"/>
 
@@ -77,11 +78,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="18dp"
                 android:text="Raj Kishan"
-                android:fontFamily="sans-serif-condensed-light"
+                android:fontFamily="@font/poppins_light"
                 android:layout_below="@+id/name"
                 android:maxWidth="250dp"
                 android:layout_toRightOf="@+id/name_card"
-                android:textColor="@color/black"
                 android:textSize="14dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="05:46 AM"
-                android:textStyle="bold"
+                android:fontFamily="@font/poppins_italic"
                 android:textSize="12dp"
                 android:layout_marginTop="8dp"
                 android:layout_alignParentRight="true"
@@ -104,6 +104,6 @@
 
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
