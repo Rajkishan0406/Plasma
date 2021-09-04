@@ -15,8 +15,29 @@
     <color name="chat_background">#D2D2D2</color>
 
 
-    <color name="chat">#5B37B7</color>
-    <color name="home">#C9379D</color>
-    <color name="profile">#E6A919</color>
-    <color name="setting">#1194AA</color>
+    <color name="chat">#4049F3</color>
+    <color name="home">#EF2A2A</color>
+    <color name="profile">#E1D71A</color>
+    <color name="setting">#7EED5D</color>
+
+    <color name="green_primary">#5E71F8</color>
+    <color name="green_secondary">#8492FA</color>
+    <color name="green_light">#A2ADFF</color>
+
+
+    <color name="global_background">#F8F8F8</color>
+    <color name="bottom_sheet_background">#FFFFFF</color>
+    <color name="btn_background_tint">#ECFBEB</color>
+    <color name="warning_color">#EF2A2A</color>
+    <color name="btn_warning_ripple_color">#FAD8D8</color>
+    <color name="positive_btn_text_color">#4049F3</color>
+    <color name="vaccine_bg_tintt">#F8FFFC</color>
+    <color name="icon_tint">#191919</color>
+    <color name="danger_color_text">#E1D71A</color>
+    <color name="normal_card_background">#F0F5FA</color>
+    <color name="warning_card_background">#FFFCEB</color>
+    <color name="danger_card_background">#FFE7E8</color>
+    <color name="healthy_card_background">#DBFFD0</color>
+    <color name="green_text_color">#00B54B</color>
+    <color name="text_color_primary">#FFF</color>
 </resources>

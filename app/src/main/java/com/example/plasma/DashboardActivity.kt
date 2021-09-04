@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Dashboard.Chat.ChatFragment
 import com.example.plasma.Dashboard.Home.HomeFragment
 import com.example.plasma.Dashboard.Profile.ProfileFragment
+import com.example.plasma.Dashboard.Setting.CovidDetailFragment
 import com.example.plasma.Dashboard.Setting.SettingFragment
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
@@ -26,7 +27,7 @@ class DashboardActivity : AppCompatActivity() {
                 R.id.home -> setFragmentHome(HomeFragment())
                 R.id.chat -> setFragmentChat(ChatFragment())
                 R.id.profile -> setFragmentProfile(ProfileFragment())
-                R.id.settings -> setFragmentSetting(SettingFragment())
+                R.id.settings -> setFragmentSetting(CovidDetailFragment())
 
             }
         }
@@ -53,7 +54,7 @@ class DashboardActivity : AppCompatActivity() {
         ft.commit()
     }
 
-    private fun setFragmentSetting(loginFragment: SettingFragment) {
+    private fun setFragmentSetting(loginFragment: CovidDetailFragment) {
         var ft: FragmentTransaction = supportFragmentManager.beginTransaction();
         ft.replace(R.id.main_dashboard_frame,loginFragment)
         ft.commit()

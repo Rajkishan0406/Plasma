@@ -44,6 +44,7 @@ class RequestProfileFragment : Fragment() {
     lateinit var doc : NeumorphCardView
     lateinit var pro :ProgressBar
 
+    var imp = 0 as Int
     var sex = "" as String
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -121,6 +122,7 @@ class RequestProfileFragment : Fragment() {
                         var cal = Calendar.getInstance().get(Calendar.YEAR)
                         year = year.substring(year.toString().length - 4, year.toString().length)
                         var Year = cal - year.toInt()
+                        imp = cal - year.toInt()
                         age.setText("Age : "+Year)
                         if(snapshot.hasChild("Sex")) {
                             sex = snapshot.child("Sex").getValue() as String
@@ -233,37 +235,17 @@ class RequestProfileFragment : Fragment() {
             var bun : Bundle
             bun = Bundle()
             //Age
-            data.child(Present_User_Id).child("Covid").addValueEventListener(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()){
-                        aage = snapshot.child("Age").getValue() as String
-                        //Gender
-                        data.child(Present_User_Id).child("Profile").addValueEventListener(object : ValueEventListener{
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                if(snapshot.exists()){
-                                    ggender = snapshot.child("Sex").getValue() as String
-
-                                    if(aage.equals("1")) {
-                                        bun.putString("User_Id", id)
-                                        bun.putString("Number", number)
-                                        bun.putString("Gender", ggender)
-                                        IDF.arguments = bun
-                                        setFragmentRules(IDF)
-                                    }
-                                    else{
-                                        Toast.makeText(activity,"you can't donate plasma as you are below 18",Toast.LENGTH_SHORT).show()
-                                    }
-                                }
-                            }
-                            override fun onCancelled(error: DatabaseError) {}
-                        })
-
-
-                    }
-                }
-                override fun onCancelled(error: DatabaseError) {}
-            })
-        })
+            if(imp >= 18) {
+                bun.putString("User_Id", id)
+                bun.putString("Number", number)
+                bun.putString("Gender", ggender)
+                IDF.arguments = bun
+                setFragmentRules(IDF)
+            }
+            else{
+                Toast.makeText(activity,"you can't donate plasma as you are below 18",Toast.LENGTH_SHORT).show()
+            }
+          })
 
         return view;
     }

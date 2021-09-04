@@ -35,7 +35,6 @@ class UpdateCovidFragment : Fragment() {
     lateinit var prob : EditText
     lateinit var dose_one : CheckBox
     lateinit var dose_two : CheckBox
-    lateinit var age : CheckBox
     lateinit var pro : ProgressBar
     var y = ""
     var m = ""
@@ -47,7 +46,6 @@ class UpdateCovidFragment : Fragment() {
     var image_added = 0
     var plasmarequest = 0 as Int
 
-    var age_yes = 0 as Int
     var first_yes = 0 as Int
     var second_yes = 0 as Int
 
@@ -68,7 +66,6 @@ class UpdateCovidFragment : Fragment() {
         prob = view.findViewById(R.id.disease_update)
         dose_one = view.findViewById(R.id.first_update)
         dose_two = view.findViewById(R.id.second_update)
-        age = view.findViewById(R.id.age_update)
         upload = view.findViewById(R.id.image_uploaded_update)
         pro = view.findViewById(R.id.progress_update)
 
@@ -106,12 +103,6 @@ class UpdateCovidFragment : Fragment() {
         }
         )
 
-        age.setOnClickListener(View.OnClickListener {
-            if(age_yes == 1)
-                age_yes = 0
-            else
-                age_yes = 1
-        })
 
         dose_one.setOnClickListener(View.OnClickListener {
             if(first_yes == 1)
@@ -170,7 +161,6 @@ class UpdateCovidFragment : Fragment() {
                         data.child("Covid").child("Second_Dose").setValue("1")
                     else
                         data.child("Covid").child("Second_Dose").setValue("2")
-                    data.child("Covid").child("Age").setValue(age_yes.toString())
                     pro.visibility = View.INVISIBLE
                     var intent = Intent(activity, DashboardActivity::class.java)
                     startActivity(intent)

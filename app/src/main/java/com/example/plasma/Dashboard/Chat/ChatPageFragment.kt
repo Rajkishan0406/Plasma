@@ -47,6 +47,7 @@ class ChatPageFragment : Fragment() {
     lateinit var block : CardView
     lateinit var clear : CardView
     lateinit var theme : CardView
+    lateinit var help : CardView
     lateinit var theme_back : RelativeLayout
     lateinit var image : ImageView
     private var imageUri: Uri? = null
@@ -81,6 +82,7 @@ class ChatPageFragment : Fragment() {
         block = view.findViewById(R.id.block)
         clear = view.findViewById(R.id.clear_chat)
         theme = view.findViewById(R.id.theme)
+        help = view.findViewById(R.id.help)
         theme_back = view.findViewById(R.id.theme_back)
         image = view.findViewById(R.id.send_image)
 
@@ -236,10 +238,10 @@ class ChatPageFragment : Fragment() {
             }
         })
 
-        recyclerview.setOnClickListener(View.OnClickListener {
-            if(menu.isVisible){
-                menu.visibility = View.INVISIBLE
-            }
+        help.setOnClickListener(View.OnClickListener {
+            val IDF = HelpChatFragment()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_dashboard_frame,IDF)?.addToBackStack(null)?.commit()
+
         })
 
         block.setOnClickListener(View.OnClickListener {
@@ -328,8 +330,10 @@ class ChatPageFragment : Fragment() {
                     var sender = "s" + D + r
                     da = FirebaseDatabase.getInstance().getReference("Details")
                     da.child(User_id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
+                    da.child(User_id).child("Chatting").child(id).child("Last_Message").child(d).setValue("Image File")
                     sender = "r" + D + r
                     da.child(id).child("Chatting").child(User_id).child("Message").child(d).setValue(sender)
+                    da.child(id).child("Chatting").child(User_id).child("Last_Message").child(d).setValue("Image File")
                 }
                 Log.i("image upload : ", "Successfull")
             }

@@ -36,7 +36,6 @@ class CovidDetailsFragment : Fragment() {
     lateinit var prob : EditText
     lateinit var dose_one : CheckBox
     lateinit var dose_two : CheckBox
-    lateinit var age : CheckBox
     lateinit var pro : ProgressBar
     var y = ""
     var m = ""
@@ -47,7 +46,6 @@ class CovidDetailsFragment : Fragment() {
     lateinit var storage : StorageReference
     var image_added = 0
 
-    var age_yes = 0 as Int
     var first_yes = 0 as Int
     var second_yes = 0 as Int
 
@@ -69,7 +67,6 @@ class CovidDetailsFragment : Fragment() {
         prob = view.findViewById(R.id.disease)
         dose_one = view.findViewById(R.id.first)
         dose_two = view.findViewById(R.id.second)
-        age = view.findViewById(R.id.age)
         upload = view.findViewById(R.id.image_uploaded)
         pro = view.findViewById(R.id.progress)
 
@@ -102,13 +99,6 @@ class CovidDetailsFragment : Fragment() {
             }
         )
 
-
-        age.setOnClickListener(View.OnClickListener {
-            if(age_yes == 1)
-                age_yes = 0
-            else
-                age_yes = 1
-        })
 
         dose_one.setOnClickListener(View.OnClickListener {
             if(first_yes == 1)
@@ -143,7 +133,6 @@ class CovidDetailsFragment : Fragment() {
                 data.child("Disease").setValue(prob.text.toString())
                 data.child("First_Dose").setValue(first_yes.toString())
                 data.child("Second_Dose").setValue(second_yes.toString())
-                data.child("Age").setValue(age_yes.toString())
                 storeimage(id)
             }
         })
