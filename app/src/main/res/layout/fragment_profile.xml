@@ -26,7 +26,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="26dp"
+                android:textSize="24dp"
+                android:fontFamily="@font/poppins_regular"
                 android:text=""
                 android:layout_margin="20dp"/>
 
@@ -35,9 +36,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/City"
-                android:fontFamily="sans-serif-condensed-light"
+                android:fontFamily="@font/poppins_light"
                 android:textColor="@color/white"
-                android:textSize="15dp"
+                android:textSize="12dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="5dp"
                 android:text=""/>
@@ -48,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="sans-serif-condensed-light"
+                android:fontFamily="@font/poppins_light"
                 android:layout_marginBottom="15dp"
                 android:text=""
                 android:textSize="22dp"
@@ -248,6 +249,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
                     android:clickable="true"
+                    app:cardBackgroundColor="@color/normal_card_background"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
@@ -264,6 +266,7 @@
                             android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
                             android:textSize="15dp"
+                            android:fontFamily="@font/poppins_light"
                             android:textColor="@color/purple_500"
                             android:text="Personal Details"/>
 
@@ -277,6 +280,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="15dp"
                     android:clickable="true"
+                    app:cardBackgroundColor="@color/normal_card_background"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
@@ -293,6 +297,7 @@
                             android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
                             android:textSize="15dp"
+                            android:fontFamily="@font/poppins_light"
                             android:textColor="@color/purple_500"
                             android:text="Update Covid Details"/>
 
@@ -428,6 +433,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:clickable="true"
+        app:cardBackgroundColor="@color/normal_card_background"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
@@ -443,6 +449,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/poppins_light"
                 android:textSize="15dp"
                 android:textColor="@color/purple_500"
                 android:text="Covid Details"/>
@@ -457,6 +464,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
         android:clickable="true"
+        app:cardBackgroundColor="@color/normal_card_background"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
@@ -471,6 +479,7 @@
                 android:id="@+id/details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="15dp"
@@ -504,6 +513,7 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="18dp"
+                android:fontFamily="@font/poppins_light"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="18dp"
                 android:drawableLeft="@drawable/ic_baseline_delete_24"

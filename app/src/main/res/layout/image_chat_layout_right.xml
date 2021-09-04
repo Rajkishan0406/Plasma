@@ -44,6 +44,7 @@
         android:layout_below="@+id/image"
         android:text="5:38 AM "
         android:textSize="10dp"
+        android:fontFamily="@font/poppins_italic"
         android:layout_alignParentRight="true"
         android:maxWidth="225dp"
         android:layout_marginRight="20dp"

@@ -35,6 +35,7 @@
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/background_left"
                 android:textColor="@color/black"
+                android:fontFamily="@font/poppins_light"
                 android:padding="10dp"
                 android:text="About Image"/>
 
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="5:36 AM "
                 android:textSize="10dp"
+                android:fontFamily="@font/poppins_italic"
                 android:minWidth="100dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="20dp"/>

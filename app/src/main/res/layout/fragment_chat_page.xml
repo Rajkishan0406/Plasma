@@ -15,9 +15,9 @@
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:text="User Name"
-        android:textColor="@color/chat2"
+        android:textColor="@color/positive_btn_text_color"
         android:layout_marginBottom="5dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/poppins_light"
         android:textSize="22dp"/>
 
    <ImageView
@@ -58,12 +58,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="7dp"
-                    android:layout_marginBottom="7dp"
                     android:text="Block"
-                    android:textColor="@color/chat2"
-                    android:textSize="18dp"
-                    android:layout_marginLeft="15dp"/>
+                    android:textColor="@color/positive_btn_text_color"
+                    android:textSize="18dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -94,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="7dp"
-                    android:textColor="@color/chat2"
+                    android:textColor="@color/positive_btn_text_color"
                     android:layout_marginBottom="7dp"
                     android:text="Clear Chat"
                     android:textSize="18dp"/>
@@ -126,12 +125,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Theme"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="7dp"
+                        android:text="Theme"
                         android:layout_marginBottom="7dp"
-                        android:textColor="@color/chat2"
-                        android:textSize="18dp"
-                        android:layout_marginLeft="15dp"/>
+                        android:textColor="@color/positive_btn_text_color"
+                        android:textSize="18dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -163,7 +162,7 @@
                         android:text="Help"
                         android:layout_marginTop="7dp"
                         android:layout_marginBottom="7dp"
-                        android:textColor="@color/chat2"
+                        android:textColor="@color/positive_btn_text_color"
                         android:textSize="18dp"
                         android:layout_marginLeft="15dp"/>
 
@@ -212,6 +211,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/message"
             android:layout_width="match_parent"
+            android:fontFamily="@font/poppins_light"
             android:layout_height="match_parent"
             android:maxHeight="125dp"/>
 
@@ -274,6 +274,7 @@
                 android:text="You can't message to this person anymore"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_light_italic"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/white"/>
@@ -310,6 +311,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:textSize="12dp"
+                android:fontFamily="@font/poppins_light_italic"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
 

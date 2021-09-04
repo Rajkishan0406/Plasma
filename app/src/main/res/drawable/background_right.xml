@@ -6,6 +6,6 @@
         android:radius="14dp"
         android:bottomRightRadius="0dp"/>
 
-    <solid android:color="@color/red"/>
+    <solid android:color="@color/warning_color"/>
 
 </shape>
