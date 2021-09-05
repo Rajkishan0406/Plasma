@@ -22,26 +22,30 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light"
-            android:alpha="0.5"/>
+            android:background="@color/normal_card_background"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_baseline_login_24" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.45"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/logout" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/design_default_color_primary"
                 android:text="Logout"
                 android:textSize="18dp" />
 
@@ -67,27 +71,29 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light"
-            android:alpha="0.5"/>
+            android:background="@color/normal_card_background"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_baseline_format_color_reset_24"/>
-
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.45"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/plus_green"/>
             <TextView
                 android:id="@+id/apply_plasma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/design_default_color_primary"
                 android:text="Apply For Plasma"
                 android:textSize="18dp" />
 
@@ -112,26 +118,29 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light"
-            android:alpha="0.5"/>
+            android:background="@color/normal_card_background"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_baseline_format_color_reset_24"/>
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.45"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/donation" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/design_default_color_primary"
                 android:text="Donation Give"
                 android:textSize="18dp" />
 
@@ -151,32 +160,82 @@
         android:layout_marginRight="8dp"
         app:cardElevation="10dp"
         android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/donation_give">
+        app:layout_constraintBottom_toTopOf="@+id/donation_want">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light"
-            android:alpha="0.5"/>
+            android:background="@color/normal_card_background"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_baseline_format_color_reset_24"/>
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.45"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/corona" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Corona"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/design_default_color_primary"
+                android:text="Corona Update"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/donation_want"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:cardElevation="10dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/donation_give">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/normal_card_background"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.45"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/donate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/design_default_color_primary"
+                android:text="Donation Response"
                 android:textSize="18dp" />
 
         </RelativeLayout>
