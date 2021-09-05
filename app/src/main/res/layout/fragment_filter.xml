@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="bottom"
-    android:layout_height="420dp"
+    android:layout_height="520dp"
     tools:context=".Dashboard.Home.FilterFragment">
 
     <TextView
@@ -13,19 +13,27 @@
         android:layout_height="wrap_content"
         android:text="  Filter"
         android:textSize="20dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@drawable/gradient1"
-        android:layout_marginLeft="8dp"/>
+        android:textColor="@color/positive_btn_text_color"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/poppins_bold"/>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/city_card"
-        android:layout_width="60dp"
-        android:layout_toRightOf="@+id/filter"
+        android:layout_width="80dp"
+        android:layout_below="@+id/filter"
         android:layout_marginTop="10dp"
         app:cardCornerRadius="8dp"
-        android:layout_height="25dp"
-        app:cardElevation="5dp"
-        android:layout_marginLeft="50dp">
+        android:layout_height="30dp"
+        app:cardElevation="8dp"
+        android:layout_marginLeft="40dp">
+
+        <FrameLayout
+            android:id="@+id/city_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:background="@color/healthy_card_background"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_light"
             android:text="City"/>
 
         </RelativeLayout>
@@ -44,13 +53,20 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/state_card"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         app:cardCornerRadius="8dp"
-        android:layout_toRightOf="@+id/city_card"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/filter"
         android:layout_marginTop="10dp"
-        android:layout_height="25dp"
-        app:cardElevation="5dp"
+        android:layout_height="30dp"
+        app:cardElevation="8dp"
         android:layout_marginLeft="40dp">
+        <FrameLayout
+            android:id="@+id/state_frame"
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:layout_height="match_parent"
+            android:background="@color/healthy_card_background"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -61,6 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_light"
                 android:text="State"/>
 
         </RelativeLayout>
@@ -69,13 +86,21 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/blood_card"
-        android:layout_width="60dp"
-        android:layout_toRightOf="@+id/state_card"
-        app:cardElevation="5dp"
+        android:layout_width="80dp"
+        android:layout_below="@+id/filter"
+        android:layout_alignParentRight="true"
+        app:cardElevation="8dp"
         android:layout_marginTop="10dp"
         app:cardCornerRadius="8dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="40dp">
+        android:layout_height="30dp"
+        android:layout_marginRight="40dp">
+
+        <FrameLayout
+            android:id="@+id/blood_frame"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/healthy_card_background"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -85,6 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/poppins_light"
                 android:layout_centerVertical="true"
                 android:text="Blood"/>
 
@@ -96,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
-        android:layout_below="@+id/filter"
+        android:layout_below="@+id/city_card"
         android:id="@+id/cityyy"
         android:layout_marginTop="18dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -177,6 +203,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:textSize="22dp"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:textColor="@color/black"
                         android:text="A+"/>
 
@@ -206,6 +233,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:textSize="22dp"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:text="O+"/>
 
                 </RelativeLayout>
@@ -233,6 +261,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:textSize="22dp"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:textColor="@color/black"
                         android:text="B+"/>
 
@@ -261,6 +290,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:textSize="22dp"
                         android:text="AB+"/>
 
@@ -289,6 +319,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:textSize="22dp"
                         android:text="A-"/>
 
@@ -317,6 +348,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:textSize="22dp"
                         android:text="O-"/>
 
@@ -345,6 +377,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:textSize="22dp"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:textColor="@color/black"
                         android:text="B-"/>
 
@@ -372,6 +405,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:fontFamily="@font/poppins_light_italic"
                         android:textColor="@color/black"
                         android:textSize="22dp"
                         android:text="AB-"/>
@@ -389,11 +423,13 @@
         style="@style/Widget.Neumorph.Button"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:neumorph_backgroundColor="@color/normal_card_background"
         android:layout_below="@+id/blood__b"
         android:text="Save"
         android:layout_marginTop="18dp"
         android:textAlignment="center"
         android:textAllCaps="false"
+        android:fontFamily="@font/poppins_light"
         android:textColor="@color/design_default_color_primary"
         android:textSize="25dp"
         app:neumorph_lightSource="rightTop"

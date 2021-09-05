@@ -25,6 +25,7 @@ class SettingFragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var logout : CardView
     lateinit var request : CardView
+    lateinit var corona : CardView
     lateinit var donation_give : CardView
     lateinit var newi : RequestApplyBottomNavFragment
     lateinit var text_apply : TextView
@@ -45,6 +46,7 @@ class SettingFragment : Fragment() {
         donation_give = view.findViewById(R.id.donation_give)
         text_apply = view.findViewById(R.id.apply_plasma)
         request = view.findViewById(R.id.request_plasma_btn)
+        corona = view.findViewById(R.id.corona)
 
         donation_give.setOnClickListener(View.OnClickListener {
             setFragmentDonation_Give(Donation_Give_Fragment())
@@ -105,6 +107,10 @@ class SettingFragment : Fragment() {
             startActivity(intent)
         })
 
+        corona.setOnClickListener(View.OnClickListener {
+            setFragmentCorona(CovidDetailFragment())
+        })
+
         return view
     }
 
@@ -118,5 +124,14 @@ class SettingFragment : Fragment() {
         }
     }
 
+    private fun setFragmentCorona(forgotFragment: CovidDetailFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.commit()
+        }
+    }
 
 }

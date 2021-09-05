@@ -60,6 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
                     android:text="Block"
                     android:textColor="@color/positive_btn_text_color"
                     android:textSize="18dp" />

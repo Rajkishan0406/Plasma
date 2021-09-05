@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -25,6 +26,9 @@ class FilterFragment :  BottomSheetDialogFragment() {
     lateinit var bl : CardView
     lateinit var cit : CardView
     lateinit var sta : CardView
+    lateinit var Cframe : FrameLayout
+    lateinit var Sframe : FrameLayout
+    lateinit var Bframe : FrameLayout
 
 
     //blood group neumorphCard
@@ -83,37 +87,40 @@ class FilterFragment :  BottomSheetDialogFragment() {
         city = view.findViewById(R.id.city_name)
         state = view.findViewById(R.id.state_name)
         btn = view.findViewById(R.id.submit)
+        Cframe = view.findViewById(R.id.city_frame)
+        Sframe = view.findViewById(R.id.state_frame)
+        Bframe = view.findViewById(R.id.blood_frame)
 
         bl.setOnClickListener(View.OnClickListener {
             if(b == 0) {
                 b = 1
-                bl.setCardBackgroundColor(Color.GREEN)
+                Bframe.visibility = View.VISIBLE
             }
             else{
                 b = 0
-                bl.setCardBackgroundColor(Color.WHITE)
+                Bframe.visibility = View.INVISIBLE
             }
          })
 
         cit.setOnClickListener(View.OnClickListener {
             if(c == 0) {
                 c = 1
-                cit.setCardBackgroundColor(Color.GREEN)
+                Cframe.visibility = View.VISIBLE
             }
             else{
                 c = 0
-                cit.setCardBackgroundColor(Color.WHITE)
+                Cframe.visibility = View.INVISIBLE
             }
         })
 
         sta.setOnClickListener(View.OnClickListener {
             if(s == 0) {
                 s = 1
-                sta.setCardBackgroundColor(Color.GREEN)
+                Sframe.visibility = View.VISIBLE
             }
             else{
                 s = 0
-                sta.setCardBackgroundColor(Color.WHITE)
+                Sframe.visibility = View.INVISIBLE
             }
         })
 
