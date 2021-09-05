@@ -18,7 +18,6 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:cardCornerRadius="0dp"
-      app:cardBackgroundColor="@color/light"
       app:cardElevation="9dp">
 
       <RelativeLayout
@@ -29,7 +28,8 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:textColor="@color/black"
-              android:textSize="20dp"
+              android:textSize="18dp"
+              android:fontFamily="@font/poppins_semibold"
               android:text="Your Donation Responses"
               android:layout_margin="8dp"/>
 

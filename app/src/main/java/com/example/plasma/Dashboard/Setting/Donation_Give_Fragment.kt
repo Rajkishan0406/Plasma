@@ -74,12 +74,14 @@ class Donation_Give_Fragment : Fragment() {
             data2.child(a).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
+                        var request = snapshot.child("PlasmaRequest").getValue() as String
                         var name = snapshot.child("Profile").child("Name").getValue() as String
                         var city = snapshot.child("Profile").child("City").getValue() as String
                         var state = snapshot.child("Profile").child("State").getValue() as String
                         var blood = snapshot.child("Profile").child("Blood_Grp").getValue() as String
                         var id = snapshot.child("Profile").child("Id").getValue() as String
-                        donationArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                        if(request.equals("1"))
+                            donationArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
                     }
                     val adapter = DonationGiveAdapter(donationArrayList)
                     recyclerview.adapter = adapter
