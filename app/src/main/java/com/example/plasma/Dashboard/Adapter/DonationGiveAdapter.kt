@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
 import com.example.plasma.Dashboard.Setting.Donation_G_DetailsFragment
@@ -42,6 +43,21 @@ class DonationGiveAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : 
                 activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).commit()
             }
         })
+
+        holder.msg.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                    var activity = v!!.context as AppCompatActivity
+                    val IDF = ChatPageFragment()
+                    var bun: Bundle
+                    bun = Bundle()
+                    bun.putString("Name", PR.Name.toString())
+                    bun.putString("Id", id)
+                    IDF.arguments = bun
+                    activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame, IDF).commit()
+            }
+        })
+
+
     }
 
     override fun getItemCount(): Int {
@@ -54,6 +70,7 @@ class DonationGiveAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : 
         var state = itemView.findViewById(R.id.User_State) as TextView
         var blood = itemView.findViewById(R.id.User_Blood) as TextView
         var card = itemView.findViewById(R.id.card) as CardView
+        var msg = itemView.findViewById(R.id.Message_card) as CardView
 
 
     }
