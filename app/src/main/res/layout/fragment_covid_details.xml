@@ -12,7 +12,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         app:cardCornerRadius="2dp"
-        app:cardBackgroundColor="@color/light"
+        app:cardBackgroundColor="@color/global_background"
         app:cardElevation="15dp"
         android:layout_height="wrap_content">
 
@@ -27,10 +27,10 @@
                 android:text="2. Covid Details"
                 android:textSize="18dp"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/positive_btn_text_color"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_margin="5dp"/>
 
             <LinearLayout
@@ -80,6 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Upload Recent Covid Test Report"
                     android:textAlignment="center" />
 
@@ -118,6 +119,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:text="Date Of Report"
@@ -135,8 +137,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="25dp"
+                android:fontFamily="@font/poppins_light"
                 android:layout_marginBottom="8dp"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/positive_btn_text_color"
                 android:textSize="22dp" />
 
         </RelativeLayout>
@@ -157,6 +160,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/disease"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/poppins_light"
                 android:layout_height="match_parent"
                 android:inputType="text" />
 
@@ -185,6 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="Vaccination details"
+            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
@@ -193,6 +198,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
+            android:fontFamily="@font/poppins_light"
             android:text="First Dose" />
 
         <CheckBox
@@ -200,6 +206,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
+            android:fontFamily="@font/poppins_light"
             android:text="Second Dose" />
 
             </LinearLayout>
@@ -227,6 +234,7 @@
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:text="Skip"
+        android:fontFamily="@font/poppins_bold"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18dp"
@@ -241,7 +249,9 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:text="Submit"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginBottom="10dp"
+        app:neumorph_backgroundColor="@color/normal_card_background"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/design_default_color_primary"

@@ -3,6 +3,7 @@ package com.example.plasma
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
+import com.example.plasma.Authentication.ProfileCreationFragment
 import com.example.plasma.Dashboard.Chat.ChatFragment
 import com.example.plasma.Dashboard.Home.HomeFragment
 import com.example.plasma.Dashboard.Profile.ProfileFragment
