@@ -6,17 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.plasma.Dashboard.Adapter.ChatAdapter
 import com.example.plasma.Dashboard.Adapter.ChatFragmentAdapter
 import com.example.plasma.Dashboard.Model.ChatFragmentModel
-import com.example.plasma.Dashboard.Model.ChatModel
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -84,7 +78,9 @@ class ChatFragment : Fragment() {
                                         chatArrayList.add(ChatFragmentModel(name,time,blod,id,MsG))
                                     }
                                     pro.visibility = View.INVISIBLE
-                                    val adapter = ChatFragmentAdapter(chatArrayList)
+                                    val adapter = ChatFragmentAdapter(chatArrayList) { chat ->
+
+                                    }
                                     recyclerview.adapter = adapter
                                 }
                                 override fun onCancelled(error: DatabaseError) {}

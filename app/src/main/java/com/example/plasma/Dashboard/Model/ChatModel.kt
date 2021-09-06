@@ -18,4 +18,6 @@ class ChatModel {
         this.day = day
     }
 
+
+
 }

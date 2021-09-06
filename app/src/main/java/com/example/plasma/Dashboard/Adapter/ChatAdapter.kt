@@ -20,6 +20,7 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
     var imagetype1 = 2 as Int
     var imagetype2 = 3 as Int
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.sender, parent, false)
         val V = LayoutInflater.from(parent.context).inflate(R.layout.receiver,parent,false)
@@ -47,6 +48,8 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
             Picasso.get().load(PR.Message).into(holder.image)
         else
             holder.sender_message.text = PR.Message
+        
+
     }
 
     override fun getItemCount(): Int {
@@ -57,6 +60,8 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
         var sender_message = itemView.findViewById(R.id.text) as TextView
         var sender_time  = itemView.findViewById(R.id.time) as TextView
         var image = itemView.findViewById(R.id.image) as ImageView
+
+
     }
 
     override fun getItemViewType(position: Int): Int {

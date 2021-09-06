@@ -20,7 +20,7 @@
             android:layout_height="600dp"
             android:layout_marginTop="-100dp"
             app:cardCornerRadius="60dp"
-            app:cardBackgroundColor="@color/teal_700"
+            app:cardBackgroundColor="@color/green_text_color"
             >
 
             <RelativeLayout
@@ -60,6 +60,7 @@
             android:textSize="32dp"
             android:layout_marginBottom="2dp"
             android:text="SignUp"
+            android:fontFamily="@font/poppins_light"
             android:textColor="@color/white"/>
 
 
@@ -69,6 +70,7 @@
         app:cardCornerRadius="8dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
+        android:alpha="0.95"
         android:id="@+id/signup_card"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
@@ -98,6 +100,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_light"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:drawablePadding="6dp"/>
 
@@ -122,6 +125,7 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_light"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:inputType="textPassword"
                 android:drawablePadding="6dp"/>
@@ -146,6 +150,7 @@
                     android:id="@+id/password_conf"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins_light"
                     android:drawableLeft="@drawable/ic_baseline_lock_24"
                     android:inputType="textPassword"
                     android:drawablePadding="6dp"/>
@@ -171,6 +176,8 @@
                 android:layout_marginLeft="50dp"
                 android:text="Signup"
                 app:neumorph_lightSource="rightTop"
+                android:fontFamily="@font/poppins_light"
+                app:neumorph_backgroundColor="@color/normal_card_background"
                 android:textColor="@color/design_default_color_primary"
                 app:neumorph_shapeType="basin"
                 android:textSize="25dp"

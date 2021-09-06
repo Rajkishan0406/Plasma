@@ -108,6 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 app:cardCornerRadius="8dp"
+                android:alpha="0.95"
                 app:cardElevation="12dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
