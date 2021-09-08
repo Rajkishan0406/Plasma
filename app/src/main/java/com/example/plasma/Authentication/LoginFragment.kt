@@ -2,6 +2,7 @@ package com.example.plasma.Authentication
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -15,6 +16,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.DashboardActivity
 import com.example.plasma.R
@@ -54,6 +56,18 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_login, container, false)
+
+
+        if (activity?.let {
+                    ActivityCompat.checkSelfPermission(it,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION)
+                } != PackageManager.PERMISSION_GRANTED) {
+            // request permission
+            activity?.let {
+                ActivityCompat.requestPermissions(it,
+                        arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            }
+        }
 
         top_card = view.findViewById(R.id.top_card)
 

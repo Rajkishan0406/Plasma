@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -36,8 +37,7 @@ import java.util.jar.Manifest
 class ProfileCreationFragment : Fragment() {
 
     lateinit var name : EditText
-    lateinit var state : EditText
-    lateinit var city : EditText
+    lateinit var location  :TextView
     lateinit var dob : CardView
     lateinit var d : TextView
     lateinit var number : EditText
@@ -76,6 +76,8 @@ class ProfileCreationFragment : Fragment() {
     var y = ""
     var m = ""
     var D = ""
+    var loc_city = "" as String
+    var loc_state = "" as String
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -184,8 +186,6 @@ class ProfileCreationFragment : Fragment() {
 
 
         name = view.findViewById(R.id.user_name)
-        state = view.findViewById(R.id.state)
-        city = view.findViewById(R.id.City)
         d = view.findViewById(R.id.DOB)
         dob = view.findViewById(R.id.calendar)
         number  = view.findViewById(R.id.number)
@@ -197,6 +197,7 @@ class ProfileCreationFragment : Fragment() {
         female = view.findViewById(R.id.Female)
         sub = view.findViewById(R.id.submit)
         map = view.findViewById(R.id.map)
+        location = view.findViewById(R.id.location)
         msg = view.findViewById(R.id.text_for_number)
 
         male.setOnClickListener(View.OnClickListener {
@@ -228,10 +229,14 @@ class ProfileCreationFragment : Fragment() {
 
             fetchLocation()
 
+            if(location.text.toString().equals("Location")){
+                Toast.makeText(activity,"Make sure your location gps in ON!",Toast.LENGTH_SHORT).show()
+            }
+
         })
 
         sub.setOnClickListener(View.OnClickListener {
-            if(name.text.toString().length == 0 || state.text.toString().length == 0 || city.text.toString().length == 0 ||
+            if(name.text.toString().length == 0 || loc_city.length == 0 || loc_state.length == 0 ||
                     d.text.toString().length == 0 || Blood.length == 0 || number.text.toString().length == 0
                     || status.length == 0 || sex.length == 0){
                 Toast.makeText(activity,"Please fill all details",Toast.LENGTH_SHORT).show()
@@ -241,8 +246,8 @@ class ProfileCreationFragment : Fragment() {
             }
             else{
                 data.child("Profile").child("Name").setValue(name.text.trim().toString())
-                data.child("Profile").child("State").setValue(state.text.trim().toString())
-                data.child("Profile").child("City").setValue(city.text.trim().toString())
+                data.child("Profile").child("State").setValue(loc_state)
+                data.child("Profile").child("City").setValue(loc_city)
                 data.child("Profile").child("DOB").setValue(d.text.toString())
                 data.child("Profile").child("Blood_Grp").setValue(Blood)
                 data.child("Profile").child("Number").setValue(number.text.trim().toString())
@@ -277,9 +282,8 @@ class ProfileCreationFragment : Fragment() {
         return view
     }
 
+    // Map Implementation
     private fun fetchLocation() {
-
-
 
         if (activity?.let {
                     ActivityCompat.checkSelfPermission(it,
@@ -293,21 +297,22 @@ class ProfileCreationFragment : Fragment() {
             return
         }
 
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            if(location != null) {
-
-                Toast.makeText(activity, "" + location.latitude + "  " + location.longitude, Toast.LENGTH_SHORT).show()
+        fusedLocationClient.lastLocation.addOnSuccessListener { Location ->
+            if(Location != null) {
+                latitude = Location.latitude
+                longitude = Location.longitude
+                loc_city = getCityName(latitude,longitude)
+                loc_state = getStateName(latitude,longitude)
+                location.setText(loc_city+", "+loc_state)
             }
-                else{
+            else{
                 getNewLocation()
-                Toast.makeText(activity,"Please make sure you are recently connected to google map",Toast.LENGTH_SHORT).show()
             }
         }
                 .addOnFailureListener {
                     Toast.makeText(activity, "Failed on getting current location", Toast.LENGTH_SHORT).show()
                 }
     }
-
     private fun getNewLocation() {
         locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
@@ -320,15 +325,43 @@ class ProfileCreationFragment : Fragment() {
         }
         fusedLocationClient!!.requestLocationUpdates(
                 locationRequest,locationCallback, Looper.myLooper()
-        //now create locationCallBack variable
+                //now create locationCallBack variable
         )
     }
     private var locationCallback = object  : LocationCallback(){
         override fun onLocationResult(p0: LocationResult) {
             var lastLocation = p0.lastLocation
             //Now we will set the new location
-            Toast.makeText(activity, "" + lastLocation.latitude + "  " + lastLocation.longitude, Toast.LENGTH_SHORT).show()
+            if(lastLocation != null) {
+                latitude = lastLocation.latitude
+                longitude = lastLocation.longitude
+                loc_city = getCityName(latitude,longitude)
+                loc_state = getStateName(latitude,longitude)
+                location.setText(loc_city+", "+loc_state)
+                }
+            else
+                Toast.makeText(activity,"Please make sure your gps location is ON!",Toast.LENGTH_SHORT).show()
         }
+    }
+    private fun getCityName(lat : Double , long : Double) : String {
+
+        var cityName = "" as String
+        var geoCoder = Geocoder(activity, Locale.getDefault())
+        var Address = geoCoder.getFromLocation(lat,long,1)
+
+        cityName = Address.get(0).locality
+
+        return cityName
+    }
+    private fun getStateName(lat : Double , long : Double) : String {
+
+        var stateName = "" as String
+        var geoCoder = Geocoder(activity, Locale.getDefault())
+        var Address = geoCoder.getFromLocation(lat,long,1)
+
+        stateName = Address.get(0).adminArea
+
+        return stateName
     }
 
     private fun allFlat() {
