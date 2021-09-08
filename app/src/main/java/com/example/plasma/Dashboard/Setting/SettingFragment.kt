@@ -1,7 +1,11 @@
 package com.example.plasma.Dashboard.Setting
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import android.preference.PreferenceManager
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,11 +15,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.ForgotPassword
 import com.example.plasma.Dashboard.Profile.ReportFragment
 import com.example.plasma.MainActivity
 import com.example.plasma.R
+import com.google.android.gms.location.*
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -30,6 +37,12 @@ class SettingFragment : Fragment() {
     lateinit var newi : RequestApplyBottomNavFragment
     lateinit var text_apply : TextView
     var found = 0
+
+    private val LOCATION_PERMISSION_REQ_CODE = 1000;
+    lateinit var locationRequest: LocationRequest
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -107,12 +120,74 @@ class SettingFragment : Fragment() {
             startActivity(intent)
         })
 
+        fusedLocationClient = activity?.let { LocationServices.getFusedLocationProviderClient(it) }!!
+
+        fetchLocation()
+
         corona.setOnClickListener(View.OnClickListener {
-            setFragmentCorona(CovidDetailFragment())
+           setFragmentCorona(CovidDetailFragment())
         })
 
         return view
     }
+
+    private fun fetchLocation() {
+
+
+
+        if (activity?.let {
+                    ActivityCompat.checkSelfPermission(it,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION)
+                } != PackageManager.PERMISSION_GRANTED) {
+            // request permission
+            activity?.let {
+                ActivityCompat.requestPermissions(it,
+                        arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQ_CODE)
+            }
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if(location != null) {
+
+                Toast.makeText(activity, "" + location.latitude + "  " + location.longitude, Toast.LENGTH_SHORT).show()
+            }
+            else{
+                getNewLocation()
+            }
+        }
+                .addOnFailureListener {
+                    Toast.makeText(activity, "Failed on getting current location", Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    private fun getNewLocation() {
+        locationRequest = LocationRequest()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 0
+        locationRequest.fastestInterval = 0
+        locationRequest.numUpdates = 2
+        if (activity?.let { ActivityCompat.checkSelfPermission(it, android.Manifest.permission.ACCESS_FINE_LOCATION) } != PackageManager.PERMISSION_GRANTED && activity?.let { ActivityCompat.checkSelfPermission(it, android.Manifest.permission.ACCESS_COARSE_LOCATION) } != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(activity,"Permission Denied",Toast.LENGTH_SHORT).show()
+            return
+        }
+        fusedLocationClient!!.requestLocationUpdates(
+                locationRequest,locationCallback, Looper.myLooper()
+                //now create locationCallBack variable
+        )
+    }
+    private var locationCallback = object  : LocationCallback(){
+        override fun onLocationResult(p0: LocationResult) {
+            var lastLocation = p0.lastLocation
+            //Now we will set the new location
+            if(lastLocation != null)
+                Toast.makeText(activity, "" + lastLocation.latitude + "  " + lastLocation.longitude, Toast.LENGTH_SHORT).show()
+            else
+                Toast.makeText(activity,"Please make sure your gps location is ON!",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
 
     private fun setFragmentDonation_Give(forgotFragment: Donation_Give_Fragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
@@ -133,5 +208,6 @@ class SettingFragment : Fragment() {
             ft.commit()
         }
     }
+
 
 }

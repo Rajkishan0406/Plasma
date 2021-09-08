@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
+import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Home.RulesAndRegulationFragment
 import com.example.plasma.Dashboard.Profile.ReportFragment
 import com.example.plasma.R
@@ -157,6 +159,18 @@ class Donation_G_DetailsFragment : Fragment() {
         if(id.equals(Present_User_Id)){
             donate.visibility = View.INVISIBLE
         }
+
+        msg.setOnClickListener(View.OnClickListener {
+            if(!id.equals(Present_User_Id)){
+                val IDF = ChatPageFragment()
+                var bun: Bundle
+                bun = Bundle()
+                bun.putString("Name", name.text.toString())
+                bun.putString("Id", id)
+                IDF.arguments = bun
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_dashboard_frame, IDF)?.commit()
+            }
+        })
 
         donate.setOnClickListener(View.OnClickListener {
             if (Present_User_Id != null) {

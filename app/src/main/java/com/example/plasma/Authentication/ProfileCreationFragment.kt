@@ -1,8 +1,14 @@
 package com.example.plasma.Authentication
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +16,22 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.FragmentTransaction
 import com.airbnb.lottie.LottieAnimationView
 import com.example.plasma.R
+import com.google.android.gms.location.*
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import soup.neumorphism.NeumorphButton
 import soup.neumorphism.NeumorphCardView
 import java.util.*
+import java.util.jar.Manifest
 
 class ProfileCreationFragment : Fragment() {
 
@@ -35,6 +47,7 @@ class ProfileCreationFragment : Fragment() {
     lateinit var msg : TextView
     lateinit var male : CardView
     lateinit var female : CardView
+    lateinit var map : CardView
     lateinit var Male_anim : LottieAnimationView
     lateinit var Female_anim : LottieAnimationView
 
@@ -66,6 +79,11 @@ class ProfileCreationFragment : Fragment() {
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    private val LOCATION_PERMISSION_REQ_CODE = 1000;
+    lateinit var locationRequest: LocationRequest
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
 
 
     override fun onCreateView(
@@ -78,6 +96,8 @@ class ProfileCreationFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
+
+        fusedLocationClient = activity?.let { LocationServices.getFusedLocationProviderClient(it) }!!
 
         //blood group addition
         a_pos = view.findViewById(R.id.A_positive)
@@ -176,6 +196,7 @@ class ProfileCreationFragment : Fragment() {
         male = view.findViewById(R.id.Male)
         female = view.findViewById(R.id.Female)
         sub = view.findViewById(R.id.submit)
+        map = view.findViewById(R.id.map)
         msg = view.findViewById(R.id.text_for_number)
 
         male.setOnClickListener(View.OnClickListener {
@@ -200,6 +221,13 @@ class ProfileCreationFragment : Fragment() {
             status = "No"
             no.setShapeType(1)
             yes.setShapeType(0)
+        })
+
+
+        map.setOnClickListener(View.OnClickListener {
+
+            fetchLocation()
+
         })
 
         sub.setOnClickListener(View.OnClickListener {
@@ -249,6 +277,60 @@ class ProfileCreationFragment : Fragment() {
         return view
     }
 
+    private fun fetchLocation() {
+
+
+
+        if (activity?.let {
+                    ActivityCompat.checkSelfPermission(it,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION)
+                } != PackageManager.PERMISSION_GRANTED) {
+            // request permission
+            activity?.let {
+                ActivityCompat.requestPermissions(it,
+                        arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQ_CODE)
+            }
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if(location != null) {
+
+                Toast.makeText(activity, "" + location.latitude + "  " + location.longitude, Toast.LENGTH_SHORT).show()
+            }
+                else{
+                getNewLocation()
+                Toast.makeText(activity,"Please make sure you are recently connected to google map",Toast.LENGTH_SHORT).show()
+            }
+        }
+                .addOnFailureListener {
+                    Toast.makeText(activity, "Failed on getting current location", Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    private fun getNewLocation() {
+        locationRequest = LocationRequest()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 0
+        locationRequest.fastestInterval = 0
+        locationRequest.numUpdates = 2
+        if (activity?.let { ActivityCompat.checkSelfPermission(it, android.Manifest.permission.ACCESS_FINE_LOCATION) } != PackageManager.PERMISSION_GRANTED && activity?.let { ActivityCompat.checkSelfPermission(it, android.Manifest.permission.ACCESS_COARSE_LOCATION) } != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(activity,"Permission Denied",Toast.LENGTH_SHORT).show()
+            return
+        }
+        fusedLocationClient!!.requestLocationUpdates(
+                locationRequest,locationCallback, Looper.myLooper()
+        //now create locationCallBack variable
+        )
+    }
+    private var locationCallback = object  : LocationCallback(){
+        override fun onLocationResult(p0: LocationResult) {
+            var lastLocation = p0.lastLocation
+            //Now we will set the new location
+            Toast.makeText(activity, "" + lastLocation.latitude + "  " + lastLocation.longitude, Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun allFlat() {
         a_pos.setShapeType(0)
         ab_pos.setShapeType(0)
@@ -278,6 +360,24 @@ class ProfileCreationFragment : Fragment() {
         }
         if (ft != null) {
             ft.addToBackStack(null).commit()
+        }
+    }
+
+
+    override fun onRequestPermissionsResult(
+            requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        when (requestCode) {
+            LOCATION_PERMISSION_REQ_CODE -> {
+                if (grantResults.isNotEmpty() &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission granted
+                } else {
+                    // permission denied
+                    Toast.makeText(activity, "You need to grant permission to access location",
+                            Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

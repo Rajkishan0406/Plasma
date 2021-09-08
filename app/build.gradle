@@ -53,10 +53,13 @@ dependencies {
     implementation 'com.github.fornewid:neumorphism:0.2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    //zoom image
+    //Zoom image
     implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
 
     //Lottie Animation
     implementation 'com.airbnb.android:lottie:3.4.4'
+
+    //Location
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 }
