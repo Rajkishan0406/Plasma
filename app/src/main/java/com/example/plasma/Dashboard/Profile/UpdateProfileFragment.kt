@@ -356,21 +356,26 @@ class UpdateProfileFragment : Fragment() {
     private fun getCityName(lat : Double , long : Double) : String {
 
         var cityName = "" as String
-        var geoCoder = Geocoder(activity, Locale.getDefault())
-        var Address = geoCoder.getFromLocation(lat,long,1)
+        if(activity != null) {
+            var geoCoder = Geocoder(activity, Locale.getDefault())
+            var Address = geoCoder.getFromLocation(lat, long, 1)
 
-        cityName = Address.get(0).locality
+            cityName = Address.get(0).locality
 
+        }
         return cityName
     }
     private fun getStateName(lat : Double , long : Double) : String {
 
-        var stateName = "" as String
-        var geoCoder = Geocoder(activity, Locale.getDefault())
-        var Address = geoCoder.getFromLocation(lat,long,1)
+            var stateName = "" as String
 
-        stateName = Address.get(0).adminArea
+        if(activity != null) {
+            var geoCoder = Geocoder(activity, Locale.getDefault())
+            var Address = geoCoder.getFromLocation(lat, long, 1)
 
+            stateName = Address.get(0).adminArea
+
+        }
         return stateName
     }
 
