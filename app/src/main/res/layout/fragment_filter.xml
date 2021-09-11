@@ -137,6 +137,7 @@
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         android:hint="City"
+        app:boxStrokeColor="@color/purple_200"
         android:textColorHint="@color/text_color_primary"
         android:layout_marginLeft="10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
@@ -163,6 +164,7 @@
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         android:textColorHint="@color/text_color_primary"
+        app:boxStrokeColor="@color/purple_200"
         android:hint="State"
         android:layout_marginLeft="10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

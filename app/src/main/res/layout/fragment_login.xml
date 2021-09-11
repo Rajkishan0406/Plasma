@@ -18,8 +18,6 @@
             android:layout_height="match_parent">
 
 
-
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/top_card"
                 android:layout_width="match_parent"
@@ -135,6 +133,7 @@
                         app:boxCornerRadiusTopStart="10dp"
                         app:boxCornerRadiusTopEnd="10dp"
                         android:hint="Email"
+                        app:boxStrokeColor="@color/purple_200"
                         android:layout_marginLeft="10dp"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -161,6 +160,7 @@
                         android:layout_marginTop="18dp"
                         android:textColorHint="@color/text_color_primary"
                         android:hint="Password"
+                        app:boxStrokeColor="@color/purple_200"
                         android:layout_marginLeft="10dp"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 

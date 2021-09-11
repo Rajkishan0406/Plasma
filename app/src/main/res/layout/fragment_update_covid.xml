@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard.Profile.UpdateCovidFragment">
 
@@ -114,6 +115,8 @@
             android:layout_marginRight="10dp"
             android:hint="Any Serious Disease"
             app:boxCornerRadiusBottomEnd="10dp"
+            app:boxStrokeColor="@color/purple_200"
+            app:hintTextColor="@color/text_color_primary"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp">
@@ -122,6 +125,7 @@
                 android:id="@+id/disease_update"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/black"
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -191,6 +195,8 @@
         android:layout_alignParentBottom="true"
         android:text="Submit"
         android:layout_marginBottom="10dp"
+        android:fontFamily="@font/poppins_light"
+        app:neumorph_backgroundColor="@color/normal_card_background"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/design_default_color_primary"

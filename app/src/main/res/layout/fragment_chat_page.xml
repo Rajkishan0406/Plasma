@@ -46,6 +46,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/block"
+            app:cardBackgroundColor="@color/white"
             android:layout_width="match_parent"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
@@ -80,6 +81,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/clear_chat"
             android:layout_below="@+id/block"
+            app:cardBackgroundColor="@color/white"
             android:layout_width="match_parent"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
@@ -115,6 +117,7 @@
                 android:id="@+id/theme"
                 android:layout_below="@+id/clear_chat"
                 android:layout_width="match_parent"
+            app:cardBackgroundColor="@color/white"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="wrap_content">
@@ -150,6 +153,7 @@
                 android:layout_below="@+id/theme"
                 android:layout_width="match_parent"
                 android:clickable="true"
+                app:cardBackgroundColor="@color/white"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="wrap_content">
 
@@ -189,16 +193,17 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/User_Name"
         android:layout_above="@+id/msg_card"/>
-       
+
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/msg_card"
-        android:layout_width="270dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
         app:boxCornerRadiusBottomEnd="28dp"
+        app:boxStrokeColor="@color/purple_200"
         android:maxHeight="125dp"
         app:boxCornerRadiusBottomStart="28dp"
         app:boxCornerRadiusTopStart="28dp"
@@ -212,7 +217,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/message"
             android:layout_width="match_parent"
-            android:fontFamily="@font/poppins_light"
+            android:textColor="@color/text_color_primary"
+            android:textSize="16dp"
             android:layout_height="match_parent"
             android:maxHeight="125dp"/>
 
@@ -229,14 +235,14 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:src="@drawable/ic_baseline_camera_alt_24"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/msg_card"
+        android:layout_toLeftOf="@+id/send_card"
         android:layout_marginBottom="12dp"/>
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/send_card"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="8dp"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"

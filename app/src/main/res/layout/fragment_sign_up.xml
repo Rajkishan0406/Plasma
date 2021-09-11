@@ -95,6 +95,7 @@
             app:boxCornerRadiusTopStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
             android:hint="Email"
+            app:boxStrokeColor="@color/purple_200"
             android:textColorHint="@color/text_color_primary"
             android:layout_marginLeft="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
@@ -122,6 +123,7 @@
             app:boxCornerRadiusTopEnd="10dp"
             android:layout_marginTop="18dp"
             android:textColorHint="@color/text_color_primary"
+            app:boxStrokeColor="@color/purple_200"
             android:hint="Password"
             android:layout_marginLeft="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
@@ -150,6 +152,7 @@
                 android:layout_marginTop="18dp"
                 android:hint="Confirm Password"
                 android:textColorHint="@color/text_color_primary"
+                app:boxStrokeColor="@color/purple_200"
                 android:layout_marginLeft="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
