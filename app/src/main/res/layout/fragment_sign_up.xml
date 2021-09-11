@@ -68,6 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="380dp"
         app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:alpha="0.95"
@@ -87,18 +88,21 @@
             android:layout_marginRight="10dp"
             android:layout_below="@+id/text_login"
             android:id="@+id/emialll"
+            android:textColor="@color/text_color_primary"
             android:layout_marginTop="18dp"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
             android:hint="Email"
+            android:textColorHint="@color/text_color_primary"
             android:layout_marginLeft="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_light"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
@@ -117,6 +121,7 @@
             app:boxCornerRadiusTopStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
             android:layout_marginTop="18dp"
+            android:textColorHint="@color/text_color_primary"
             android:hint="Password"
             android:layout_marginLeft="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
@@ -124,6 +129,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_light"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
@@ -143,12 +149,14 @@
                 app:boxCornerRadiusTopEnd="10dp"
                 android:layout_marginTop="18dp"
                 android:hint="Confirm Password"
+                android:textColorHint="@color/text_color_primary"
                 android:layout_marginLeft="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_conf"
                     android:layout_width="match_parent"
+                    android:textColor="@color/black"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins_light"
                     android:drawableLeft="@drawable/ic_baseline_lock_24"

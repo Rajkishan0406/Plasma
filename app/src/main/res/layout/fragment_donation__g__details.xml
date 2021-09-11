@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard.Home.RequestProfileFragment">
 
@@ -126,6 +127,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Message"
+                                android:textColor="@color/text_color_primary"
                                 android:layout_centerVertical="true"
                                 android:layout_centerHorizontal="true"
                                 android:textSize="20dp"/>
@@ -165,6 +167,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Call"
+                                android:textColor="@color/text_color_primary"
                                 android:fontFamily="@font/poppins_light"
                                 android:layout_centerVertical="true"
                                 android:layout_centerHorizontal="true"
@@ -208,6 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Map View"
+                        android:textColor="@color/text_color_primary"
                         android:fontFamily="@font/poppins_regular"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
@@ -238,6 +242,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
+                            android:textColor="@color/text_color_primary"
                             android:layout_marginTop="8dp"
                             android:text="City"
                             android:textSize="18dp" />
@@ -266,6 +271,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="8dp"
+                            android:textColor="@color/text_color_primary"
                             android:text="State"
                             android:textSize="18dp" />
 
@@ -324,6 +330,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="30dp"
+                                android:textColor="@color/text_color_primary"
                                 android:textSize="20dp"/>
 
                         </RelativeLayout>
@@ -394,6 +401,7 @@
                             <TextView
                                 android:id="@+id/Disease"
                                 android:layout_width="wrap_content"
+                                android:textColor="@color/text_color_primary"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="30dp"

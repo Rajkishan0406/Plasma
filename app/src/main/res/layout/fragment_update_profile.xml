@@ -592,6 +592,7 @@
                 android:layout_alignParentBottom="true"
                 android:text="Submit"
                 android:layout_marginBottom="10dp"
+                app:neumorph_backgroundColor="@color/normal_card_background"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/design_default_color_primary"
