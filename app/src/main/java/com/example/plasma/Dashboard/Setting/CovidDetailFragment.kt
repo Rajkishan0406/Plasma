@@ -1,18 +1,67 @@
 package com.example.plasma.Dashboard.Setting
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.plasma.Dashboard.ApiService
+import com.example.plasma.Dashboard.Model.CovidResponse
 import com.example.plasma.R
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 class CovidDetailFragment : Fragment() {
 
+    lateinit var new_case : TextView
+    lateinit var death : TextView
+    lateinit var recover : TextView
+    lateinit var active : TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.fragment_covid_detail, container, false)
+
+
+        new_case = view.findViewById(R.id.new_cases_covid)
+        death = view.findViewById(R.id.new_death_cases)
+        recover = view.findViewById(R.id.total_recovered_covid)
+        active = view.findViewById(R.id.active_cases_covid)
+
+
+        val retrofit2 = Retrofit.Builder()
+                .baseUrl("https://covid-19-tracking.p.rapidapi.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val apiService: ApiService = retrofit2.create(ApiService::class.java)
+
+        val covidResponseCall: Call<CovidResponse> = apiService.getIndiaData()
+
+        covidResponseCall.enqueue(object : Callback<CovidResponse?> {
+            override fun onResponse(call: Call<CovidResponse?>?, response: Response<CovidResponse?>) {
+                if (response.isSuccessful) {
+                    val data : CovidResponse? = response.body()
+                    Toast.makeText(activity,""+data,Toast.LENGTH_SHORT).show()
+                    if(data != null){
+                        Toast.makeText(activity,""+data,Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else {
+                    Log.d("Guide", "Bad Request")
+                }
+            }
+
+            override fun onFailure(call: Call<CovidResponse?>?, t: Throwable?) {}
+        })
+
 
 
         return view

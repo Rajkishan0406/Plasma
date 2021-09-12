@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.plasma.Dashboard.Adapter.ChatFragmentAdapter
 import com.example.plasma.Dashboard.Model.ChatFragmentModel
 import com.example.plasma.R
@@ -23,7 +24,7 @@ class ChatFragment : Fragment() {
 
     lateinit var chatArrayList : ArrayList<ChatFragmentModel>
     lateinit var recyclerview : RecyclerView
-    lateinit var pro : ProgressBar
+    lateinit var pro : LottieAnimationView
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +78,8 @@ class ChatFragment : Fragment() {
                                         if(MsG.length > 0) // for exculuding no message carview...
                                         chatArrayList.add(ChatFragmentModel(name,time,blod,id,MsG))
                                     }
-                                    pro.visibility = View.INVISIBLE
+                                    if(chatArrayList.size > 0)
+                                     pro.visibility = View.INVISIBLE
                                     val adapter = ChatFragmentAdapter(chatArrayList) { chat ->
 
                                     }
@@ -86,7 +88,6 @@ class ChatFragment : Fragment() {
                                 override fun onCancelled(error: DatabaseError) {}
                             })
                         }
-                        pro.visibility = View.INVISIBLE
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {}

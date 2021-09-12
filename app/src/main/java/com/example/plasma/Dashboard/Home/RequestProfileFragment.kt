@@ -52,6 +52,7 @@ class RequestProfileFragment : Fragment() {
     var aage = "" as String
     var ggender = "" as String
     var year = "" as String
+    var cannot_donate = 0 as Int
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -85,6 +86,22 @@ class RequestProfileFragment : Fragment() {
         pro = view.findViewById(R.id.progress)
         donate = view.findViewById(R.id.donate_btn)
 
+
+        if(User_id != null){
+            data.child(User_id).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        var check = snapshot.getValue() as String
+                        if(check.equals("0"))
+                            cannot_donate = 0
+                        else {
+                            cannot_donate = 1
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
 
         if(id != null){
             data.child(id).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
@@ -235,15 +252,18 @@ class RequestProfileFragment : Fragment() {
             var bun : Bundle
             bun = Bundle()
             //Age
-            if(imp >= 18) {
-                bun.putString("User_Id", id)
-                bun.putString("Number", number)
-                bun.putString("Gender", ggender)
-                IDF.arguments = bun
-                setFragmentRules(IDF)
-            }
-            else{
-                Toast.makeText(activity,"you can't donate plasma as you are below 18",Toast.LENGTH_SHORT).show()
+            if(cannot_donate == 1)
+                Toast.makeText(activity,"You can't donate as you already requested one",Toast.LENGTH_SHORT).show()
+            else {
+                if (imp >= 18) {
+                    bun.putString("User_Id", id)
+                    bun.putString("Number", number)
+                    bun.putString("Gender", ggender)
+                    IDF.arguments = bun
+                    setFragmentRules(IDF)
+                } else {
+                    Toast.makeText(activity, "you can't donate plasma as you are below 18", Toast.LENGTH_SHORT).show()
+                }
             }
           })
 
