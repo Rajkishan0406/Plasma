@@ -1,6 +1,7 @@
 package com.example.plasma.Dashboard.Home
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -13,6 +14,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.SignUpFragment
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
@@ -206,10 +208,22 @@ class RequestProfileFragment : Fragment() {
 
         //call feature
         call.setOnClickListener(View.OnClickListener {
-            if(!id.equals(User_id)) {
-                var intent = Intent(Intent.ACTION_CALL)
-                intent.setData(Uri.parse("tel:" + number))
-                activity?.startActivity(intent)
+            if (activity?.let {
+                        ActivityCompat.checkSelfPermission(it,
+                                android.Manifest.permission.CALL_PHONE)
+                    } != PackageManager.PERMISSION_GRANTED) {
+                // request permission
+                activity?.let {
+                    ActivityCompat.requestPermissions(it,
+                            arrayOf(android.Manifest.permission.CALL_PHONE), 101)
+                }
+            }
+            else {
+                if (!id.equals(User_id)) {
+                    var intent = Intent(Intent.ACTION_CALL)
+                    intent.setData(Uri.parse("tel:" + number))
+                    activity?.startActivity(intent)
+                }
             }
         })
 
@@ -226,7 +240,7 @@ class RequestProfileFragment : Fragment() {
 
         //Map call
         map.setOnClickListener(View.OnClickListener {
-            // code later on...
+            setMapFragment(MapFragment())
         })
 
         doc.setOnClickListener(View.OnClickListener {
@@ -299,4 +313,16 @@ class RequestProfileFragment : Fragment() {
             ft.addToBackStack(null).commit()
         }
     }
+
+    private fun setMapFragment(forgotFragment: MapFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
+
+
 }
