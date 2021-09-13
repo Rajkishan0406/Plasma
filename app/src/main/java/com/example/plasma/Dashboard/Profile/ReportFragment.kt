@@ -31,6 +31,7 @@ class ReportFragment : Fragment() {
         var bun = Bundle()
         bun = this.requireArguments()
         var id : String? = bun.getString("User_Id")
+
         data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
         storage = FirebaseStorage.getInstance().getReference(id)
         image = view.findViewById(R.id.report_image)
