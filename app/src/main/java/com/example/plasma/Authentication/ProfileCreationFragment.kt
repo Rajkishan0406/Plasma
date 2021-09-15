@@ -253,6 +253,8 @@ class ProfileCreationFragment : Fragment() {
                 data.child("Profile").child("Number").setValue(number.text.trim().toString())
                 data.child("Profile").child("Status").setValue(status)
                 data.child("Profile").child("Sex").setValue(sex)
+                data.child("Profile").child("Longitute").setValue(longitude)
+                data.child("Profile").child("Latitude").setValue(latitude)
                 data.child("PlasmaRequest").setValue("0")
                 data.child("Profile").child("Id").setValue(id)
                 Toast.makeText(activity,"Personal Details Filled Successfully",Toast.LENGTH_SHORT).show()
@@ -346,20 +348,24 @@ class ProfileCreationFragment : Fragment() {
     private fun getCityName(lat : Double , long : Double) : String {
 
         var cityName = "" as String
-        var geoCoder = Geocoder(activity, Locale.getDefault())
-        var Address = geoCoder.getFromLocation(lat,long,1)
+        if(activity != null) {
+            var geoCoder = Geocoder(activity, Locale.getDefault())
+            var Address = geoCoder.getFromLocation(lat, long, 1)
 
-        cityName = Address.get(0).locality
+            cityName = Address.get(0).locality
+        }
 
         return cityName
     }
     private fun getStateName(lat : Double , long : Double) : String {
 
         var stateName = "" as String
-        var geoCoder = Geocoder(activity, Locale.getDefault())
-        var Address = geoCoder.getFromLocation(lat,long,1)
+        if(activity != null) {
+            var geoCoder = Geocoder(activity, Locale.getDefault())
+            var Address = geoCoder.getFromLocation(lat, long, 1)
 
-        stateName = Address.get(0).adminArea
+            stateName = Address.get(0).adminArea
+        }
 
         return stateName
     }

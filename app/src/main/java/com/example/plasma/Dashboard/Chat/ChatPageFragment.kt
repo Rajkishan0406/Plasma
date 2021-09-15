@@ -70,6 +70,13 @@ class ChatPageFragment : Fragment() {
         var s = bun.getString("Name") as String
         id = bun.getString("Id") as String
 
+        var pref2 = PreferenceManager.getDefaultSharedPreferences(activity)
+        pref2.apply {
+            val editor = pref2.edit()
+            editor.putString("Current_User_Id", id)
+            editor.apply()
+        }
+
         //Find View BY ID...
         name = view.findViewById(R.id.User_Name)
         Msg = view.findViewById(R.id.message)
@@ -182,14 +189,16 @@ class ChatPageFragment : Fragment() {
                         var msg = ""
                         var from = ""
                         var day = ""
+                        var id = ""
                         if(snapshot.exists()){
                             for(snap in snapshot.children){
                                 var m = snap.getValue() as String
                                 from = m.substring(0,1)
-                                time = m.substring(1,9)
-                                day = m.substring(10,15)
+                                time = m.substring(12,17)
+                                day = m.substring(6,10)
                                 msg = m.substring(20,m.length)
-                                chatArrayList.add(ChatModel(msg,time,from,day))
+                                id = m.substring(1,20)
+                                chatArrayList.add(ChatModel(msg,time,from,day,id))
                             }
                         }
                     val adapter = ChatAdapter(chatArrayList)
@@ -212,15 +221,13 @@ class ChatPageFragment : Fragment() {
             }
             else if(text.length > 0){
                 val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
-                val Sdf = SimpleDateFormat("hh:mm a dd/MM/yyyy")
                 val d = sdf.format(Date())
-                val D = Sdf.format(Date())
-                var sender = "S" + D + text
+                var sender = "S" + d + text
                 if(User_Id != null && id != null) {
                     data.child(User_Id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
                     data.child(User_Id).child("Chatting").child(id).child("Last_Message").setValue(sender)
                 }
-                var  receiver = "R" + D + text
+                var  receiver = "R" + d + text
                 if(User_Id != null && id != null) {
                     data.child(id).child("Chatting").child(User_Id).child("Message").child(d).setValue(receiver)
                     data.child(id).child("Chatting").child(User_Id).child("Last_Message").setValue(receiver)

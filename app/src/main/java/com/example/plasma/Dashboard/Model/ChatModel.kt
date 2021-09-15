@@ -6,16 +6,18 @@ class ChatModel {
     var Time : String? = null
     var From : String? = null
     var day : String? = null
+    var id : String? = null
 
     constructor(){
 
     }
 
-    constructor(Message: String?, Time: String?, From: String?, day: String?) {
+    constructor(Message: String?, Time: String?, From: String?, day: String?, id: String) {
         this.Message = Message
         this.Time = Time
         this.From = From
         this.day = day
+        this.id = id
     }
 
 

@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plasma.Dashboard.Chat.DeleteMsgFragment
 import com.example.plasma.Dashboard.Chat.FullImageFragment
 import com.example.plasma.Dashboard.Model.ChatModel
-import com.example.plasma.Dashboard.Setting.Donation_G_DetailsFragment
+import com.example.plasma.DashboardActivity
 import com.example.plasma.R
 import com.squareup.picasso.Picasso
 
@@ -27,9 +27,17 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.sender, parent, false)
-        val V = LayoutInflater.from(parent.context).inflate(R.layout.receiver,parent,false)
-        val imgV = LayoutInflater.from(parent.context).inflate(R.layout.image_chat_layout_left,parent,false)
-        val imgv = LayoutInflater.from(parent.context).inflate(R.layout.image_chat_layout_right,parent,false)
+        val V = LayoutInflater.from(parent.context).inflate(R.layout.receiver, parent, false)
+        val imgV = LayoutInflater.from(parent.context).inflate(
+            R.layout.image_chat_layout_left,
+            parent,
+            false
+        )
+        val imgv = LayoutInflater.from(parent.context).inflate(
+            R.layout.image_chat_layout_right,
+            parent,
+            false
+        )
         if(viewType == type1)
             return ChatAdapter.ViewHolder(v)
         if(viewType == imagetype1)
@@ -56,30 +64,56 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
         //Full Imgae show..
         holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                Log.i("Clicked",": ho rha hai "+PR.From)
-                if(PR.From.toString().equals("s")) {
+                Log.i("Clicked", ": ho rha hai " + PR.From)
+                if (PR.From.toString().equals("s")) {
                     var activity = v!!.context as AppCompatActivity
                     val IDF = FullImageFragment()
-                    Log.i("Clicked",":  "+PR.From)
+                    Log.i("Clicked", ":  " + PR.From)
                     var bun: Bundle
                     bun = Bundle()
                     bun.putString("image", PR.Message)
                     IDF.arguments = bun
-                    activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame, IDF).addToBackStack(null).commit()
+                    activity.supportFragmentManager.beginTransaction().replace(
+                        R.id.main_dashboard_frame,
+                        IDF
+                    ).addToBackStack(null).commit()
                 }
-                if(PR.From.toString().equals("r")) {
+                if (PR.From.toString().equals("r")) {
                     var activity = v!!.context as AppCompatActivity
                     val IDF = FullImageFragment()
-                    Log.i("Clicked",":  "+PR.From)
+                    Log.i("Clicked", ":  " + PR.From)
                     var bun: Bundle
                     bun = Bundle()
                     bun.putString("image", PR.Message)
                     IDF.arguments = bun
-                    activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame, IDF).addToBackStack(null).commit()
+                    activity.supportFragmentManager.beginTransaction().replace(
+                        R.id.main_dashboard_frame,
+                        IDF
+                    ).addToBackStack(null).commit()
                 }
             }
         })
 
+        var id = PR.id.toString()
+
+        holder.sender_message.setOnLongClickListener(object : View.OnLongClickListener {
+            override fun onLongClick(v: View?): Boolean {
+                var activity = v!!.context as AppCompatActivity
+                val IDF = DeleteMsgFragment()
+                var bun: Bundle
+                bun = Bundle()
+                bun.putString("Msgid", id)
+                IDF.arguments = bun
+                IDF.show(
+                    (activity as DashboardActivity).getSupportFragmentManager(),
+                    IDF.getTag()
+                )
+                Log.i("id : ", "" + id)
+
+                return true
+            }
+
+        })
 
 
     }
@@ -88,7 +122,7 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
         return chatModel.size
     }
 
-    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var sender_message = itemView.findViewById(R.id.text) as TextView
         var sender_time  = itemView.findViewById(R.id.time) as TextView
         var image = itemView.findViewById(R.id.image) as ImageView

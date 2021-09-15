@@ -66,7 +66,7 @@ class ChatFragment : Fragment() {
                                         blod = sp.child("Blood_Grp").getValue() as String
                                         if(snap.hasChild("Last_Message")) {
                                             msg = snap.child("Last_Message").getValue() as String
-                                            time = msg.substring(1, 9)
+                                            time = msg.substring(12, 17)
                                             MsG = msg.substring(20, msg.length)
                                             if (MsG.length > 25)
                                                 MsG = MsG.substring(0, 25) + "..."

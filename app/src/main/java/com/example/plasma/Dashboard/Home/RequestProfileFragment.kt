@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.SignUpFragment
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Profile.ReportFragment
+import com.example.plasma.DashboardActivity
+import com.example.plasma.MapActivity
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -240,7 +242,8 @@ class RequestProfileFragment : Fragment() {
 
         //Map call
         map.setOnClickListener(View.OnClickListener {
-            setMapFragment(MapFragment())
+            val intent = Intent(getActivity(), MapActivity::class.java)
+            getActivity()?.startActivity(intent)
         })
 
         doc.setOnClickListener(View.OnClickListener {
@@ -305,16 +308,6 @@ class RequestProfileFragment : Fragment() {
     }
 
     private fun setFragmentReport(forgotFragment: ReportFragment) {
-        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
-        if (ft != null) {
-            ft.replace(R.id.main_dashboard_frame, forgotFragment)
-        }
-        if (ft != null) {
-            ft.addToBackStack(null).commit()
-        }
-    }
-
-    private fun setMapFragment(forgotFragment: MapFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)

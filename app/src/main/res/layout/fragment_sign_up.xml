@@ -105,8 +105,9 @@
                 android:layout_width="match_parent"
                 android:textColor="@color/black"
                 android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
                 android:fontFamily="@font/poppins_light"
-                android:drawableLeft="@drawable/ic_baseline_email_24"
+                android:drawableStart="@drawable/custome_email_icon"
                 android:drawablePadding="6dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -125,6 +126,7 @@
             android:textColorHint="@color/text_color_primary"
             app:boxStrokeColor="@color/purple_200"
             android:hint="Password"
+            app:passwordToggleEnabled="true"
             android:layout_marginLeft="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -134,7 +136,7 @@
                 android:textColor="@color/black"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_light"
-                android:drawableLeft="@drawable/ic_baseline_lock_24"
+                android:drawableStart="@drawable/custome_lock_icon"
                 android:inputType="textPassword"
                 android:drawablePadding="6dp"/>
 
@@ -154,6 +156,7 @@
                 android:textColorHint="@color/text_color_primary"
                 app:boxStrokeColor="@color/purple_200"
                 android:layout_marginLeft="10dp"
+                app:passwordToggleEnabled="true"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -162,7 +165,7 @@
                     android:textColor="@color/black"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins_light"
-                    android:drawableLeft="@drawable/ic_baseline_lock_24"
+                    android:drawableStart="@drawable/custome_lock_icon"
                     android:inputType="textPassword"
                     android:drawablePadding="6dp"/>
 
