@@ -68,7 +68,7 @@
                         android:layout_marginBottom="50dp"
                         android:layout_marginRight="25dp"
                         android:text="Forgot Password?"
-                        android:fontFamily="@font/poppins_bold"
+                        android:fontFamily="@font/poppins_semibold"
                         android:textAlignment="center"
                         android:textColor="@color/purple_700"
                         android:textSize="15dp" />
@@ -81,7 +81,7 @@
                         android:layout_marginRight="25dp"
                         android:layout_marginBottom="80dp"
                         android:layout_alignParentBottom="true"
-                        android:fontFamily="@font/poppins_bold"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="New User"
                         android:textAlignment="center"
                         android:textColor="@color/purple_700"
@@ -111,6 +111,7 @@
                 android:layout_marginRight="25dp"
                 app:cardBackgroundColor="@color/white"
                 android:layout_marginLeft="25dp"
+                app:strokeColor="#6333D3"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="150dp">
 
@@ -143,7 +144,8 @@
                             android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:drawableLeft="@drawable/ic_baseline_email_24"
+                            android:inputType="textEmailAddress"
+                            android:drawableStart="@drawable/custome_email_icon"
                             android:drawablePadding="6dp"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -162,6 +164,7 @@
                         android:hint="Password"
                         app:boxStrokeColor="@color/purple_200"
                         android:layout_marginLeft="10dp"
+                        app:passwordToggleEnabled="true"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -170,7 +173,7 @@
                             android:fontFamily="@font/poppins_light"
                             android:textColor="@color/black"
                             android:layout_height="match_parent"
-                            android:drawableLeft="@drawable/ic_baseline_lock_24"
+                            android:drawableStart="@drawable/custome_lock_icon"
                             android:inputType="textPassword"
                             android:drawablePadding="6dp"/>
 
