@@ -3,6 +3,7 @@ package com.example.plasma.Authentication
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Geocoder
@@ -23,6 +24,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.FragmentTransaction
 import com.airbnb.lottie.LottieAnimationView
+import com.example.plasma.DashboardActivity
 import com.example.plasma.R
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
@@ -139,7 +141,7 @@ class ProfileCreationFragment : Fragment() {
         ab_pos.setOnClickListener(View.OnClickListener {
             allWhite()
             allFlat()
-            Blood = "AB"
+            Blood = "AB+"
             AB_pos.setTextColor(Color.RED)
             ab_pos.setShapeType(1)
         })
@@ -258,7 +260,8 @@ class ProfileCreationFragment : Fragment() {
                 data.child("PlasmaRequest").setValue("0")
                 data.child("Profile").child("Id").setValue(id)
                 Toast.makeText(activity,"Personal Details Filled Successfully",Toast.LENGTH_SHORT).show()
-                setFragmentCovid(CovidDetailsFragment())
+                var intent = Intent(activity, DashboardActivity::class.java)
+                startActivity(intent)
             }
         })
 

@@ -243,6 +243,7 @@ class RequestProfileFragment : Fragment() {
         //Map call
         map.setOnClickListener(View.OnClickListener {
             val intent = Intent(getActivity(), MapActivity::class.java)
+            intent.putExtra("User_Id",id)
             getActivity()?.startActivity(intent)
         })
 

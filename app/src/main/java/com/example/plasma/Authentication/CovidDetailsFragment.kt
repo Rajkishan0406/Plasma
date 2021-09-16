@@ -120,7 +120,7 @@ class CovidDetailsFragment : Fragment() {
         })
 
         sub.setOnClickListener(View.OnClickListener {
-            if(dd.text.toString().length == 0 || prob.text.toString().length == 0){
+            if(dd.text.toString().length == 0 || prob.text.toString().length == 0 || imageUri == null){
                 Toast.makeText(activity,"Please fill the text",Toast.LENGTH_SHORT).show()
             }
             else if(second_yes == 1 && first_yes == 0){
@@ -155,6 +155,7 @@ class CovidDetailsFragment : Fragment() {
                     data = FirebaseDatabase.getInstance().getReference("Details").child(id)
                     data.child("Covid").child("Token").setValue(r)
                     pro.visibility = View.INVISIBLE
+                    Log.i("It comes:"," here")
                     var intent = Intent(activity, DashboardActivity::class.java)
                     startActivity(intent)
                 }
