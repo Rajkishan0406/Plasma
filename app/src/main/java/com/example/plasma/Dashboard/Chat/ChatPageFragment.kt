@@ -54,6 +54,7 @@ class ChatPageFragment : Fragment() {
     private val pickImage = 100
     lateinit var storage : StorageReference
     lateinit var card : CardView
+    lateinit var Msg_card : CardView
 
     lateinit var chatArrayList : ArrayList<ChatModel>
     lateinit var recyclerview : RecyclerView
@@ -73,6 +74,11 @@ class ChatPageFragment : Fragment() {
         bun = this.requireArguments()
         var s = bun.getString("Name") as String
         id = bun.getString("Id") as String
+
+        Msg_card = view.findViewById(R.id.message_card)
+
+        val animation = AnimationUtils.loadAnimation(activity, R.anim.down_to_up)
+        Msg_card.startAnimation(animation)
 
         var pref2 = PreferenceManager.getDefaultSharedPreferences(activity)
         pref2.apply {
@@ -190,7 +196,7 @@ class ChatPageFragment : Fragment() {
             bun = Bundle()
             bun.putString("Id",id)
             IDF.arguments = bun
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_dashboard_frame,IDF)?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.chat_frame,IDF)?.addToBackStack(null)?.commit()
         })
 
         //RecyclerView..
@@ -269,7 +275,7 @@ class ChatPageFragment : Fragment() {
 
         help.setOnClickListener(View.OnClickListener {
             val IDF = HelpChatFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_dashboard_frame,IDF)?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.chat_frame,IDF)?.addToBackStack(null)?.commit()
 
         })
 
@@ -346,23 +352,20 @@ class ChatPageFragment : Fragment() {
 
     private fun storeimage(User_id: String, id : String) {
         val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
-        val Sdf = SimpleDateFormat("hh:mm a dd/MM/yyyy")
         val d = sdf.format(Date())
-        val D = Sdf.format(Date())
         imageUri?.let {
             storage.putFile(it).addOnSuccessListener {
                 storage.downloadUrl.addOnSuccessListener {
                     var r = "" as String
                     r = it.toString()
-                    Log.i("Toekn : "," "+r)
                     var da: DatabaseReference
-                    var sender = "s" + D + r
+                    var sender = "s" + d + r
                     da = FirebaseDatabase.getInstance().getReference("Details")
                     da.child(User_id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
-                    da.child(User_id).child("Chatting").child(id).child("Last_Message").setValue("s" + D + "Image File")
-                    sender = "r" + D + r
+                    da.child(User_id).child("Chatting").child(id).child("Last_Message").setValue("s" + d + "Image File")
+                    sender = "r" + d + r
                     da.child(id).child("Chatting").child(User_id).child("Message").child(d).setValue(sender)
-                    da.child(id).child("Chatting").child(User_id).child("Last_Message").setValue("r" + D + "Image File")
+                    da.child(id).child("Chatting").child(User_id).child("Last_Message").setValue("r" + d + "Image File")
                 }
                 Log.i("image upload : ", "Successfull")
             }

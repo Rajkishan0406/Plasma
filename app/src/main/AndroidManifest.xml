@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plasma"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".Dashboard.Chat.ChatActivity"></activity>
+        <activity android:name=".MapActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -128,6 +128,7 @@ class LoginFragment : Fragment() {
                         data.child(id).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if (snapshot.exists()) {
+                                    if(activity != null){
                                     var pref = PreferenceManager.getDefaultSharedPreferences(activity)
                                     pref.apply {
                                         val request = snapshot.getValue() as String
@@ -136,6 +137,7 @@ class LoginFragment : Fragment() {
                                         editor.apply()
                                         Log.i("request", request)
                                         found = 1;
+                                    }
                                     }
                                 }
                             }

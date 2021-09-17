@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plasma.Dashboard.Chat.ChatActivity
 import com.example.plasma.Dashboard.Chat.DeleteMsgFragment
 import com.example.plasma.Dashboard.Chat.FullImageFragment
 import com.example.plasma.Dashboard.Model.ChatModel
@@ -74,7 +75,7 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
                     bun.putString("image", PR.Message)
                     IDF.arguments = bun
                     activity.supportFragmentManager.beginTransaction().replace(
-                        R.id.main_dashboard_frame,
+                        R.id.chat_frame,
                         IDF
                     ).addToBackStack(null).commit()
                 }
@@ -87,7 +88,7 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
                     bun.putString("image", PR.Message)
                     IDF.arguments = bun
                     activity.supportFragmentManager.beginTransaction().replace(
-                        R.id.main_dashboard_frame,
+                        R.id.chat_frame,
                         IDF
                     ).addToBackStack(null).commit()
                 }
@@ -105,7 +106,7 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
                 bun.putString("Msgid", id)
                 IDF.arguments = bun
                 IDF.show(
-                    (activity as DashboardActivity).getSupportFragmentManager(),
+                    (activity as ChatActivity).getSupportFragmentManager(),
                     IDF.getTag()
                 )
                 Log.i("id : ", "" + id)
