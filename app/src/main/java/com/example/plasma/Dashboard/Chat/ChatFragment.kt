@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -26,7 +27,6 @@ class ChatFragment : Fragment() {
     lateinit var recyclerview : RecyclerView
     lateinit var pro : LottieAnimationView
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -37,6 +37,9 @@ class ChatFragment : Fragment() {
         data = FirebaseDatabase.getInstance().getReference("Details")
 
         pro = view.findViewById(R.id.load_progress)
+
+
+
 
 
         //RecyclerView..

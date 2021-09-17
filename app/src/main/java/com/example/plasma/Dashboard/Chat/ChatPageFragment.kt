@@ -53,6 +53,7 @@ class ChatPageFragment : Fragment() {
     private var imageUri: Uri? = null
     private val pickImage = 100
     lateinit var storage : StorageReference
+    lateinit var card : CardView
 
     lateinit var chatArrayList : ArrayList<ChatModel>
     lateinit var recyclerview : RecyclerView
@@ -92,6 +93,27 @@ class ChatPageFragment : Fragment() {
         help = view.findViewById(R.id.help)
         theme_back = view.findViewById(R.id.theme_back)
         image = view.findViewById(R.id.send_image)
+        card = view.findViewById(R.id.online_status)
+
+        mAuth = FirebaseAuth.getInstance()
+        User_Id = mAuth.currentUser?.uid.toString()
+        data = FirebaseDatabase.getInstance().getReference("Details")
+
+        id?.let {
+            data.child(it).addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        var status = snapshot.child("Online").getValue() as String
+                        if(status.equals("1"))
+                            card.visibility = View.VISIBLE
+                        else
+                            card.visibility = View.INVISIBLE
+                        Log.i("status : "," "+status)
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
         var background = pref.getString("Theme","0")
@@ -114,9 +136,6 @@ class ChatPageFragment : Fragment() {
 
         //FireBase Intitializer...
         name.setText(s)
-        mAuth = FirebaseAuth.getInstance()
-        User_Id = mAuth.currentUser?.uid.toString()
-        data = FirebaseDatabase.getInstance().getReference("Details")
 
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").child(id).child("Block").addValueEventListener(object : ValueEventListener{
