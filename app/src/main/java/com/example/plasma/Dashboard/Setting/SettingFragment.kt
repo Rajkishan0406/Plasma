@@ -113,6 +113,12 @@ class SettingFragment : Fragment() {
                     editor.apply()
                     Log.i("request", "0")
                 }
+            mAuth = FirebaseAuth.getInstance()
+            var id = mAuth.currentUser?.uid
+            data = FirebaseDatabase.getInstance().getReference("Details")
+            if (id != null) {
+                data.child(id).child("Online").setValue("0")
+            }
             val intent = Intent(getActivity(), MainActivity::class.java)
             mAuth.signOut()
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
