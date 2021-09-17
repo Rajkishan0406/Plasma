@@ -64,10 +64,10 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
         setContentView(R.layout.activity_map)
 
         mAuth = FirebaseAuth.getInstance()
-        var id = mAuth.currentUser?.uid
+        var user_id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
-        if (id != null) {
-            data.child(id).child("Online").setValue("1")
+        if (user_id != null) {
+            data.child(user_id).child("Online").setValue("1")
         }
 
         id = intent?.getStringExtra("User_Id").toString()
@@ -95,7 +95,7 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
         var ll = 0.0 as Double
         var lg = 0.0 as Double
 
-        data.child(current_user).child("Profile").addValueEventListener(object : ValueEventListener{
+        data.child(id).child("Profile").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     ll = snapshot.child("Latitude").getValue() as Double
@@ -106,21 +106,21 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
 
                     map.addMarker(MarkerOptions().position(axis2).title("My Location"))
                     map.moveCamera(CameraUpdateFactory.newLatLng(axis2))
+
+                }
+                else{
+                    Log.i("No location found"," error "+id)
                 }
             }
             override fun onCancelled(error: DatabaseError) {}
         })
 
 
-        data.child(id).child("Profile").addValueEventListener(object : ValueEventListener {
+        data.child(current_user).child("Profile").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    //fetchLocation()
-                    if(snapshot.hasChild("Latitude"))
                     lat = snapshot.child("Latitude").getValue() as Double
-                    if(snapshot.hasChild("Longitute"))
                     log = snapshot.child("Longitute").getValue() as Double
-                    if(snapshot.hasChild("City"))
                     city = snapshot.child("City").getValue() as String
                     Log.i(""+lat+"  "+log,"   "+city)
                     var axis : LatLng
@@ -129,6 +129,8 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
                     map.addMarker(MarkerOptions().position(axis).title(city))
                     map.moveCamera(CameraUpdateFactory.newLatLng(axis))
                 }
+                else
+                    Log.i("No location found"," error")
             }
 
             override fun onCancelled(error: DatabaseError) {}

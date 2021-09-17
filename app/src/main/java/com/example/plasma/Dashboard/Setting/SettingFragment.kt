@@ -3,6 +3,7 @@ package com.example.plasma.Dashboard.Setting
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -49,6 +50,8 @@ class SettingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_setting, container, false)
+
+        requireActivity().window.statusBarColor = Color.WHITE
 
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid

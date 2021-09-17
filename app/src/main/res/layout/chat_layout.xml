@@ -11,12 +11,21 @@
         android:layout_height="match_parent"
         app:cardCornerRadius="5dp"
         android:clickable="true"
+        app:cardElevation="4dp"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/healthy_card_background">
+        app:cardBackgroundColor="@color/global_background">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                app:cardBackgroundColor="@color/black"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="62dp"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/name_card"
@@ -95,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:text="05:46 AM"
                 android:textColor="@color/text_color_primary"
-                android:fontFamily="@font/poppins_italic"
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="12dp"
                 android:layout_marginTop="8dp"
                 android:layout_alignParentRight="true"

@@ -1,6 +1,7 @@
 package com.example.plasma.Dashboard.Profile
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -64,6 +65,8 @@ class ProfileFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        requireActivity().window.statusBarColor = Color.WHITE
 
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid as String

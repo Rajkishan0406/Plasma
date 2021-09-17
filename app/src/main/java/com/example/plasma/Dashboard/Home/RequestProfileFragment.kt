@@ -229,14 +229,31 @@ class RequestProfileFragment : Fragment() {
             }
         })
 
+        var yes = 0 as Int
+
+        if (User_id != null) {
+            data.child(User_id).child("Profile").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists())
+                        yes = 1
+                    else
+                        yes = -1
+                }
+                override fun onCancelled(error: DatabaseError) { }
+            })
+        }
+
         msg.setOnClickListener(View.OnClickListener {
-            if(!id.equals(User_id)) {
+            if(!id.equals(User_id) && yes == 1) {
                 var frag = ChatPageFragment()
                 var bun = Bundle()
                 bun.putString("Name", name.text.toString())
                 bun.putString("Id", id)
                 frag.setArguments(bun)
                 setFragmentChatPage(frag)
+            }
+            if(yes == -1){
+                Toast.makeText(activity,"Please update your profile before message anyone",Toast.LENGTH_SHORT).show()
             }
         })
 

@@ -1,5 +1,6 @@
 package com.example.plasma.Dashboard.Home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -35,6 +36,8 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        requireActivity().window.statusBarColor = Color.WHITE
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
 

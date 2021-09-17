@@ -15,12 +15,12 @@ import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : RecyclerView.Adapter<PlasmaRequestAdapter.ViewHolder>() {
 
     lateinit var mAuth : FirebaseAuth
+    lateinit var data : DatabaseReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.plasmarequestlayout,parent,false)
@@ -52,10 +52,23 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
 
         mAuth = FirebaseAuth.getInstance()
         var User_id = mAuth.currentUser?.uid as String
+        data = FirebaseDatabase.getInstance().getReference("Details")
+
+        var yes = 0 as Int
+
+        data.child(User_id).child("Profile").addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists())
+                    yes = 1
+                else
+                    yes = -1
+            }
+            override fun onCancelled(error: DatabaseError) { }
+        })
 
         holder.msg.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                if(!id.equals(User_id)) {
+                if(!id.equals(User_id) && yes == 1) {
                     var activity = v!!.context as AppCompatActivity
                     val intent = Intent(activity, ChatActivity::class.java)
                     intent.putExtra("Id",PR.Id)

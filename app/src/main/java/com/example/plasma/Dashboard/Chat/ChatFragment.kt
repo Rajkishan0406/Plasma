@@ -1,11 +1,13 @@
 package com.example.plasma.Dashboard.Chat
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,7 @@ class ChatFragment : Fragment() {
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    lateinit var card : CardView
 
     lateinit var chatArrayList : ArrayList<ChatFragmentModel>
     lateinit var recyclerview : RecyclerView
@@ -31,6 +34,14 @@ class ChatFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view =  inflater.inflate(R.layout.fragment_chat, container, false)
+
+
+        requireActivity().window.statusBarColor = Color.parseColor("#048AD3")
+
+        card = view.findViewById(R.id.upper_card)
+
+        val animation = AnimationUtils.loadAnimation(activity, R.anim.top_to_down)
+        card.startAnimation(animation)
 
         mAuth = FirebaseAuth.getInstance()
         var User_Id = mAuth.currentUser?.uid
