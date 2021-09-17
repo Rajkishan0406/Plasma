@@ -1,5 +1,6 @@
 package com.example.plasma.Authentication
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.PatternMatcher
 import android.util.Patterns
@@ -35,6 +36,8 @@ class SignUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_sign_up, container, false)
+
+        requireActivity().window.statusBarColor = Color.parseColor("#00B54B")
 
         email = view.findViewById(R.id.email)
         pass = view.findViewById(R.id.password)

@@ -82,10 +82,10 @@ class ChatFragment : Fragment() {
                                         chatArrayList.add(ChatFragmentModel(name,time,blod,id,MsG))
                                     }
                                     if(chatArrayList.size > 0)
-                                     pro.visibility = View.INVISIBLE
-                                    val adapter = ChatFragmentAdapter(chatArrayList) { chat ->
-
-                                    }
+                                        pro.visibility = View.INVISIBLE
+                                    else
+                                        pro.visibility = View.INVISIBLE
+                                    val adapter = ChatFragmentAdapter(chatArrayList) { chat -> }
                                     recyclerview.adapter = adapter
                                 }
                                 override fun onCancelled(error: DatabaseError) {}

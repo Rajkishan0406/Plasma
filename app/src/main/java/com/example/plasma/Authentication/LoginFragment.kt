@@ -3,6 +3,7 @@ package com.example.plasma.Authentication
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -57,6 +58,8 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_login, container, false)
 
+
+        requireActivity().window.statusBarColor = Color.parseColor("#00B54B")
 
         if (activity?.let {
                     ActivityCompat.checkSelfPermission(it,

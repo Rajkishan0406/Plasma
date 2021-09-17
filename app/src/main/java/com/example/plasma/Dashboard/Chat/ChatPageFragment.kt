@@ -46,7 +46,7 @@ class ChatPageFragment : Fragment() {
     lateinit var msg_card : TextInputLayout
     lateinit var block : CardView
     lateinit var clear : CardView
-    lateinit var theme : CardView
+    //lateinit var theme : CardView
     lateinit var help : CardView
     lateinit var theme_back : RelativeLayout
     lateinit var image : ImageView
@@ -64,6 +64,9 @@ class ChatPageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.fragment_chat_page, container, false)
+
+
+        requireActivity().window.statusBarColor = Color.parseColor("#048AD3")
 
 
         //Bundle code...
@@ -89,7 +92,7 @@ class ChatPageFragment : Fragment() {
         menu = view.findViewById(R.id.menu_card)
         block = view.findViewById(R.id.block)
         clear = view.findViewById(R.id.clear_chat)
-        theme = view.findViewById(R.id.theme)
+        //theme = view.findViewById(R.id.theme)
         help = view.findViewById(R.id.help)
         theme_back = view.findViewById(R.id.theme_back)
         image = view.findViewById(R.id.send_image)
@@ -118,7 +121,7 @@ class ChatPageFragment : Fragment() {
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
         var background = pref.getString("Theme","0")
 
-        if(background.equals("0")){
+     /*   if(background.equals("0")){
             theme_back.setBackgroundColor(Color.WHITE)
         }
         if(background.equals("1")){
@@ -132,7 +135,7 @@ class ChatPageFragment : Fragment() {
         }
         if(background.equals("4")){
             theme_back.setBackgroundColor(Color.GRAY)
-        }
+        }*/
 
         //FireBase Intitializer...
         name.setText(s)
@@ -288,7 +291,7 @@ class ChatPageFragment : Fragment() {
             menu.visibility = View.INVISIBLE
         })
 
-        theme.setOnClickListener(View.OnClickListener {
+     /*   theme.setOnClickListener(View.OnClickListener {
             var c = background?.toInt()
             if (c != null) {
                 c = (c+1)%5
@@ -317,7 +320,7 @@ class ChatPageFragment : Fragment() {
                 theme_back.setBackgroundColor(Color.GRAY)
             }
         })
-
+*/
 
         image.setOnClickListener(View.OnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
