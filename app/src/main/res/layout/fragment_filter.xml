@@ -16,7 +16,7 @@
         android:textSize="20dp"
         android:textColor="@color/positive_btn_text_color"
         android:layout_margin="8dp"
-        android:fontFamily="@font/poppins_regular"/>
+        android:fontFamily="@font/comfortaa"/>
 
 
     <androidx.cardview.widget.CardView

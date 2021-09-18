@@ -59,6 +59,7 @@ class ChatFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(activity)
         chatArrayList = arrayListOf<ChatFragmentModel>()
 
+        var nodata = 0 as Int
 
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").addValueEventListener(object : ValueEventListener {
@@ -82,6 +83,7 @@ class ChatFragment : Fragment() {
                                             msg = snap.child("Last_Message").getValue() as String
                                             time = msg.substring(12, 17)
                                             MsG = msg.substring(20, msg.length)
+                                            nodata = 1
                                             if (MsG.length > 25)
                                                 MsG = MsG.substring(0, 25) + "..."
                                         }
@@ -94,14 +96,16 @@ class ChatFragment : Fragment() {
                                     }
                                     if(chatArrayList.size > 0)
                                         pro.visibility = View.INVISIBLE
-                                    else
-                                        pro.visibility = View.INVISIBLE
                                     val adapter = ChatFragmentAdapter(chatArrayList) { chat -> }
                                     recyclerview.adapter = adapter
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
                         }
+                    }
+                    else {
+                        if (nodata == 0)
+                            pro.visibility = View.VISIBLE
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {}

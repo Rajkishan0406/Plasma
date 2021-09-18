@@ -119,8 +119,11 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
         data.child(current_user).child("Profile").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    if(snapshot.hasChild("Latitude"))
                     lat = snapshot.child("Latitude").getValue() as Double
+                    if(snapshot.hasChild("Longitute"))
                     log = snapshot.child("Longitute").getValue() as Double
+                    if(snapshot.hasChild("City"))
                     city = snapshot.child("City").getValue() as String
                     Log.i(""+lat+"  "+log,"   "+city)
                     var axis : LatLng

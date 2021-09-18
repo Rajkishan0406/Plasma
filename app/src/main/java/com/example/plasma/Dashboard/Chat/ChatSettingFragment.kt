@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.plasma.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class ChatSettingFragment : Fragment() {
+class ChatSettingFragment : BottomSheetDialogFragment() {
 
 
     override fun onCreateView(
