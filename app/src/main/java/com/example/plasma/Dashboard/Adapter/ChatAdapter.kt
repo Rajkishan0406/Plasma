@@ -53,7 +53,34 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
 
         from = PR.From.toString()
 
-            holder.sender_time.text = PR.Time
+        //Time conversion
+        var Time = PR.Time as String
+        var checker = Time.substring(0,2).toInt()
+        if(checker > 12){
+            Time = (checker - 12).toString() + Time.substring(2,Time.length) + " pm"
+        }
+        else if(checker == 12){
+            Time = Time + " pm"
+        }
+        else if(checker == 0){
+            Time = "12" + Time.substring(2,Time.length) + " am"
+        }
+        else{
+            Time = Time + " am"
+        }
+
+        holder.sender_time.text = Time
+
+        if(from.equals("S") || from.equals("s")){
+            var t = PR.Last_msg_id
+            if (t != null) {
+                if(t >= PR.day.toString()) {
+                    holder.tick1.visibility = View.VISIBLE
+                    holder.tick2.visibility = View.VISIBLE
+                }
+            }
+
+        }
 
         if(from.equals("s"))
             Picasso.get().load(PR.Message).into(holder.image)
@@ -127,7 +154,8 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
         var sender_message = itemView.findViewById(R.id.text) as TextView
         var sender_time  = itemView.findViewById(R.id.time) as TextView
         var image = itemView.findViewById(R.id.image) as ImageView
-
+        var tick1 = itemView.findViewById(R.id.tick) as TextView
+        var tick2 = itemView.findViewById(R.id.tick2) as TextView
 
     }
 

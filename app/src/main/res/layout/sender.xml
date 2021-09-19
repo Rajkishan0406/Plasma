@@ -39,6 +39,24 @@
                 android:textColor="@color/white"
                 android:text="About Image"/>
 
+            <TextView
+                android:id="@+id/tick"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:visibility="invisible"
+                android:drawableEnd="@drawable/ic_baseline_check_24"
+                android:layout_below="@+id/text"
+                android:layout_marginRight="6dp"
+                android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/tick2"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:visibility="invisible"
+        android:drawableEnd="@drawable/ic_baseline_check_24"
+        android:layout_below="@+id/text"
+        android:layout_alignParentRight="true"/>
 
             <TextView
                 android:id="@+id/time"
@@ -48,9 +66,8 @@
                 android:text="5:38 AM "
                 android:fontFamily="@font/poppins_italic"
                 android:textSize="10dp"
-                android:layout_alignParentRight="true"
+                android:layout_toLeftOf="@+id/tick"
                 android:maxWidth="225dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="5dp"/>
 

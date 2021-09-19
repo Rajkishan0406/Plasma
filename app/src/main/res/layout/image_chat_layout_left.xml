@@ -17,6 +17,25 @@
 
 
     <TextView
+        android:id="@+id/tick"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:visibility="invisible"
+        android:drawableEnd="@drawable/ic_baseline_check_24"
+        android:layout_below="@+id/text"
+        android:layout_marginRight="6dp"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/tick2"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:visibility="invisible"
+        android:drawableEnd="@drawable/ic_baseline_check_24"
+        android:layout_below="@+id/text"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

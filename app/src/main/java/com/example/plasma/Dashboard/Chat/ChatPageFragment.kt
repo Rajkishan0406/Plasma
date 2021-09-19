@@ -61,6 +61,7 @@ class ChatPageFragment : Fragment() {
     var I_m_block = 0 as Int
     var User_Id = "" as String
     var id = "" as String
+    var last_msg_id = "00" as String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -208,6 +209,7 @@ class ChatPageFragment : Fragment() {
         }
         chatArrayList = arrayListOf<ChatModel>()
 
+        last_msg_id = "2021_09_18_19:03:55"
 
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").child(id).child("Message").addValueEventListener(object : ValueEventListener{
@@ -223,10 +225,10 @@ class ChatPageFragment : Fragment() {
                                 var m = snap.getValue() as String
                                 from = m.substring(0,1)
                                 time = m.substring(12,17)
-                                day = m.substring(6,10)
+                                day = m.substring(1,19)
                                 msg = m.substring(20,m.length)
                                 id = m.substring(1,20)
-                                chatArrayList.add(ChatModel(msg,time,from,day,id))
+                                chatArrayList.add(ChatModel(msg,time,from,day,id,last_msg_id))
                             }
                         }
                     val adapter = ChatAdapter(chatArrayList)
