@@ -100,11 +100,12 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
                 if(snapshot.exists()){
                     ll = snapshot.child("Latitude").getValue() as Double
                     lg = snapshot.child("Longitute").getValue() as Double
+                    city = snapshot.child("City").getValue() as String
 
                     var axis2 : LatLng
                     axis2 = LatLng(ll, lg)
 
-                    map.addMarker(MarkerOptions().position(axis2).title("My Location"))
+                    map.addMarker(MarkerOptions().position(axis2).title(city))
                     map.moveCamera(CameraUpdateFactory.newLatLng(axis2))
 
                 }
@@ -119,18 +120,15 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
         data.child(current_user).child("Profile").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    if(snapshot.hasChild("Latitude"))
-                    lat = snapshot.child("Latitude").getValue() as Double
-                    if(snapshot.hasChild("Longitute"))
-                    log = snapshot.child("Longitute").getValue() as Double
-                    if(snapshot.hasChild("City"))
-                    city = snapshot.child("City").getValue() as String
-                    Log.i(""+lat+"  "+log,"   "+city)
-                    var axis : LatLng
-                    axis = LatLng(lat, log)
+                    if(snapshot.hasChild("Latitude") && snapshot.hasChild("Longitute")) {
+                            lat = snapshot.child("Latitude").getValue() as Double
+                            log = snapshot.child("Longitute").getValue() as Double
+                            var axis: LatLng
+                            axis = LatLng(lat, log)
 
-                    map.addMarker(MarkerOptions().position(axis).title(city))
-                    map.moveCamera(CameraUpdateFactory.newLatLng(axis))
+                            map.addMarker(MarkerOptions().position(axis).title("My Location"))
+                            map.moveCamera(CameraUpdateFactory.newLatLng(axis))
+                    }
                 }
                 else
                     Log.i("No location found"," error")

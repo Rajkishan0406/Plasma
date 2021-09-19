@@ -1,9 +1,12 @@
 package com.example.plasma
 
+import android.app.Notification
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.ActionMode
+import android.view.LayoutInflater
+import android.view.View
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.ProfileCreationFragment
 import com.example.plasma.Dashboard.Chat.ChatFragment
@@ -11,6 +14,7 @@ import com.example.plasma.Dashboard.Home.HomeFragment
 import com.example.plasma.Dashboard.Profile.ProfileFragment
 import com.example.plasma.Dashboard.Setting.CovidDetailFragment
 import com.example.plasma.Dashboard.Setting.SettingFragment
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -21,6 +25,8 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var bn : ChipNavigationBar
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    private lateinit var notificationbadges : View
+    private var count = 1 as Int
 
 
     //Offline status for chat...
@@ -66,7 +72,10 @@ class DashboardActivity : AppCompatActivity() {
             data.child(id).child("Online").setValue("1")
         }
 
+
         bn = findViewById(R.id.main_menu)
+
+        //updatebadgeCount(0)
 
         bn.setOnItemSelectedListener {
             id ->
@@ -105,6 +114,16 @@ class DashboardActivity : AppCompatActivity() {
         var ft: FragmentTransaction = supportFragmentManager.beginTransaction();
         ft.replace(R.id.main_dashboard_frame,loginFragment)
         ft.commit()
+    }
+
+    private  fun updatebadgeCount(count : Int){
+        val itemView = bn.getChildAt(0) as? BottomNavigationItemView
+
+        notificationbadges = LayoutInflater.from(this)
+                .inflate(R.layout.badge_text,itemView,true)
+
+
+        bn?.addView(notificationbadges)
     }
 
 }

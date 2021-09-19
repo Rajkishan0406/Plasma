@@ -26,9 +26,11 @@ class FilterFragment :  BottomSheetDialogFragment() {
     lateinit var bl : CardView
     lateinit var cit : CardView
     lateinit var sta : CardView
+    lateinit var cancel : CardView
     lateinit var Cframe : FrameLayout
     lateinit var Sframe : FrameLayout
     lateinit var Bframe : FrameLayout
+    lateinit var Canframe : FrameLayout
 
 
     //blood group neumorphCard
@@ -54,6 +56,7 @@ class FilterFragment :  BottomSheetDialogFragment() {
     var b = 0  as Int
     var c = 0 as Int
     var s = 0 as Int
+    var can = 0 as Int
     var Blood = "" as String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -84,12 +87,26 @@ class FilterFragment :  BottomSheetDialogFragment() {
         bl = view.findViewById(R.id.blood_card)
         cit = view.findViewById(R.id.city_card)
         sta = view.findViewById(R.id.state_card)
+        cancel = view.findViewById(R.id.cancel_filter)
         city = view.findViewById(R.id.city_name)
         state = view.findViewById(R.id.state_name)
         btn = view.findViewById(R.id.submit)
         Cframe = view.findViewById(R.id.city_frame)
         Sframe = view.findViewById(R.id.state_frame)
         Bframe = view.findViewById(R.id.blood_frame)
+        Canframe = view.findViewById(R.id.cancel_frame)
+
+        cancel.setOnClickListener(View.OnClickListener {
+            if(can == 0) {
+                can = 1
+                Canframe.visibility = View.VISIBLE
+            }
+            else{
+                can = 0
+                Canframe.visibility = View.INVISIBLE
+            }
+        })
+
 
         bl.setOnClickListener(View.OnClickListener {
             if(b == 0) {
@@ -192,30 +209,31 @@ class FilterFragment :  BottomSheetDialogFragment() {
             var pref = PreferenceManager.getDefaultSharedPreferences(activity)
             pref.apply {
                 val editor = pref.edit()
-                if(b == 1 && Blood.length == 0){
-                    Toast.makeText(activity,"Please select Blood group",Toast.LENGTH_SHORT).show()
-                }
-                else if(c == 1 && city.text.toString().length == 0){
-                    Toast.makeText(activity,"Please type prefer city",Toast.LENGTH_SHORT).show()
-                }
-                else if(s == 1 && state.text.toString().length == 0){
-                    Toast.makeText(activity,"Please type prefer state",Toast.LENGTH_SHORT).show()
+                if(can == 1){
+                    editor.putString("State", "0")
+                    editor.putString("Blood", "0")
+                    editor.putString("City", "0")
+                    editor.apply()
+                    Toast.makeText(activity,"Please refresh the page to update filter action",Toast.LENGTH_SHORT).show()
+                    dismiss()
                 }
                 else {
-                    if (city.text.toString().length > 0 && c == 1)
-                        editor.putString("City", city.text.toString())
-                    else
-                        editor.putString("City", "0")
-                    if (state.text.toString().length > 0 && s == 1)
-                        editor.putString("State", state.text.toString())
-                    else
-                        editor.putString("State", "0")
-                    if (Blood.length > 0 && b == 1)
-                        editor.putString("Blood", Blood)
-                    else
-                        editor.putString("Blood", "0")
-                    editor.apply()
-                    dismiss()
+                    if (b == 1 && Blood.length == 0) {
+                        Toast.makeText(activity, "Please select Blood group", Toast.LENGTH_SHORT).show()
+                    } else if (c == 1 && city.text.toString().length == 0) {
+                        Toast.makeText(activity, "Please type prefer city", Toast.LENGTH_SHORT).show()
+                    } else if (s == 1 && state.text.toString().length == 0) {
+                        Toast.makeText(activity, "Please type prefer state", Toast.LENGTH_SHORT).show()
+                    } else {
+                        if (city.text.toString().length > 0 && c == 1)
+                            editor.putString("City", city.text.toString())
+                        if (state.text.toString().length > 0 && s == 1)
+                            editor.putString("State", state.text.toString())
+                        if (Blood.length > 0 && b == 1)
+                            editor.putString("Blood", Blood)
+                        editor.apply()
+                        dismiss()
+                    }
                 }
             }
         })

@@ -61,6 +61,7 @@ class ChatFragment : Fragment() {
 
         var nodata = 0 as Int
 
+
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -91,8 +92,9 @@ class ChatFragment : Fragment() {
                                             MsG = ""
                                             time = ""
                                         }
-                                        if(MsG.length > 0) // for exculuding no message carview...
-                                        chatArrayList.add(ChatFragmentModel(name,time,blod,id,MsG))
+                                        if(MsG.length > 0) {  // for exculuding no message carview...
+                                            chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG))
+                                        }
                                     }
                                     if(chatArrayList.size > 0)
                                         pro.visibility = View.INVISIBLE

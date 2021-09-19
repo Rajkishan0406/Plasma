@@ -18,6 +18,41 @@
         android:layout_margin="8dp"
         android:fontFamily="@font/comfortaa"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cancel_filter"
+        android:layout_width="110dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        android:layout_height="30dp"
+        app:cardElevation="8dp"
+        android:layout_marginLeft="40dp">
+
+        <FrameLayout
+            android:id="@+id/cancel_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:background="@color/healthy_card_background"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/text_color_primary"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_light"
+                android:text="Cancel Filter"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/city_card"
