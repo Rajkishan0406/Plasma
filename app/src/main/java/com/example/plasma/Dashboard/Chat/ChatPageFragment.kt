@@ -61,7 +61,9 @@ class ChatPageFragment : Fragment() {
     var I_m_block = 0 as Int
     var User_Id = "" as String
     var id = "" as String
+    var IId = "" as String
     var last_msg_id = "00" as String
+    var last_msg_seen_id = "00" as String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -75,6 +77,7 @@ class ChatPageFragment : Fragment() {
         bun = this.requireArguments()
         var s = bun.getString("Name") as String
         id = bun.getString("Id") as String
+        IId = id
 
         Msg_card = view.findViewById(R.id.message_card)
 
@@ -209,7 +212,15 @@ class ChatPageFragment : Fragment() {
         }
         chatArrayList = arrayListOf<ChatModel>()
 
-        last_msg_id = "2021_09_18_19:03:55"
+
+        data.child(User_Id).child("Chatting").child(id).child("Last_Seen").addValueEventListener(object  : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists())
+                    last_msg_id = snapshot.getValue() as String
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
 
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").child(id).child("Message").addValueEventListener(object : ValueEventListener{
@@ -221,14 +232,19 @@ class ChatPageFragment : Fragment() {
                         var day = ""
                         var id = ""
                         if(snapshot.exists()){
-                            for(snap in snapshot.children){
+                            for(snap in snapshot.children) {
                                 var m = snap.getValue() as String
-                                from = m.substring(0,1)
-                                time = m.substring(12,17)
-                                day = m.substring(1,19)
-                                msg = m.substring(20,m.length)
-                                id = m.substring(1,20)
-                                chatArrayList.add(ChatModel(msg,time,from,day,id,last_msg_id))
+                                from = m.substring(0, 1)
+                                time = m.substring(12, 17)
+                                day = m.substring(1, 20)
+                                msg = m.substring(20, m.length)
+                                id = m.substring(1, 20)
+                                chatArrayList.add(ChatModel(msg, time, from, day, id, last_msg_id))
+                                if ((from.equals("R") || from.equals("r") )&& day > last_msg_seen_id) {
+                                    Log.i("here it is from : ",""+from)
+                                    last_msg_seen_id = day
+                                    data.child(IId).child("Chatting").child(User_Id).child("Last_Seen").setValue(day)
+                                }
                             }
                         }
                     val adapter = ChatAdapter(chatArrayList)

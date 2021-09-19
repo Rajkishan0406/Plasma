@@ -34,7 +34,23 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param
         holder.name.text = PR.Name
         holder.blood.text = PR.Blood
         holder.msg.text = PR.Last_Message
-        holder.time.text = PR.Time
+
+        var Time = PR.Time as String
+        var checker = Time.substring(0,2).toInt()
+        if(checker > 12){
+            Time = (checker - 12).toString() + Time.substring(2,Time.length) + " pm"
+        }
+        else if(checker == 12){
+            Time = Time + " pm"
+        }
+        else if(checker == 0){
+            Time = "12" + Time.substring(2,Time.length) + " am"
+        }
+        else{
+            Time = Time + " am"
+        }
+
+        holder.time.text = Time
 
         var name = PR.Name.toString()
         name = name.substring(0,1)
