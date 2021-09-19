@@ -217,6 +217,7 @@ class ChatPageFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists())
                     last_msg_id = snapshot.getValue() as String
+                Log.i("Last msg id : "," "+last_msg_id)
             }
 
             override fun onCancelled(error: DatabaseError) {}
@@ -241,7 +242,6 @@ class ChatPageFragment : Fragment() {
                                 id = m.substring(1, 20)
                                 chatArrayList.add(ChatModel(msg, time, from, day, id, last_msg_id))
                                 if ((from.equals("R") || from.equals("r") )&& day > last_msg_seen_id) {
-                                    Log.i("here it is from : ",""+from)
                                     last_msg_seen_id = day
                                     data.child(IId).child("Chatting").child(User_Id).child("Last_Seen").setValue(day)
                                 }
