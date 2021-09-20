@@ -42,7 +42,7 @@
             <TextView
                 android:id="@+id/tick"
                 android:layout_width="wrap_content"
-                android:layout_height="14dp"
+                android:layout_height="13dp"
                 android:visibility="invisible"
                 android:drawableEnd="@drawable/ic_baseline_check_24"
                 android:layout_below="@+id/text"
@@ -52,7 +52,7 @@
     <TextView
         android:id="@+id/tick2"
         android:layout_width="wrap_content"
-        android:layout_height="12dp"
+        android:layout_height="11dp"
         android:visibility="invisible"
         android:drawableEnd="@drawable/ic_baseline_check_24"
         android:layout_below="@+id/text"

@@ -30,38 +30,12 @@ class ChatFragment : Fragment() {
     lateinit var recyclerview : RecyclerView
     lateinit var pro : LottieAnimationView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        var view =  inflater.inflate(R.layout.fragment_chat, container, false)
-
-
-        requireActivity().window.statusBarColor = Color.parseColor("#048AD3")
-
-        card = view.findViewById(R.id.upper_card)
-
-        val animation = AnimationUtils.loadAnimation(activity, R.anim.top_to_down)
-        card.startAnimation(animation)
-
+    override fun onResume() {
+        super.onResume()
         mAuth = FirebaseAuth.getInstance()
+        var nodata = 0 as Int
         var User_Id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
-
-        pro = view.findViewById(R.id.load_progress)
-
-
-
-
-
-        //RecyclerView..
-        recyclerview = view.findViewById(R.id.recyclerview_chat)
-        recyclerview.setHasFixedSize(true)
-        recyclerview.layoutManager = LinearLayoutManager(activity)
-        chatArrayList = arrayListOf<ChatFragmentModel>()
-
-        var nodata = 0 as Int
-
-
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -113,6 +87,37 @@ class ChatFragment : Fragment() {
                 override fun onCancelled(error: DatabaseError) {}
             })
         }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        var view =  inflater.inflate(R.layout.fragment_chat, container, false)
+
+
+        requireActivity().window.statusBarColor = Color.parseColor("#048AD3")
+
+        card = view.findViewById(R.id.upper_card)
+
+        val animation = AnimationUtils.loadAnimation(activity, R.anim.top_to_down)
+        card.startAnimation(animation)
+
+        mAuth = FirebaseAuth.getInstance()
+        var User_Id = mAuth.currentUser?.uid
+        data = FirebaseDatabase.getInstance().getReference("Details")
+
+        pro = view.findViewById(R.id.load_progress)
+
+
+
+
+
+        //RecyclerView..
+        recyclerview = view.findViewById(R.id.recyclerview_chat)
+        recyclerview.setHasFixedSize(true)
+        recyclerview.layoutManager = LinearLayoutManager(activity)
+        chatArrayList = arrayListOf<ChatFragmentModel>()
+
 
 
 
