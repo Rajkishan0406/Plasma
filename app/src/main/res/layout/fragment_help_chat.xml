@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:text="Block : "
                         android:layout_marginTop="8dp"
-                        android:textColor="@color/red"
+                        android:textColor="@color/teal_700"
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="16dp"
                         android:layout_marginLeft="8dp"/>
@@ -78,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:text="Clear Chat : "
                         android:layout_marginTop="8dp"
-                        android:textColor="@color/profile"
+                        android:textColor="@color/teal_700"
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="16dp"
                         android:layout_marginLeft="8dp"/>
@@ -94,48 +94,6 @@
                         android:layout_marginBottom="8dp"
                         android:text="Whenever you clear (or delete) a message, or a batch of messages , they disappear from your screen immediately. When you delete any data, or chat, the app marks the said information as deleted only form your side, it will not delete message form the other side that is to the person it was sended"
                         android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                app:cardBackgroundColor="@color/normal_card_background"
-                android:layout_marginTop="6dp"
-                app:cardElevation="5dp"
-                android:layout_marginBottom="3dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/head3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="Theme : "
-                        android:textColor="@color/green"
-                        android:textSize="16dp" />
-
-                    <TextView
-                        android:id="@+id/body3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:textColor="@color/text_color_primary"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toRightOf="@+id/head3"
-                        android:fontFamily="@font/poppins_light"
-                        android:text="On Clicking on the theme text you can change the backround theme of the chat of solid colours, it will reflect only on your side not on the other side of the user"
-
-                        android:textSize="12dp" />
 
                 </RelativeLayout>
 
@@ -175,13 +133,94 @@
                         android:textSize="12dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/poppins_light"
-                        android:text="Click on the message you want to delete a alert dialogue appears and press delete to delete that message (message can only delete from you side)"
+                        android:text="Long Press the message you want to delete a bottom nav open, click on delete to delete the message (message can only delete from you side)"
                         android:layout_height="wrap_content"/>
 
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp"
+                app:cardBackgroundColor="@color/normal_card_background"
+                android:layout_marginBottom="6dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/head3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Message Seen: "
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/teal_700"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="8dp"/>
+
+                    <TextView
+                        android:id="@+id/body3"
+                        android:layout_toRightOf="@+id/head3"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/text_color_primary"
+                        android:layout_marginTop="12dp"
+                        android:textSize="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="If you see two blue tick near the time in sended message, it means the receiver has seen your message"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                app:cardElevation="5dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp"
+                app:cardBackgroundColor="@color/normal_card_background"
+                android:layout_marginBottom="6dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/head5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Online: "
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/teal_700"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="8dp"/>
+
+                    <TextView
+                        android:id="@+id/body5"
+                        android:layout_toRightOf="@+id/head5"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/text_color_primary"
+                        android:layout_marginTop="12dp"
+                        android:textSize="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="If you see green circle before the name of the user in message section, it means the user is currently using the app"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

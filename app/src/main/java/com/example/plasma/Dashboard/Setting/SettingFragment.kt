@@ -39,6 +39,7 @@ class SettingFragment : Fragment() {
     lateinit var request : CardView
     lateinit var corona : CardView
     lateinit var donation_give : CardView
+    lateinit var donation_want : CardView
     lateinit var newi : RequestApplyBottomNavFragment
     lateinit var text_apply : TextView
     var found = 0
@@ -59,12 +60,17 @@ class SettingFragment : Fragment() {
 
         logout = view.findViewById(R.id.logout_btn)
         donation_give = view.findViewById(R.id.donation_give)
+        donation_want = view.findViewById(R.id.donation_want)
         text_apply = view.findViewById(R.id.apply_plasma)
         request = view.findViewById(R.id.request_plasma_btn)
         corona = view.findViewById(R.id.corona)
 
         donation_give.setOnClickListener(View.OnClickListener {
             setFragmentDonation_Give(Donation_Give_Fragment())
+        })
+
+        donation_want.setOnClickListener(View.OnClickListener {
+            setFragmentDonation_Want(Donation_Want_Fragment())
         })
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
@@ -140,6 +146,16 @@ class SettingFragment : Fragment() {
 
 
     private fun setFragmentDonation_Give(forgotFragment: Donation_Give_Fragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.commit()
+        }
+    }
+
+    private fun setFragmentDonation_Want(forgotFragment: Donation_Want_Fragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)
