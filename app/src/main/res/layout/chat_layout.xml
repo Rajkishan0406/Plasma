@@ -20,6 +20,7 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/online_card"
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 app:cardBackgroundColor="@color/black"

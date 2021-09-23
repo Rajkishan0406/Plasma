@@ -1,13 +1,16 @@
 package com.example.plasma.Dashboard.Adapter
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Chat.ChatActivity
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
@@ -34,6 +37,10 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param
         holder.name.text = PR.Name
         holder.blood.text = PR.Blood
         holder.msg.text = PR.Last_Message
+
+        if(PR.online.toString().equals("1")){
+            holder.Online_Card.setCardBackgroundColor(Color.GREEN)
+        }
 
         var Time = PR.Time as String
         var checker = Time.substring(0,2).toInt()
@@ -104,6 +111,7 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param
         var character  = itemView.findViewById(R.id.charr) as TextView
         var card  = itemView.findViewById(R.id.click_to_move) as CardView
         var Name_Card  = itemView.findViewById(R.id.name_card) as CardView
+        var Online_Card  = itemView.findViewById(R.id.online_card) as CardView
 
     }
 

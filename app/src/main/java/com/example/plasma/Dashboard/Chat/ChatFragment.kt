@@ -25,6 +25,7 @@ class ChatFragment : Fragment() {
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
     lateinit var card : CardView
+    var online = "0" as String
 
     lateinit var chatArrayList : ArrayList<ChatFragmentModel>
     lateinit var recyclerview : RecyclerView
@@ -49,6 +50,13 @@ class ChatFragment : Fragment() {
                         for(snap in snapshot.children){
                             var id = snap.key as String
                             Log.i("Last_Message :", " "+msg)
+                            data.child(id).child("Online").addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(s: DataSnapshot) {
+                                    if(s.exists())
+                                        online = s.getValue() as String
+                                }
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
                             data.child(id).child("Profile").addValueEventListener(object : ValueEventListener{
                                 override fun onDataChange(sp: DataSnapshot) {
                                     if(sp.exists()){
@@ -67,7 +75,7 @@ class ChatFragment : Fragment() {
                                             time = ""
                                         }
                                         if(MsG.length > 0) {  // for exculuding no message carview...
-                                            chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG))
+                                            chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG,online))
                                         }
                                     }
                                     if(chatArrayList.size > 0)

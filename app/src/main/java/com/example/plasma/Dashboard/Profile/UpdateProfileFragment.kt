@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.location.Geocoder
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -72,6 +73,7 @@ class UpdateProfileFragment : Fragment() {
     var bundle =  Bundle()
     var loc_city = "" as String
     var loc_state = "" as String
+    var change = 0 as Int
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -240,7 +242,7 @@ class UpdateProfileFragment : Fragment() {
 
 
         sub.setOnClickListener(View.OnClickListener {
-            if(name.text.toString().length == 0 || loc_state.length == 0 || loc_city.length == 0 ||
+            if(name.text.toString().length == 0 || location.text.toString().length == 0 ||
                     d.text.toString().length == 0 || Blood.length == 0 || number.text.toString().length == 0
                     || status.length == 0 || sex.length == 0){
                 Toast.makeText(activity,"Please fill all details", Toast.LENGTH_SHORT).show()
@@ -252,15 +254,18 @@ class UpdateProfileFragment : Fragment() {
                 if(plasmaRequest == 0)
                     data.child("PlasmaRequest").setValue("0")
                 data.child("Profile").child("Name").setValue(name.text.trim().toString())
-                data.child("Profile").child("State").setValue(loc_state)
-                data.child("Profile").child("City").setValue(loc_city)
                 data.child("Profile").child("DOB").setValue(d.text.toString())
                 data.child("Profile").child("Blood_Grp").setValue(Blood)
                 data.child("Profile").child("Number").setValue(number.text.trim().toString())
                 data.child("Profile").child("Status").setValue(status)
                 data.child("Profile").child("Sex").setValue(sex)
-                data.child("Profile").child("Longitute").setValue(longitude)
-                data.child("Profile").child("Latitude").setValue(latitude)
+                Log.i("change : ",""+change)
+                if(change == 1) {
+                    data.child("Profile").child("State").setValue(loc_state)
+                    data.child("Profile").child("City").setValue(loc_city)
+                    data.child("Profile").child("Longitute").setValue(longitude)
+                    data.child("Profile").child("Latitude").setValue(latitude)
+                }
                 data.child("Profile").child("Id").setValue(id)
                 Toast.makeText(activity,"Personal Details Updated Successfully", Toast.LENGTH_SHORT).show()
                 setFragmentProfile(ProfileFragment())
@@ -316,6 +321,7 @@ class UpdateProfileFragment : Fragment() {
                 loc_city = getCityName(latitude,longitude)
                 loc_state = getStateName(latitude,longitude)
                 location.setText(loc_city+", "+loc_state)
+                change = 1
             }
             else{
                 getNewLocation()
@@ -350,6 +356,7 @@ class UpdateProfileFragment : Fragment() {
                 loc_city = getCityName(latitude,longitude)
                 loc_state = getStateName(latitude,longitude)
                 location.setText(loc_city+", "+loc_state)
+                change = 1
             }
             else
                 Toast.makeText(activity,"Please make sure your gps location is ON!",Toast.LENGTH_SHORT).show()
