@@ -14,14 +14,12 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Adapter.ChatAdapter
-import com.example.plasma.Dashboard.Adapter.PlasmaRequestAdapter
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.ChatModel
-import com.example.plasma.Dashboard.Model.PlasmaRequestModel
-import com.example.plasma.DashboardActivity
 import com.example.plasma.R
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -128,24 +126,7 @@ class ChatPageFragment : Fragment() {
             })
         }
 
-        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
-        var background = pref.getString("Theme","0")
 
-     /*   if(background.equals("0")){
-            theme_back.setBackgroundColor(Color.WHITE)
-        }
-        if(background.equals("1")){
-            theme_back.setBackgroundColor(Color.GREEN)
-        }
-        if(background.equals("2")){
-            theme_back.setBackgroundColor(Color.CYAN)
-        }
-        if(background.equals("3")){
-            theme_back.setBackgroundColor(Color.YELLOW)
-        }
-        if(background.equals("4")){
-            theme_back.setBackgroundColor(Color.GRAY)
-        }*/
 
         //FireBase Intitializer...
         name.setText(s)
@@ -315,41 +296,12 @@ class ChatPageFragment : Fragment() {
             menu.visibility = View.INVISIBLE
         })
 
-     /*   theme.setOnClickListener(View.OnClickListener {
-            var c = background?.toInt()
-            if (c != null) {
-                c = (c+1)%5
-            }
-            background = c.toString()
-            var pref = PreferenceManager.getDefaultSharedPreferences(activity)
-            pref.apply {
-                val editor = pref.edit()
-                editor.putString("Theme",c.toString())
-                editor.apply()
-            }
-            menu.visibility = View.INVISIBLE
-            if(background.equals("0")){
-                theme_back.setBackgroundColor(Color.WHITE)
-            }
-            if(background.equals("1")){
-                theme_back.setBackgroundColor(Color.GREEN)
-            }
-            if(background.equals("2")){
-                theme_back.setBackgroundColor(Color.CYAN)
-            }
-            if(background.equals("3")){
-                theme_back.setBackgroundColor(Color.YELLOW)
-            }
-            if(background.equals("4")){
-                theme_back.setBackgroundColor(Color.GRAY)
-            }
-        })
-*/
 
         image.setOnClickListener(View.OnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, pickImage)
         })
+
 
         return view
     }
@@ -393,5 +345,7 @@ class ChatPageFragment : Fragment() {
                         }
         }
     }
+
+
 
 }

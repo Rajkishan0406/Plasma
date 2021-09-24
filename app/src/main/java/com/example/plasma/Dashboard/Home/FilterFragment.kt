@@ -205,6 +205,30 @@ class FilterFragment :  BottomSheetDialogFragment() {
             o_neg.setShapeType(2)
         })
 
+        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+
+        var CITY = pref.getString("City", "0") as String
+        var STATE = pref.getString("State", "0") as String
+        var BLOOD = pref.getString("Blood", "0") as String
+
+        Log.i("City : "+CITY+" State : "+STATE," Blood :"+BLOOD+"  can:"+can)
+
+        if(CITY.length > 1)
+        {
+            c = 1
+            Cframe.visibility = View.VISIBLE
+        }
+        if(STATE.length > 1)
+        {
+            s = 1
+            Sframe.visibility = View.VISIBLE
+        }
+        if(BLOOD.length > 1)
+        {
+            b = 1
+            Bframe.visibility = View.VISIBLE
+        }
+
         btn.setOnClickListener(View.OnClickListener {
             var pref = PreferenceManager.getDefaultSharedPreferences(activity)
             pref.apply {
@@ -214,7 +238,8 @@ class FilterFragment :  BottomSheetDialogFragment() {
                     editor.putString("Blood", "0")
                     editor.putString("City", "0")
                     editor.apply()
-                    Toast.makeText(activity,"Please refresh the page to update filter action",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,"Please swipe to refresh the page",Toast.LENGTH_SHORT).show()
+                    can = 0
                     dismiss()
                 }
                 else {
@@ -231,7 +256,17 @@ class FilterFragment :  BottomSheetDialogFragment() {
                             editor.putString("State", state.text.toString())
                         if (Blood.length > 0 && b == 1)
                             editor.putString("Blood", Blood)
+                        if(b == 0)
+                            editor.putString("Blood", "0")
+                        if(c == 0)
+                            editor.putString("City", "0")
+                        if(s == 0)
+                            editor.putString("State", "0")
                         editor.apply()
+                        Toast.makeText(activity,"Please swipe to refresh the page",Toast.LENGTH_SHORT).show()
+                        state.setText("")
+                        city.setText("")
+                        Blood = ""
                         dismiss()
                     }
                 }

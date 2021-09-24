@@ -125,15 +125,22 @@
 
     </RelativeLayout>
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_plasma_request"
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layoutAnimation="@anim/layout_animation"
-        android:layout_height="match_parent"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_plasma_request"
+                android:layout_width="match_parent"
+                android:layoutAnimation="@anim/layout_animation"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     </LinearLayout>
 
