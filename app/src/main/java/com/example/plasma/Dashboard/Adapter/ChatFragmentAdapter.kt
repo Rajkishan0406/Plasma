@@ -3,6 +3,7 @@ package com.example.plasma.Dashboard.Adapter
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,14 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param
             holder.Online_Card.setCardBackgroundColor(Color.GREEN)
         }
 
+        Log.i("Last Message Time "+PR.Time,"  Last Seen Time for that Msg"+PR.last_seen+"   "+PR.from)
+
+        if(PR.Time.toString() > PR.last_seen.toString() && (PR.from.equals("r") || PR.from.equals("R"))){
+            holder.msg.setTextColor(Color.GREEN)
+        }
+
         var Time = PR.Time as String
+        Time = Time.substring(11,16)
         var checker = Time.substring(0,2).toInt()
         if(checker > 12){
             Time = (checker - 12).toString() + Time.substring(2,Time.length) + " pm"

@@ -24,6 +24,7 @@ class ChatFragment : Fragment() {
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    lateinit var data2 : DatabaseReference
     lateinit var card : CardView
     var online = "0" as String
 
@@ -37,6 +38,7 @@ class ChatFragment : Fragment() {
         var nodata = 0 as Int
         var User_Id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
+        data2 = FirebaseDatabase.getInstance().getReference("Details")
         if (User_Id != null) {
             data.child(User_Id).child("Chatting").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -46,14 +48,26 @@ class ChatFragment : Fragment() {
                     var name = "" as String
                     var blod = "" as String
                     var MsG = "" as String
+                    var last_seen = "zzz" as String
+                    var from = "" as String
                     if(snapshot.exists()){
                         for(snap in snapshot.children){
                             var id = snap.key as String
                             Log.i("Last_Message :", " "+msg)
-                            data.child(id).child("Online").addValueEventListener(object : ValueEventListener{
+                            data.child(id).addValueEventListener(object : ValueEventListener{
                                 override fun onDataChange(s: DataSnapshot) {
-                                    if(s.exists())
-                                        online = s.getValue() as String
+                                    if(s.exists()) {
+                                        online = s.child("Online").getValue() as String
+                                    }
+                                }
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
+                            data2.child(id).child("Chatting").child(User_Id).addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(sshot: DataSnapshot) {
+                                    if(sshot.exists()){
+                                        if(sshot.hasChild("Last_Seen"))
+                                            last_seen = sshot.child("Last_Seen").getValue() as String
+                                    }
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
@@ -64,7 +78,8 @@ class ChatFragment : Fragment() {
                                         blod = sp.child("Blood_Grp").getValue() as String
                                         if(snap.hasChild("Last_Message")) {
                                             msg = snap.child("Last_Message").getValue() as String
-                                            time = msg.substring(12, 17)
+                                            time = msg.substring(1, 17)
+                                            from = msg.substring(0,1)
                                             MsG = msg.substring(20, msg.length)
                                             nodata = 1
                                             if (MsG.length > 25)
@@ -75,7 +90,7 @@ class ChatFragment : Fragment() {
                                             time = ""
                                         }
                                         if(MsG.length > 0) {  // for exculuding no message carview...
-                                            chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG,online))
+                                            chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG,online,last_seen,from))
                                         }
                                     }
                                     if(chatArrayList.size > 0)
