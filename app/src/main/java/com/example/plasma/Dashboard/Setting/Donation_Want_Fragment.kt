@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Adapter.DonationGiveAdapter
+import com.example.plasma.Dashboard.Adapter.DonationWantAdapter
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
@@ -85,7 +86,7 @@ class Donation_Want_Fragment : Fragment() {
                         if(request.equals("0"))
                             donationArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
                     }
-                    val adapter = DonationGiveAdapter(donationArrayList)
+                    val adapter = DonationWantAdapter(donationArrayList)
                     recyclerview.adapter = adapter
                     progress.visibility = View.INVISIBLE
                 }

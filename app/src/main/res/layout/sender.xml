@@ -66,6 +66,7 @@
                 android:text="5:38 AM "
                 android:fontFamily="@font/poppins_italic"
                 android:textSize="10dp"
+                android:textColor="@color/text_color_primary"
                 android:layout_toLeftOf="@+id/tick"
                 android:maxWidth="225dp"
                 android:layout_marginBottom="3dp"

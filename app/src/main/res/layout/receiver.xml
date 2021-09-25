@@ -65,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="5:36 AM "
                 android:textSize="10dp"
+                android:textColor="@color/text_color_primary"
                 android:fontFamily="@font/poppins_italic"
                 android:minWidth="100dp"
                 android:layout_marginBottom="3dp"
