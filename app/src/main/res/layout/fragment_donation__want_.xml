@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Responses For Your Request"
                 android:layout_margin="8dp"/>
 

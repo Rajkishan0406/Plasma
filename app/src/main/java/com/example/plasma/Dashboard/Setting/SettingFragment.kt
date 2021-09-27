@@ -38,6 +38,8 @@ class SettingFragment : Fragment() {
     lateinit var logout : CardView
     lateinit var request : CardView
     lateinit var corona : CardView
+    lateinit var response_number_card : CardView
+    lateinit var response_number : TextView
     lateinit var donation_give : CardView
     lateinit var donation_want : CardView
     lateinit var newi : RequestApplyBottomNavFragment
@@ -63,7 +65,30 @@ class SettingFragment : Fragment() {
         donation_want = view.findViewById(R.id.donation_want)
         text_apply = view.findViewById(R.id.apply_plasma)
         request = view.findViewById(R.id.request_plasma_btn)
+        response_number_card = view.findViewById(R.id.response_number_card)
+        response_number = view.findViewById(R.id.response_number)
         corona = view.findViewById(R.id.corona)
+
+        if (id != null) {
+            data.child(id).child("Donation_Want").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        var count = 0 as Int
+                        for(donationSnapshot in snapshot.children) {
+                            var d = donationSnapshot.getValue() as String
+                            Log.i("id : ",""+d)
+                            count++;
+                        }
+                        response_number_card.visibility = View.VISIBLE
+                        response_number.setText(count.toString())
+                    } else {
+                        response_number_card.visibility = View.INVISIBLE
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
 
         donation_give.setOnClickListener(View.OnClickListener {
             setFragmentDonation_Give(Donation_Give_Fragment())

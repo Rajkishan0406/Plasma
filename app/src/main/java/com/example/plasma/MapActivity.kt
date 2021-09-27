@@ -1,18 +1,13 @@
 package com.example.plasma
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
-import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import com.example.plasma.Dashboard.Model.MapData
-import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -30,7 +25,7 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
 
     lateinit var map : GoogleMap
 
-
+    var earthRadius = 3958.75
     lateinit var data : DatabaseReference
     lateinit var mAuth: FirebaseAuth
     var id = "" as String
@@ -95,24 +90,27 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
         var ll = 0.0 as Double
         var lg = 0.0 as Double
 
-        data.child(id).child("Profile").addValueEventListener(object : ValueEventListener{
+        var go = 0 as Int
+
+        data.child(id).child("Profile").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     ll = snapshot.child("Latitude").getValue() as Double
                     lg = snapshot.child("Longitute").getValue() as Double
                     city = snapshot.child("City").getValue() as String
 
-                    var axis2 : LatLng
+                    var axis2: LatLng
                     axis2 = LatLng(ll, lg)
+                    go++;
 
                     map.addMarker(MarkerOptions().position(axis2).title(city))
                     map.moveCamera(CameraUpdateFactory.newLatLng(axis2))
 
-                }
-                else{
-                    Log.i("No location found"," error "+id)
+                } else {
+                    Log.i("No location found", " error " + id)
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {}
         })
 
@@ -120,36 +118,46 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
         data.child(current_user).child("Profile").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    if(snapshot.hasChild("Latitude") && snapshot.hasChild("Longitute")) {
-                            lat = snapshot.child("Latitude").getValue() as Double
-                            log = snapshot.child("Longitute").getValue() as Double
-                            var axis: LatLng
-                            axis = LatLng(lat, log)
-
-                            map.addMarker(MarkerOptions().position(axis).title("My Location"))
-                            map.moveCamera(CameraUpdateFactory.newLatLng(axis))
+                    if (snapshot.hasChild("Latitude") && snapshot.hasChild("Longitute")) {
+                        lat = snapshot.child("Latitude").getValue() as Double
+                        log = snapshot.child("Longitute").getValue() as Double
+                        var axis: LatLng
+                        axis = LatLng(lat, log)
+                        go++;
+                        getDistance(lat,log,ll,lg)
+                        map.addMarker(MarkerOptions().position(axis).title("My Location"))
+                        map.moveCamera(CameraUpdateFactory.newLatLng(axis))
                     }
-                }
-                else
-                    Log.i("No location found"," error")
+                } else
+                    Log.i("No location found", " error")
             }
 
             override fun onCancelled(error: DatabaseError) {}
         })
 
-
         var originLocation : LatLng
         var destinationLocation : LatLng
 
-        originLocation = LatLng(ll,lg)
-        destinationLocation = LatLng(lat,log)
+        originLocation = LatLng(ll, lg)
+        destinationLocation = LatLng(lat, log)
 
         // val urll = getDirectionURL(originLocation, destinationLocation, R.string.map_key.toString())
         // GetDirection(urll).execute()
 
     }
 
-    private fun getDirectionURL(origin:LatLng, dest:LatLng, secret: String) : String{
+    private fun getDistance(lat: Double, log: Double, ll: Double, lg: Double) {
+        val dLat = Math.toRadians(lat - ll)
+        val dLng = Math.toRadians(log - lg)
+        val a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(ll)) *
+                Math.sin(dLng / 2) * Math.sin(dLng / 2)
+        val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        val dist = (earthRadius * c).toInt()
+        Toast.makeText(this,"Distance to be covered : "+dist+" KM",Toast.LENGTH_SHORT).show()
+    }
+
+    private fun getDirectionURL(origin: LatLng, dest: LatLng, secret: String) : String{
         return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}" +
                 "&destination=${dest.latitude},${dest.longitude}" +
                 "&sensor=false" +
@@ -158,7 +166,7 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private inner class GetDirection(val url : String) : AsyncTask<Void, Void, List<List<LatLng>>>(){
+    private inner class GetDirection(val url: String) : AsyncTask<Void, Void, List<List<LatLng>>>(){
         @ExperimentalStdlibApi
         override fun doInBackground(vararg params: Void?): List<List<LatLng>> {
             val client = OkHttpClient()
@@ -174,7 +182,7 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
                     path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
                 }
                 result.add(path)
-            }catch (e:Exception){
+            }catch (e: Exception){
                 e.printStackTrace()
             }
             return result
@@ -220,7 +228,7 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
             } while (b >= 0x20)
             val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
             lng += dlng
-            val latLng = LatLng((lat.toDouble() / 1E5),(lng.toDouble() / 1E5))
+            val latLng = LatLng((lat.toDouble() / 1E5), (lng.toDouble() / 1E5))
             poly.add(latLng)
         }
         return poly
