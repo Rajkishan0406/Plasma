@@ -54,7 +54,7 @@ class RequestProfileFragment : Fragment() {
     lateinit var data : DatabaseReference
     var number = "" as String
     var aage = "" as String
-    var ggender = "" as String
+    var ggender = 0 as Int
     var year = "" as String
     var cannot_donate = 0 as Int
 
@@ -90,6 +90,21 @@ class RequestProfileFragment : Fragment() {
         pro = view.findViewById(R.id.progress)
         donate = view.findViewById(R.id.donate_btn)
 
+        User_id?.let {
+            data.child(it).child("Profile").addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var g = snapshot.child("Sex").getValue() as String
+                    if (g.equals("male")) {
+                        ggender = 1
+                    } else {
+                        ggender = -1
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+        }
 
         if(User_id != null){
             data.child(User_id).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
@@ -293,7 +308,7 @@ class RequestProfileFragment : Fragment() {
                 if (imp >= 18) {
                     bun.putString("User_Id", id)
                     bun.putString("Number", number)
-                    bun.putString("Gender", ggender)
+                    bun.putInt("Gender", ggender)
                     IDF.arguments = bun
                     setFragmentRules(IDF)
                 } else {

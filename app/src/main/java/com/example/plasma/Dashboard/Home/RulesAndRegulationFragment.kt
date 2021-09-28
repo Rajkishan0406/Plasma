@@ -58,16 +58,19 @@ class RulesAndRegulationFragment : Fragment() {
         bun = this.requireArguments()
         var id : String? = bun.getString("User_Id") as String
         unique = bun.getString("Number") as String
-        var gen = bun.getString("Gender") as String
+        var gen = bun.getInt("Gender") as Int
 
-        if(gen.equals("male")){
+        Log.i("Gender : "," "+gen)
+
+        if(gen == 1){
+            Log.i("Gender : ","Male frame ON ")
             male.visibility = View.VISIBLE
             female.visibility = View.INVISIBLE
         }
-        else{
+        if(gen == -1){
+            Log.i("Gender : ","Female frame ON ")
             male.visibility = View.INVISIBLE
             female.visibility = View.VISIBLE
-
         }
 
         disease_yes = view.findViewById(R.id.disease_text_Yes)

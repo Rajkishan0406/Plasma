@@ -48,10 +48,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.etebarian:meow-bottom-navigation:1.0.4'
-    //implementation 'com.github.ismaeldivita:chip-navigation-bar:1.3.4'
     implementation 'com.ismaeldivita.chipnavigation:chip-navigation-bar:1.2.0'
     implementation 'com.github.fornewid:neumorphism:0.2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.abhidiwakar:AnstronCoreHelper:1.1'
+    implementation 'com.iceteck.silicompressorr:silicompressor:2.2.2'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'

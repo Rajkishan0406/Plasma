@@ -31,9 +31,10 @@
             <androidx.cardview.widget.CardView
         android:id="@+id/first"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_marginTop="10dp"
         app:cardElevation="10dp"
+                app:cardBackgroundColor="@color/global_background"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         app:cardCornerRadius="10dp">
@@ -47,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:fontFamily="@font/poppins_light"
                 android:text="Do you have any Chronic Kidney/ heart / lung / liver disease ?"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
@@ -58,7 +60,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
                 app:neumorph_shapeType="flat"
-                android:layout_below="@+id/disease_text">
+                android:layout_alignParentBottom="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -84,7 +86,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
                 app:neumorph_shapeType="flat"
-                android:layout_below="@+id/disease_text">
+                android:layout_alignParentBottom="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -109,8 +111,9 @@
             <androidx.cardview.widget.CardView
         android:id="@+id/second"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="150dp"
+                app:cardBackgroundColor="@color/global_background"
+        android:layout_marginTop="18dp"
         app:cardElevation="10dp"
         android:layout_below="@+id/first"
         android:layout_marginLeft="8dp"
@@ -126,6 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:fontFamily="@font/poppins_light"
                 android:text="Are you a Cancer Survivor ?"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
@@ -137,7 +141,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 app:neumorph_shapeType="flat"
-                android:layout_below="@+id/cancer_text">
+                android:layout_alignParentBottom="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -164,7 +168,7 @@
                 android:layout_marginRight="8dp"
                 app:neumorph_shapeType="flat"
                 android:layout_marginBottom="8dp"
-                android:layout_below="@+id/cancer_text">
+                android:layout_alignParentBottom="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -193,6 +197,7 @@
         android:layout_marginTop="10dp"
         android:layout_below="@+id/second"
         app:cardElevation="10dp"
+                app:cardBackgroundColor="@color/global_background"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         app:cardCornerRadius="10dp">
@@ -207,6 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="Your Weight:"
+                android:fontFamily="@font/poppins_light"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
 
@@ -233,6 +239,7 @@
         android:layout_margin="10dp"
         android:padding="5dp"
         android:textStyle="bold"
+                android:fontFamily="@font/poppins_light_italic"
         android:textColor="@drawable/gradient1"
         android:text="*You can only donate Plasma if you are complete resolution of symptomps at least 28 days before donation"/>
 
@@ -253,9 +260,10 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/female_first"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginTop="8dp"
                 app:cardElevation="10dp"
+                app:cardBackgroundColor="@color/global_background"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 app:cardCornerRadius="10dp">
@@ -271,6 +279,7 @@
                         android:layout_margin="12dp"
                         android:text="Do you ever been pregnant?"
                         android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_light"
                         android:textSize="18dp"/>
 
                     <soup.neumorphism.NeumorphCardView
@@ -280,7 +289,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="8dp"
                         app:neumorph_shapeType="flat"
-                        android:layout_below="@+id/female_Pregnant_text">
+                        android:layout_alignParentBottom="true">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -306,7 +315,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="8dp"
                         app:neumorph_shapeType="flat"
-                        android:layout_below="@+id/female_Pregnant_text">
+                        android:layout_alignParentBottom="true">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -331,7 +340,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/female_second"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
+                app:cardBackgroundColor="@color/global_background"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/female_first"
                 app:cardElevation="10dp"
@@ -348,6 +358,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="12dp"
+                        android:fontFamily="@font/poppins_light"
                         android:text="Do you have any Chronic Kidney/ heart / lung / liver disease ?"
                         android:textColor="@color/black"
                         android:textSize="18dp"/>
@@ -359,7 +370,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
                         app:neumorph_shapeType="flat"
-                        android:layout_below="@+id/female_disease_text">
+                        android:layout_alignParentBottom="true">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -385,7 +396,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="8dp"
                         app:neumorph_shapeType="flat"
-                        android:layout_below="@+id/female_disease_text">
+                        android:layout_alignParentBottom="true">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -410,9 +421,10 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/female_third"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 app:cardElevation="10dp"
+                app:cardBackgroundColor="@color/global_background"
                 android:layout_below="@+id/female_second"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -427,6 +439,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:fontFamily="@font/poppins_light"
                         android:text="Are you a Cancer Survivor ?"
                         android:textColor="@color/black"
                         android:textSize="18dp"/>
@@ -437,7 +450,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="16dp"
                         app:neumorph_shapeType="flat"
-                        android:layout_below="@+id/female_cancer_text">
+                        android:layout_alignParentBottom="true">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -464,7 +477,7 @@
                         android:layout_marginRight="8dp"
                         app:neumorph_shapeType="flat"
                         android:layout_marginBottom="8dp"
-                        android:layout_below="@+id/female_cancer_text">
+                        android:layout_alignParentBottom="true">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -495,6 +508,7 @@
                 android:layout_below="@id/female_third"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:background="@color/global_background"
                 app:cardCornerRadius="10dp">
 
                 <RelativeLayout
@@ -506,6 +520,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:fontFamily="@font/poppins_light"
                         android:text="Your Weight:"
                         android:textColor="@color/black"
                         android:textSize="18dp"/>
@@ -532,6 +547,7 @@
                 android:layout_below="@+id/female_forth"
                 android:layout_margin="10dp"
                 android:padding="5dp"
+                android:fontFamily="@font/poppins_light_italic"
                 android:textStyle="bold"
                 android:textColor="@drawable/gradient1"
                 android:text="*You can only donate Plasma if you are complete resolution of symptomps at least 28 days before donation"/>
@@ -560,6 +576,7 @@
         android:textColor="@color/design_default_color_primary"
         app:neumorph_shapeType="basin"
         android:textSize="22dp"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginBottom="10dp"
         android:textAllCaps="false"
         android:textAlignment="center"

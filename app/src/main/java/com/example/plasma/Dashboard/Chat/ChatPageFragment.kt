@@ -1,22 +1,26 @@
 package com.example.plasma.Dashboard.Chat
 
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
-import androidx.fragment.app.Fragment
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.anstrontechnologies.corehelper.AnstronCoreHelper
 import com.example.plasma.Dashboard.Adapter.ChatAdapter
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.ChatModel
@@ -26,6 +30,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.iceteck.silicompressorr.FileUtils
+import com.iceteck.silicompressorr.SiliCompressor
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,6 +44,7 @@ class ChatPageFragment : Fragment() {
     lateinit var name : TextView
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    lateinit var coreHelper : AnstronCoreHelper
     lateinit var Msg : EditText
     lateinit var send : CardView
     lateinit var block_card : CardView
@@ -63,8 +73,10 @@ class ChatPageFragment : Fragment() {
     var last_msg_id = "00" as String
     var last_msg_seen_id = "00" as String
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         var view = inflater.inflate(R.layout.fragment_chat_page, container, false)
 
 
@@ -109,19 +121,21 @@ class ChatPageFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         User_Id = mAuth.currentUser?.uid.toString()
         data = FirebaseDatabase.getInstance().getReference("Details")
+        coreHelper = AnstronCoreHelper(activity)
 
         id?.let {
-            data.child(it).addValueEventListener(object : ValueEventListener{
+            data.child(it).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()){
+                    if (snapshot.exists()) {
                         var status = snapshot.child("Online").getValue() as String
-                        if(status.equals("1"))
+                        if (status.equals("1"))
                             card.visibility = View.VISIBLE
                         else
                             card.visibility = View.INVISIBLE
-                        Log.i("status : "," "+status)
+                        Log.i("status : ", " " + status)
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {}
             })
         }
@@ -132,38 +146,37 @@ class ChatPageFragment : Fragment() {
         name.setText(s)
 
         if (User_Id != null) {
-            data.child(User_Id).child("Chatting").child(id).child("Block").addValueEventListener(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()){
-                        var value = snapshot.getValue() as String
-                        if(value.equals("-1")){
-                            send.visibility = View.INVISIBLE
-                            block_card.visibility = View.VISIBLE
-                            msg_card.visibility = View.INVISIBLE
-                            image.visibility = View.INVISIBLE
-                            I_m_block = 1
-                        }
-                        else if(value.equals("1")){
-                            unblock_card.visibility = View.VISIBLE
-                            send.visibility = View.INVISIBLE
-                            block_card.visibility = View.INVISIBLE
-                            msg_card.visibility = View.INVISIBLE
-                            image.visibility = View.INVISIBLE
-                            I_m_block = 2
-                        }
-                        else{
-                            unblock_card.visibility = View.INVISIBLE
-                            send.visibility = View.VISIBLE
-                            block_card.visibility = View.INVISIBLE
-                            msg_card.visibility = View.VISIBLE
-                            image.visibility = View.VISIBLE
-                            I_m_block = 0
+            data.child(User_Id).child("Chatting").child(id).child("Block").addValueEventListener(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            var value = snapshot.getValue() as String
+                            if (value.equals("-1")) {
+                                send.visibility = View.INVISIBLE
+                                block_card.visibility = View.VISIBLE
+                                msg_card.visibility = View.INVISIBLE
+                                image.visibility = View.INVISIBLE
+                                I_m_block = 1
+                            } else if (value.equals("1")) {
+                                unblock_card.visibility = View.VISIBLE
+                                send.visibility = View.INVISIBLE
+                                block_card.visibility = View.INVISIBLE
+                                msg_card.visibility = View.INVISIBLE
+                                image.visibility = View.INVISIBLE
+                                I_m_block = 2
+                            } else {
+                                unblock_card.visibility = View.INVISIBLE
+                                send.visibility = View.VISIBLE
+                                block_card.visibility = View.INVISIBLE
+                                msg_card.visibility = View.VISIBLE
+                                image.visibility = View.VISIBLE
+                                I_m_block = 0
+                            }
                         }
                     }
-                }
 
-                override fun onCancelled(error: DatabaseError) {}
-            })
+                    override fun onCancelled(error: DatabaseError) {}
+                })
         }
 
         unblock_card.setOnClickListener(View.OnClickListener {
@@ -177,11 +190,14 @@ class ChatPageFragment : Fragment() {
 
         name.setOnClickListener(View.OnClickListener {
             val IDF = RequestProfileFragment()
-            var bun : Bundle
+            var bun: Bundle
             bun = Bundle()
-            bun.putString("Id",id)
+            bun.putString("Id", id)
             IDF.arguments = bun
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.chat_frame,IDF)?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.chat_frame, IDF)
+                ?.addToBackStack(
+                    null
+                )?.commit()
         })
 
         //RecyclerView..
@@ -194,27 +210,29 @@ class ChatPageFragment : Fragment() {
         chatArrayList = arrayListOf<ChatModel>()
 
 
-        data.child(User_Id).child("Chatting").child(id).child("Last_Seen").addValueEventListener(object  : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists())
-                    last_msg_id = snapshot.getValue() as String
-                Log.i("Last msg id : "," "+last_msg_id)
-            }
+        data.child(User_Id).child("Chatting").child(id).child("Last_Seen").addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists())
+                        last_msg_id = snapshot.getValue() as String
+                    Log.i("Last msg id : ", " " + last_msg_id)
+                }
 
-            override fun onCancelled(error: DatabaseError) {}
-        })
+                override fun onCancelled(error: DatabaseError) {}
+            })
 
         if (User_Id != null) {
-            data.child(User_Id).child("Chatting").child(id).child("Message").addValueEventListener(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
+            data.child(User_Id).child("Chatting").child(id).child("Message").addValueEventListener(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
                         chatArrayList.clear()
                         var time = ""
                         var msg = ""
                         var from = ""
                         var day = ""
                         var id = ""
-                        if(snapshot.exists()){
-                            for(snap in snapshot.children) {
+                        if (snapshot.exists()) {
+                            for (snap in snapshot.children) {
                                 var m = snap.getValue() as String
                                 from = m.substring(0, 1)
                                 time = m.substring(12, 17)
@@ -222,69 +240,91 @@ class ChatPageFragment : Fragment() {
                                 msg = m.substring(20, m.length)
                                 id = m.substring(1, 20)
                                 chatArrayList.add(ChatModel(msg, time, from, day, id, last_msg_id))
-                                if ((from.equals("R") || from.equals("r") )&& day > last_msg_seen_id) {
+                                if ((from.equals("R") || from.equals("r")) && day > last_msg_seen_id) {
                                     last_msg_seen_id = day
-                                    data.child(IId).child("Chatting").child(User_Id).child("Last_Seen").setValue(day)
+                                    data.child(IId).child("Chatting").child(User_Id)
+                                        .child("Last_Seen").setValue(
+                                        day
+                                    )
                                 }
                             }
                         }
-                    val adapter = ChatAdapter(chatArrayList)
-                    recyclerview.adapter = adapter
-                }
-                override fun onCancelled(error: DatabaseError) {}
-            })
+                        val adapter = ChatAdapter(chatArrayList)
+                        recyclerview.adapter = adapter
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {}
+                })
         }
 
 
         //sending msg
         send.setOnClickListener(View.OnClickListener {
             var text = Msg.text.toString()
-            if(id.equals(User_Id)){
-                Toast.makeText(activity,"You can't message to yourself!!",Toast.LENGTH_SHORT).show()
+            if (id.equals(User_Id)) {
+                Toast.makeText(activity, "You can't message to yourself!!", Toast.LENGTH_SHORT)
+                    .show()
                 Msg.setText("")
-            }
-            else if(text.length > 100){
-                Toast.makeText(activity,"Message length must be less then 120 characters",Toast.LENGTH_SHORT).show()
-            }
-            else if(text.length > 0){
+            } else if (text.length > 100) {
+                Toast.makeText(
+                    activity,
+                    "Message length must be less then 120 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (text.length > 0) {
                 val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
                 val d = sdf.format(Date())
                 var sender = "S" + d + text
-                if(User_Id != null && id != null) {
-                    data.child(User_Id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
-                    data.child(User_Id).child("Chatting").child(id).child("Last_Message").setValue(sender)
+                if (User_Id != null && id != null) {
+                    data.child(User_Id).child("Chatting").child(id).child("Message").child(d)
+                        .setValue(
+                            sender
+                        )
+                    data.child(User_Id).child("Chatting").child(id).child("Last_Message").setValue(
+                        sender
+                    )
                 }
-                var  receiver = "R" + d + text
-                if(User_Id != null && id != null) {
-                    data.child(id).child("Chatting").child(User_Id).child("Message").child(d).setValue(receiver)
-                    data.child(id).child("Chatting").child(User_Id).child("Last_Message").setValue(receiver)
+                var receiver = "R" + d + text
+                if (User_Id != null && id != null) {
+                    data.child(id).child("Chatting").child(User_Id).child("Message").child(d)
+                        .setValue(
+                            receiver
+                        )
+                    data.child(id).child("Chatting").child(User_Id).child("Last_Message").setValue(
+                        receiver
+                    )
                 }
                 Msg.setText("")
             }
         })
 
         setting.setOnClickListener(View.OnClickListener {
-            if(menu.isVisible) {
+            if (menu.isVisible) {
                 menu.visibility = View.INVISIBLE
-            }
-            else {
+            } else {
                 menu.visibility = View.VISIBLE
             }
         })
 
         help.setOnClickListener(View.OnClickListener {
             val IDF = HelpChatFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.chat_frame,IDF)?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.chat_frame, IDF)
+                ?.addToBackStack(
+                    null
+                )?.commit()
 
         })
 
         block.setOnClickListener(View.OnClickListener {
-            if(I_m_block == 0){
+            if (I_m_block == 0) {
                 data.child(User_Id).child("Chatting").child(id).child("Block").setValue("1")
                 data.child(id).child("Chatting").child(User_Id).child("Block").setValue("-1")
-            }
-            else if(I_m_block == 1){
-                Toast.makeText(activity,"You can't blocked this user as that user already blocked you",Toast.LENGTH_SHORT).show()
+            } else if (I_m_block == 1) {
+                Toast.makeText(
+                    activity,
+                    "You can't blocked this user as that user already blocked you",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             menu.visibility = View.INVISIBLE
         })
@@ -292,7 +332,7 @@ class ChatPageFragment : Fragment() {
         clear.setOnClickListener(View.OnClickListener {
             data.child(User_Id).child("Chatting").child(id).child("Message").removeValue()
             data.child(User_Id).child("Chatting").child(id).child("Last_Message").removeValue()
-            Toast.makeText(activity,"All chats are cleared",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "All chats are cleared", Toast.LENGTH_SHORT).show()
             menu.visibility = View.INVISIBLE
         })
 
@@ -312,15 +352,15 @@ class ChatPageFragment : Fragment() {
             imageUri = data?.data
             val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
             val d = sdf.format(Date())
-            Toast.makeText(activity,"Sending...",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Sending...", Toast.LENGTH_SHORT).show()
             storage =
                     FirebaseStorage.getInstance().reference.child("Message")
                             .child(d)
-            storeimage(User_Id,id)
+            storeimage(User_Id, id)
         }
     }
 
-    private fun storeimage(User_id: String, id : String) {
+    private fun storeimage(User_id: String, id: String) {
         val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
         val d = sdf.format(Date())
         imageUri?.let {
@@ -331,16 +371,24 @@ class ChatPageFragment : Fragment() {
                     var da: DatabaseReference
                     var sender = "s" + d + r
                     da = FirebaseDatabase.getInstance().getReference("Details")
-                    da.child(User_id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
+                    da.child(User_id).child("Chatting").child(id).child("Message").child(d).setValue(
+                        sender
+                    )
                     da.child(User_id).child("Chatting").child(id).child("Last_Message").setValue("s" + d + "Image File")
                     sender = "r" + d + r
-                    da.child(id).child("Chatting").child(User_id).child("Message").child(d).setValue(sender)
+                    da.child(id).child("Chatting").child(User_id).child("Message").child(d).setValue(
+                        sender
+                    )
                     da.child(id).child("Chatting").child(User_id).child("Last_Message").setValue("r" + d + "Image File")
                 }
                 Log.i("image upload : ", "Successfull")
             }
                     .addOnFailureListener(){
-                        Toast.makeText(activity, "Some thing went wrong!! please try again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            activity,
+                            "Some thing went wrong!! please try again",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         Log.i("image upload : ", "Fail")
                         }
         }

@@ -127,6 +127,15 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
                         getDistance(lat,log,ll,lg)
                         map.addMarker(MarkerOptions().position(axis).title("My Location"))
                         map.moveCamera(CameraUpdateFactory.newLatLng(axis))
+
+                        var originLocation : LatLng
+                        var destinationLocation : LatLng
+
+                        originLocation = LatLng(ll, lg)
+                        destinationLocation = LatLng(lat, log)
+
+                        //val urll = getDirectionURL(originLocation, destinationLocation, R.string.map_key.toString())
+                        //GetDirection(urll).execute()
                     }
                 } else
                     Log.i("No location found", " error")
@@ -135,14 +144,6 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
             override fun onCancelled(error: DatabaseError) {}
         })
 
-        var originLocation : LatLng
-        var destinationLocation : LatLng
-
-        originLocation = LatLng(ll, lg)
-        destinationLocation = LatLng(lat, log)
-
-        // val urll = getDirectionURL(originLocation, destinationLocation, R.string.map_key.toString())
-        // GetDirection(urll).execute()
 
     }
 
@@ -194,7 +195,7 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback {
             for (i in result.indices){
                 lineoption.addAll(result[i])
                 lineoption.width(10f)
-                lineoption.color(Color.GREEN)
+                lineoption.color(Color.BLUE)
                 lineoption.geodesic(true)
             }
             map.addPolyline(lineoption)
