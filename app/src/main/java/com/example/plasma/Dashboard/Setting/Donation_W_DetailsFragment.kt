@@ -1,5 +1,6 @@
 package com.example.plasma.Dashboard.Setting
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Profile.ReportFragment
+import com.example.plasma.MapActivity
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -26,6 +28,7 @@ class Donation_W_DetailsFragment : Fragment() {
     lateinit var gender : TextView
     lateinit var blood : TextView
     lateinit var msg : CardView
+    lateinit var map : CardView
     lateinit var call : CardView
     lateinit var city : TextView
     lateinit var state : TextView
@@ -61,6 +64,7 @@ class Donation_W_DetailsFragment : Fragment() {
         report = view.findViewById(R.id.date_report)
         vaccination = view.findViewById(R.id.Vaccination)
         disease = view.findViewById(R.id.Disease)
+        map = view.findViewById(R.id.map)
         doc = view.findViewById(R.id.reportcard)
         pro = view.findViewById(R.id.progress)
 
@@ -161,6 +165,14 @@ class Donation_W_DetailsFragment : Fragment() {
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_dashboard_frame, IDF)?.commit()
             }
         })
+
+        //Map View
+        map.setOnClickListener(View.OnClickListener {
+            val intent = Intent(getActivity(), MapActivity::class.java)
+            intent.putExtra("User_Id",id)
+            getActivity()?.startActivity(intent)
+        })
+
 
 
         return view

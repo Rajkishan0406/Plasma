@@ -1,5 +1,6 @@
 package com.example.plasma.Authentication
 
+import android.content.ContentValues
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -21,8 +22,10 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.DashboardActivity
 import com.example.plasma.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.messaging.FirebaseMessaging
 import soup.neumorphism.NeumorphButton
 import soup.neumorphism.NeumorphCardView
 
@@ -116,11 +119,25 @@ class LoginFragment : Fragment() {
         return view
     }
 
+    private fun FcmToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(ContentValues.TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
 
+            // Get new FCM registration token
+            val token = task.result as String
+            // Log and toast
+            Log.i("Token : ",""+token)
+            mAuth.currentUser?.uid?.let { data.child(it).child("Token").setValue(token) }
+        })
+    }
 
     private fun extractPlasmaRequest() {
         data = FirebaseDatabase.getInstance().getReference("Details")
         var id = mAuth.currentUser?.uid
+        FcmToken()
         if (id != null) {
             data.child(id).addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {

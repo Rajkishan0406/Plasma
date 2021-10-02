@@ -20,6 +20,7 @@ import java.util.*
 class RulesAndRegulationFragment : Fragment() {
 
     lateinit var btn : NeumorphButton
+    lateinit var btn2 : NeumorphButton
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -163,7 +164,9 @@ class RulesAndRegulationFragment : Fragment() {
         }
 
 
-        btn = view.findViewById(R.id.donate)
+        btn = view.findViewById(R.id.donate_male)
+
+        btn2 = view.findViewById(R.id.donate_female)
 
         btn.setOnClickListener(View.OnClickListener {
             if(gen.equals("male")){
@@ -223,6 +226,63 @@ class RulesAndRegulationFragment : Fragment() {
             }
         })
 
+        btn2.setOnClickListener(View.OnClickListener {
+            if(gen.equals("male")){
+                var w = 0 as Int
+                if(weight_male.text.toString().length > 0)
+                    w = weight_male.text.toString().trim().toInt()
+                if(cancer.equals("-1") || disease.equals("-1") || weight_male.text.toString().length == 0){
+                    Toast.makeText(activity,"please fill the details correctly",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    if (w < 60) {
+                        Toast.makeText(activity, "your Weight is less then required weight for donation! You can't donate Plasma", Toast.LENGTH_SHORT).show()
+                    } else if (cancer.equals("1")) {
+                        Toast.makeText(activity, "You can't donate plasma because of cancer survivor", Toast.LENGTH_SHORT).show()
+                    } else if (disease.equals("1")) {
+                        Toast.makeText(activity, "You have some serious disease you can't donate Plasma", Toast.LENGTH_SHORT).show()
+                    } else {
+                        if (number2.length > 0) {
+                            if (id != null) {
+                                data.child(id).child("Donation_Want").child(number2).setValue(User_id)
+                            }
+                            if (User_id != null) {
+                                data.child(User_id).child("Donation_Give").child(unique).setValue(id)
+                            }
+                            Toast.makeText(activity, "Your response is successfully", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+            else{
+                if(number2.length > 0) {
+                    var w = 0 as Int
+                    if(weight_female.text.toString().length > 0)
+                        w = weight_female.text.toString().trim().toInt()
+                    if (cancer.equals("-1") || disease.equals("-1") || weight_female.text.toString().length == 0 || pregnent.equals("-1")) {
+                        Toast.makeText(activity, "please fill the details correctly", Toast.LENGTH_SHORT).show()
+                    } else {
+                        if (w < 60) {
+                            Toast.makeText(activity, "your Weight is less then required weight for donation! You can't donate Plasma", Toast.LENGTH_SHORT).show()
+                        } else if (cancer.equals("1")) {
+                            Toast.makeText(activity, "You can't donate plasma because of cancer survivor", Toast.LENGTH_SHORT).show()
+                        } else if (disease.equals("1")) {
+                            Toast.makeText(activity, "You have some serious disease you can't donate Plasma", Toast.LENGTH_SHORT).show()
+                        } else if (pregnent.equals("1")) {
+                            Toast.makeText(activity, "You can't donate because of past pregnancy", Toast.LENGTH_SHORT).show()
+                        } else {
+                            if (id != null) {
+                                data.child(id).child("Donation_Want").child(number2).setValue(User_id)
+                            }
+                            if (User_id != null) {
+                                data.child(User_id).child("Donation_Give").child(unique).setValue(id)
+                            }
+                            Toast.makeText(activity, "Your response is successfully", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        })
 
         return view;
     }

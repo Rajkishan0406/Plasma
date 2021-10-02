@@ -1,8 +1,10 @@
 package com.example.plasma.Authentication
 
+import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.os.Bundle
 import android.os.PatternMatcher
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +17,13 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import soup.neumorphism.NeumorphButton
 
 class SignUpFragment : Fragment() {
@@ -73,6 +79,7 @@ class SignUpFragment : Fragment() {
 
     private fun SignUp(email: String, password: String) {
             mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
+                FcmToken()
                 Toast.makeText(activity,"Signup Successfull",Toast.LENGTH_SHORT).show()
                 pro.visibility = View.INVISIBLE
                 setFragmentProfile(ProfileCreationFragment())
@@ -80,6 +87,20 @@ class SignUpFragment : Fragment() {
                 Toast.makeText(activity,""+it.message.toString(),Toast.LENGTH_SHORT).show()
                 pro.visibility = View.INVISIBLE
             }
+    }
+
+    private fun FcmToken() {
+        data = mAuth.currentUser?.uid?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            val token = task.result as String
+            Log.i("Token : ",""+token)
+            data.child("Token").setValue(token)
+        })
     }
 
     private fun setFragmentProfile(forgotFragment: ProfileCreationFragment) {

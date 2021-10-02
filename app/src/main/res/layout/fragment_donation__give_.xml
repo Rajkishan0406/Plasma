@@ -49,4 +49,39 @@
         android:layout_marginLeft="2dp"/>
 
 
+    <FrameLayout
+        android:id="@+id/noResponse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:layout_below="@id/card_response">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="45dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/no_response" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="50dp"
+                android:text="No Responses Yet"
+                android:fontFamily="@font/comfortaa"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_primary"
+                android:textSize="18dp"/>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
 </RelativeLayout>

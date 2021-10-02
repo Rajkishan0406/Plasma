@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.plasma.Dashboard.ApiService
-import com.example.plasma.Dashboard.Model.CovidResponse
 import com.example.plasma.R
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,32 +33,6 @@ class CovidDetailFragment : Fragment() {
         recover = view.findViewById(R.id.total_recovered_covid)
         active = view.findViewById(R.id.active_cases_covid)
 
-
-        val retrofit2 = Retrofit.Builder()
-                .baseUrl("https://covid-19-tracking.p.rapidapi.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        val apiService: ApiService = retrofit2.create(ApiService::class.java)
-
-        val covidResponseCall: Call<CovidResponse> = apiService.getIndiaData()
-
-        covidResponseCall.enqueue(object : Callback<CovidResponse?> {
-            override fun onResponse(call: Call<CovidResponse?>?, response: Response<CovidResponse?>) {
-                if (response.isSuccessful) {
-                    val data : CovidResponse? = response.body()
-                    Toast.makeText(activity,""+data,Toast.LENGTH_SHORT).show()
-                    if(data != null){
-                        Toast.makeText(activity,""+data,Toast.LENGTH_SHORT).show()
-                    }
-                }
-                else {
-                    Log.d("Guide", "Bad Request")
-                }
-            }
-
-            override fun onFailure(call: Call<CovidResponse?>?, t: Throwable?) {}
-        })
 
 
 

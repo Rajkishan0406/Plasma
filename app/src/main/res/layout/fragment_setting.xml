@@ -155,6 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:clickable="true"
+        android:visibility="invisible"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="5dp"
         android:layout_marginLeft="8dp"

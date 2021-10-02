@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ class Donation_Want_Fragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var data2 : DatabaseReference
     lateinit var progress : ProgressBar
+    lateinit var frame : FrameLayout
     lateinit var donationArrayList : ArrayList<PlasmaRequestModel>
 
 
@@ -41,6 +43,7 @@ class Donation_Want_Fragment : Fragment() {
         data2 = FirebaseDatabase.getInstance().getReference("Details")
 
 
+        frame = view.findViewById(R.id.noResponse)
         recyclerview = view.findViewById(R.id.recyclerview_donation_want)
         recyclerview.setHasFixedSize(true)
         recyclerview.layoutManager = LinearLayoutManager(activity)
@@ -58,7 +61,7 @@ class Donation_Want_Fragment : Fragment() {
                 }
                 else{
                     progress.visibility = View.INVISIBLE
-                    Toast.makeText(activity,"No responses has done on our request", Toast.LENGTH_SHORT).show()
+                    frame.visibility = View.VISIBLE
                 }
                 reterival(arrlist)
             }

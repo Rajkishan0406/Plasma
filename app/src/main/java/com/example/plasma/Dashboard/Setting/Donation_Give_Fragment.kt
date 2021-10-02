@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -24,6 +25,7 @@ class Donation_Give_Fragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var data2 : DatabaseReference
     lateinit var progress : ProgressBar
+    lateinit var frame : FrameLayout
     lateinit var donationArrayList : ArrayList<PlasmaRequestModel>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,7 @@ class Donation_Give_Fragment : Fragment() {
 
 
 
+        frame = view.findViewById(R.id.noResponse)
         recyclerview = view.findViewById(R.id.recyclerview_donation_give)
         recyclerview.setHasFixedSize(true)
         recyclerview.layoutManager = LinearLayoutManager(activity)
@@ -57,7 +60,7 @@ class Donation_Give_Fragment : Fragment() {
                     }
                 else{
                         progress.visibility = View.INVISIBLE
-                        Toast.makeText(activity,"No donation responses has done",Toast.LENGTH_SHORT).show()
+                        frame.visibility = View.VISIBLE
                     }
                 reterival(arrlist)
             }
