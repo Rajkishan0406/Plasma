@@ -1,5 +1,6 @@
 package com.example.plasma.Dashboard.Home
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -12,11 +13,14 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.plasma.Dashboard.Adapter.PlasmaRequestAdapter
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
+import com.example.plasma.MapActivity
+import com.example.plasma.MapAllActivity
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -31,6 +35,7 @@ class HomeFragment : Fragment() {
     lateinit var plasmaArrayList : ArrayList<PlasmaRequestModel>
     lateinit var request_size : TextView
     var size = 0 as Int
+    lateinit var map : CardView
     lateinit var frag : FilterFragment
     lateinit var filter : TextView
 
@@ -47,6 +52,7 @@ class HomeFragment : Fragment() {
         progress = view.findViewById(R.id.progress_load)
         Refresh = view.findViewById(R.id.refresh)
         request_size = view.findViewById(R.id.total_count)
+        map = view.findViewById(R.id.mapAll)
         data = FirebaseDatabase.getInstance().getReference("Details")
 
         recyclerview = view.findViewById(R.id.recyclerview_plasma_request)
@@ -166,6 +172,13 @@ class HomeFragment : Fragment() {
 
             })
             Refresh.isRefreshing = false
+        })
+
+
+        //Map call
+        map.setOnClickListener(View.OnClickListener {
+            val intent = Intent(getActivity(), MapAllActivity::class.java)
+            getActivity()?.startActivity(intent)
         })
 
         return view

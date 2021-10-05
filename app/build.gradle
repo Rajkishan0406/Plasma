@@ -55,6 +55,10 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.abhidiwakar:AnstronCoreHelper:1.1'
     implementation 'com.iceteck.silicompressorr:silicompressor:2.2.2'
+    implementation 'com.android.volley:volley:1.1.1'
+
+    //swipe to reply
+    implementation 'com.github.izjumovfs:SwipeToReply:1.0.1'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
