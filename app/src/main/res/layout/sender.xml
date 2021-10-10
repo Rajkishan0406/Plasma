@@ -39,7 +39,20 @@
                 android:textColor="@color/white"
                 android:text="About Image"/>
 
-            <TextView
+
+    <ImageView
+        android:id="@+id/reply_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/ic_baseline_reply_24"
+        android:layout_toLeftOf="@+id/text"/>
+
+
+    <TextView
                 android:id="@+id/tick"
                 android:layout_width="wrap_content"
                 android:layout_height="13dp"

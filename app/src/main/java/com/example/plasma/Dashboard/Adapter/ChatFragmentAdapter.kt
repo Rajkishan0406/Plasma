@@ -1,12 +1,15 @@
 package com.example.plasma.Dashboard.Adapter
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
@@ -22,9 +25,16 @@ import com.example.plasma.MapActivity
 import com.example.plasma.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.internal.ContextUtils.getActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlin.coroutines.coroutineContext
 
 class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param: (Any) -> Unit) : RecyclerView.Adapter<ChatFragmentAdapter.ViewHolder>()   {
 
+
+    lateinit var data : DatabaseReference
+    lateinit var mAuth  :FirebaseAuth
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.chat_layout, parent, false)
@@ -90,6 +100,7 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param
                 activity?.startActivity(intent)
             }
         })
+
 
         holder.Name_Card.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {

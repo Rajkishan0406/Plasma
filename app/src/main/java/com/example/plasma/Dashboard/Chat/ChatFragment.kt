@@ -132,9 +132,6 @@ class ChatFragment : Fragment() {
         pro = view.findViewById(R.id.load_progress)
 
 
-
-
-
         //RecyclerView..
         recyclerview = view.findViewById(R.id.recyclerview_chat)
         recyclerview.setHasFixedSize(true)

@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
+import android.renderscript.Sampler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -63,6 +64,7 @@ class ChatPageFragment : Fragment() {
     lateinit var storage : StorageReference
     lateinit var card : CardView
     lateinit var Msg_card : CardView
+    lateinit var reply_text : TextView
 
     lateinit var chatArrayList : ArrayList<ChatModel>
     lateinit var recyclerview : RecyclerView
@@ -72,6 +74,12 @@ class ChatPageFragment : Fragment() {
     var IId = "" as String
     var last_msg_id = "00" as String
     var last_msg_seen_id = "00" as String
+    lateinit var reply_card : CardView
+    lateinit var Cancel_Reply : ImageView
+    var Reply_Id = "0" as String
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,10 +97,16 @@ class ChatPageFragment : Fragment() {
         id = bun.getString("Id") as String
         IId = id
 
-        Msg_card = view.findViewById(R.id.message_card)
+        Cancel_Reply = view.findViewById(R.id.cancel_reply)
 
+
+        Msg_card = view.findViewById(R.id.message_card)
+        reply_card = view.findViewById(R.id.reply_frame)
         val animation = AnimationUtils.loadAnimation(activity, R.anim.down_to_up)
         Msg_card.startAnimation(animation)
+
+
+
 
         var pref2 = PreferenceManager.getDefaultSharedPreferences(activity)
         pref2.apply {
@@ -111,6 +125,7 @@ class ChatPageFragment : Fragment() {
         setting = view.findViewById(R.id.setting)
         menu = view.findViewById(R.id.menu_card)
         block = view.findViewById(R.id.block)
+        reply_text = view.findViewById(R.id.reply_msg)
         clear = view.findViewById(R.id.clear_chat)
         //theme = view.findViewById(R.id.theme)
         help = view.findViewById(R.id.help)
@@ -122,6 +137,30 @@ class ChatPageFragment : Fragment() {
         User_Id = mAuth.currentUser?.uid.toString()
         data = FirebaseDatabase.getInstance().getReference("Details")
         coreHelper = AnstronCoreHelper(activity)
+
+        data.child(User_Id).child("Reply_Id").setValue("0")
+        reply_card.visibility = View.INVISIBLE
+
+        Cancel_Reply.setOnClickListener(View.OnClickListener {
+            data.child(User_Id).child("Reply_Id").setValue("0")
+            reply_card.visibility = View.INVISIBLE
+        })
+
+
+        data.child(User_Id).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChild("Reply_Id")){
+                    Reply_Id = snapshot.child("Reply_Id").getValue() as String
+                    Log.i("Reply Fragment : "," "+Reply_Id)
+                    reply_text.setText(Reply_Id)
+                    if(Reply_Id.equals("0"))
+                        reply_card.visibility = View.INVISIBLE
+                    else
+                        reply_card.visibility = View.VISIBLE
+                }
+            }
+            override fun onCancelled(error: DatabaseError) { }
+        })
 
         id?.let {
             data.child(it).addValueEventListener(object : ValueEventListener {

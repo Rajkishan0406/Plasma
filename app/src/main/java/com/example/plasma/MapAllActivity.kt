@@ -105,8 +105,9 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback {
 
                             if(user_id.equals(id))
                                 map.addMarker(MarkerOptions().position(axis2).title("My Location"))
-                            else
-                                map.addMarker(MarkerOptions().position(axis2).title(city+" "+blood))
+                            else {
+                                 map.addMarker(MarkerOptions().position(axis2).title(city + " " + blood))
+                                }
                             map.moveCamera(CameraUpdateFactory.newLatLng(axis2))
 
                         }
@@ -116,6 +117,7 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback {
             override fun onCancelled(error: DatabaseError) {}
         })
 
-
     }
+
+
 }

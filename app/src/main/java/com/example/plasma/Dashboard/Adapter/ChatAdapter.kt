@@ -15,6 +15,9 @@ import com.example.plasma.Dashboard.Chat.FullImageFragment
 import com.example.plasma.Dashboard.Model.ChatModel
 import com.example.plasma.DashboardActivity
 import com.example.plasma.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
 class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
@@ -24,6 +27,8 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
     var type2 = 1 as Int
     var imagetype1 = 2 as Int
     var imagetype2 = 3 as Int
+    lateinit var data : DatabaseReference
+    lateinit var mAuth  :FirebaseAuth
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -124,6 +129,20 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
 
         var id = PR.id.toString()
 
+        holder.reply.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                mAuth = FirebaseAuth.getInstance()
+                var user = mAuth.currentUser?.uid
+                data = FirebaseDatabase.getInstance().getReference("Details")
+                if (user != null) {
+                    data.child(user).child("Reply_Id").setValue(PR.Message)
+                }
+                Log.i("Reply Click : ",""+PR.Time)
+            }
+
+        })
+
+
         holder.sender_message.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(v: View?): Boolean {
                 var activity = v!!.context as AppCompatActivity
@@ -155,6 +174,7 @@ class ChatAdapter(var chatModel: ArrayList<ChatModel>) : RecyclerView.Adapter<Ch
         var sender_time  = itemView.findViewById(R.id.time) as TextView
         var image = itemView.findViewById(R.id.image) as ImageView
         var tick1 = itemView.findViewById(R.id.tick) as TextView
+        var reply = itemView.findViewById(R.id.reply_icon) as ImageView
         var tick2 = itemView.findViewById(R.id.tick2) as TextView
 
     }

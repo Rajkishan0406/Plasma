@@ -42,6 +42,8 @@ class DeleteMsgFragment :  BottomSheetDialogFragment() {
 
         delete = view.findViewById(R.id.delete)
 
+
+
         delete.setOnClickListener(View. OnClickListener {
             if (user_id != null && Msg_User != null) {
                     data.child(user_id).child("Chatting").child(Msg_User).child("Message").child(id).removeValue().addOnSuccessListener(
