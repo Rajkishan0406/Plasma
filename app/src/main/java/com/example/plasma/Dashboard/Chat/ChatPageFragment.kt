@@ -77,6 +77,7 @@ class ChatPageFragment : Fragment() {
     lateinit var reply_card : CardView
     lateinit var Cancel_Reply : ImageView
     var Reply_Id = "0" as String
+    var goAgain = 0 as Int
 
 
 
@@ -144,6 +145,7 @@ class ChatPageFragment : Fragment() {
         Cancel_Reply.setOnClickListener(View.OnClickListener {
             data.child(User_Id).child("Reply_Id").setValue("0")
             reply_card.visibility = View.INVISIBLE
+            goAgain = 0
         })
 
 
@@ -152,11 +154,29 @@ class ChatPageFragment : Fragment() {
                 if(snapshot.hasChild("Reply_Id")){
                     Reply_Id = snapshot.child("Reply_Id").getValue() as String
                     Log.i("Reply Fragment : "," "+Reply_Id)
-                    reply_text.setText(Reply_Id)
-                    if(Reply_Id.equals("0"))
+                    data.child(User_Id).child("Chatting").child(id).child("Message").addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.exists()){
+                                if(snapshot.hasChild(Reply_Id)) {
+                                    var ll = snapshot.child(Reply_Id).getValue() as String
+                                    ll = ll.substring(20, ll.length)
+                                    reply_text.setText(ll)
+                                }
+                                else{
+                                    reply_text.setText(Reply_Id)
+                                }
+                            }
+                        }
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
+                    if(Reply_Id.equals("0")) {
                         reply_card.visibility = View.INVISIBLE
-                    else
+                        goAgain = 0
+                    }
+                    else {
                         reply_card.visibility = View.VISIBLE
+                        goAgain = 1
+                    }
                 }
             }
             override fun onCancelled(error: DatabaseError) { }
@@ -270,21 +290,30 @@ class ChatPageFragment : Fragment() {
                         var from = ""
                         var day = ""
                         var id = ""
+                        var old_id = ""
                         if (snapshot.exists()) {
                             for (snap in snapshot.children) {
                                 var m = snap.getValue() as String
-                                from = m.substring(0, 1)
-                                time = m.substring(12, 17)
-                                day = m.substring(1, 20)
-                                msg = m.substring(20, m.length)
-                                id = m.substring(1, 20)
-                                chatArrayList.add(ChatModel(msg, time, from, day, id, last_msg_id))
-                                if ((from.equals("R") || from.equals("r")) && day > last_msg_seen_id) {
+                                if(m.substring(0,2).equals("Rv") || m.substring(0,2).equals("Sv")){
+                                    from = m.substring(0, 2)
+                                    time = m.substring(13, 18)
+                                    day = m.substring(2, 21)
+                                    msg = m.substring(40, m.length)
+                                    id = m.substring(2, 21)
+                                    old_id = m.substring(21,40)
+                                    chatArrayList.add(ChatModel(msg, time, from, day, id, last_msg_id, old_id,IId))
+                                }
+                                else {
+                                    from = m.substring(0, 1)
+                                    time = m.substring(12, 17)
+                                    day = m.substring(1, 20)
+                                    msg = m.substring(20, m.length)
+                                    id = m.substring(1, 20)
+                                    chatArrayList.add(ChatModel(msg, time, from, day, id, last_msg_id, "",IId))
+                                }
+                                if ((from.equals("R") || from.equals("Rv") || from.equals("r")) && day > last_msg_seen_id) {
                                     last_msg_seen_id = day
-                                    data.child(IId).child("Chatting").child(User_Id)
-                                        .child("Last_Seen").setValue(
-                                        day
-                                    )
+                                    data.child(IId).child("Chatting").child(User_Id).child("Last_Seen").setValue(day)
                                 }
                             }
                         }
@@ -301,8 +330,7 @@ class ChatPageFragment : Fragment() {
         send.setOnClickListener(View.OnClickListener {
             var text = Msg.text.toString()
             if (id.equals(User_Id)) {
-                Toast.makeText(activity, "You can't message to yourself!!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(activity, "You can't message to yourself!!", Toast.LENGTH_SHORT).show()
                 Msg.setText("")
             } else if (text.length > 100) {
                 Toast.makeText(
@@ -310,7 +338,7 @@ class ChatPageFragment : Fragment() {
                     "Message length must be less then 120 characters",
                     Toast.LENGTH_SHORT
                 ).show()
-            } else if (text.length > 0) {
+            } else if (text.length > 0 && goAgain == 0) {
                 val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
                 val d = sdf.format(Date())
                 var sender = "S" + d + text
@@ -333,6 +361,24 @@ class ChatPageFragment : Fragment() {
                         receiver
                     )
                 }
+                Msg.setText("")
+            }
+            else if(goAgain == 1 && text.length > 0){
+                val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
+                val d = sdf.format(Date())
+                var sender = "Sv" + d + Reply_Id + text
+                if (User_Id != null && id != null) {
+                    data.child(User_Id).child("Chatting").child(id).child("Message").child(d).setValue(sender)
+                    data.child(User_Id).child("Chatting").child(id).child("Last_Message").setValue(sender)
+                }
+                var receiver = "Rv" + d + Reply_Id + text
+                if (User_Id != null && id != null) {
+                    data.child(id).child("Chatting").child(User_Id).child("Message").child(d).setValue(receiver)
+                    data.child(id).child("Chatting").child(User_Id).child("Last_Message").setValue(receiver)
+                }
+                data.child(User_Id).child("Reply_Id").setValue("0")
+                reply_card.visibility = View.INVISIBLE
+                goAgain = 0
                 Msg.setText("")
             }
         })

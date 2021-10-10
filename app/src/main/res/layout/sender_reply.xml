@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:alpha="0.8"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/background_left"
+        android:minWidth="0dp"
+        android:adjustViewBounds="true"
+        android:visibility="invisible"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:layout_above="@+id/text_card"
+        android:minHeight="0dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/text_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:layout_alignParentRight="true"
+        app:cardBackgroundColor="@color/red">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/replied_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/red_light">
+
+
+            <TextView
+                android:id="@+id/replied_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="200dp"
+                android:textColor="@color/light"
+                android:layout_margin="8dp"
+                android:minWidth="0dp"
+                android:text="Hello my name is No nody can you see me with your eyes!!"
+                android:minHeight="0dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="210dp"
+            android:layout_below="@id/replied_card"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:layout_marginRight="8dp"
+            android:textIsSelectable="true"
+            android:layout_marginBottom="2dp"
+            android:padding="10dp"
+            android:fontFamily="@font/poppins_light"
+            android:textColor="@color/white"
+            android:text="It's all true man how can i say about that hell ia m ok with that of the going of man united"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <ImageView
+        android:id="@+id/reply_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/ic_baseline_reply_24"
+        android:layout_toLeftOf="@+id/text_card"/>
+
+
+    <TextView
+        android:id="@+id/tick"
+        android:layout_width="wrap_content"
+        android:layout_height="13dp"
+        android:visibility="invisible"
+        android:layout_marginTop="2dp"
+        android:drawableEnd="@drawable/ic_baseline_check_24"
+        android:layout_below="@+id/text_card"
+        android:layout_marginRight="6dp"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/tick2"
+        android:layout_width="wrap_content"
+        android:layout_height="11dp"
+        android:visibility="invisible"
+        android:layout_marginTop="2dp"
+        android:drawableEnd="@drawable/ic_baseline_check_24"
+        android:layout_below="@+id/text_card"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_card"
+        android:text="5:38 AM "
+        android:fontFamily="@font/poppins_italic"
+        android:textSize="10dp"
+        android:textColor="@color/text_color_primary"
+        android:layout_toLeftOf="@+id/tick"
+        android:maxWidth="225dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="5dp"/>
+
+
+
+</RelativeLayout>

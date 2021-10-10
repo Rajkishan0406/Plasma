@@ -9,6 +9,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#DF0808</color>
+    <color name="red_light">#E43535</color>
     <color name="green">#6FDC10</color>
     <color name="light">#E3E4E1</color>
     <color name="chat2">#775CBD</color>
