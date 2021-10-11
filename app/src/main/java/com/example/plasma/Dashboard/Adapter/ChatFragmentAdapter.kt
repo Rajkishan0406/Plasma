@@ -55,7 +55,8 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param
 
         Log.i("Last Message Time "+PR.Time,"  Last Seen Time for that Msg"+PR.last_seen+"   "+PR.from)
 
-        if(PR.Time.toString() > PR.last_seen.toString() && (PR.from.equals("r") || PR.from.equals("R"))){
+
+        if(PR.Time.toString() > PR.last_seen.toString() && (PR.from.equals("r") || PR.from.equals("R") || PR.from.equals("Rv"))){
             holder.msg.setTextColor(Color.parseColor("#00B54B"))
         }
 
