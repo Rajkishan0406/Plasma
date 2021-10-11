@@ -159,7 +159,12 @@ class ChatPageFragment : Fragment() {
                             if(snapshot.exists()){
                                 if(snapshot.hasChild(Reply_Id)) {
                                     var ll = snapshot.child(Reply_Id).getValue() as String
-                                    ll = ll.substring(20, ll.length)
+                                    if(ll.substring(0,2).equals("Sv") || ll.substring(0,2).equals("Sv")) {
+                                        ll = ll.substring(20, ll.length)
+                                    }
+                                    else{
+                                        ll = ll.substring(40,ll.length)
+                                    }
                                     reply_text.setText(ll)
                                 }
                                 else{

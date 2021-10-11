@@ -78,19 +78,30 @@ class ChatFragment : Fragment() {
                                         blod = sp.child("Blood_Grp").getValue() as String
                                         if(snap.hasChild("Last_Message")) {
                                             msg = snap.child("Last_Message").getValue() as String
-                                            time = msg.substring(1, 17)
-                                            from = msg.substring(0,1)
-                                            MsG = msg.substring(20, msg.length)
-                                            nodata = 1
-                                            if (MsG.length > 25)
-                                                MsG = MsG.substring(0, 25) + "..."
-                                        }
-                                        else{
-                                            MsG = ""
-                                            time = ""
-                                        }
-                                        if(MsG.length > 0) {  // for exculuding no message carview...
-                                            chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG,online,last_seen,from))
+                                            Log.i("MSG : "," "+msg)
+                                            if (msg.substring(0, 2).equals("Sv") || msg.substring(0, 2).equals("Rv")) {
+                                                from = msg.substring(0, 2)
+                                                time = msg.substring(2, 18)
+                                                MsG = msg.substring(40, msg.length)
+                                                nodata = 1
+                                                if (MsG.length > 25)
+                                                    MsG = MsG.substring(0, 25) + "..."
+                                                if(MsG.length > 0) {
+                                                    chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG, online, last_seen, from))
+                                                }
+                                            }
+                                            else{
+                                                time = msg.substring(1, 17)
+                                                from = msg.substring(0, 1)
+                                                MsG = msg.substring(20, msg.length)
+                                                nodata = 1
+                                                Log.i("MSG : "," "+MsG)
+                                                if (MsG.length > 25)
+                                                    MsG = MsG.substring(0, 25) + "..."
+                                                if(MsG.length > 0) {
+                                                    chatArrayList.add(ChatFragmentModel(name, time, blod, id, MsG, online, last_seen, from))
+                                                }
+                                            }
                                         }
                                     }
                                     if(chatArrayList.size > 0)
