@@ -153,22 +153,21 @@ class ChatPageFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("Reply_Id")){
                     Reply_Id = snapshot.child("Reply_Id").getValue() as String
-                    Log.i("Reply Fragment : "," "+Reply_Id)
                     data.child(User_Id).child("Chatting").child(id).child("Message").addValueEventListener(object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if(snapshot.exists()){
                                 if(snapshot.hasChild(Reply_Id)) {
-                                    var ll = snapshot.child(Reply_Id).getValue() as String
-                                    if(ll.substring(0,2).equals("Sv") || ll.substring(0,2).equals("Sv")) {
-                                        ll = ll.substring(20, ll.length)
+                                    var lo = snapshot.child(Reply_Id).getValue() as String
+                                    var ll = ""
+                                    if (lo.substring(0, 2).equals("Sv") || lo.substring(0, 2).equals("Rv")) {
+                                        ll = lo.substring(40, lo.length)
+                                        Log.i("Reply Msg : ", "" + ll)
+                                        reply_text.setText(ll)
+                                    } else {
+                                        ll = lo.substring(20, lo.length)
+                                        Log.i("Reply Msg : ", "" + ll)
+                                        reply_text.setText(ll)
                                     }
-                                    else{
-                                        ll = ll.substring(40,ll.length)
-                                    }
-                                    reply_text.setText(ll)
-                                }
-                                else{
-                                    reply_text.setText(Reply_Id)
                                 }
                             }
                         }
