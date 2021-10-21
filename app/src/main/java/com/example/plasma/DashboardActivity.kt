@@ -1,16 +1,24 @@
 package com.example.plasma
 
 import android.app.Notification
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import android.view.ActionMode
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.ProfileCreationFragment
 import com.example.plasma.Dashboard.Chat.ChatFragment
 import com.example.plasma.Dashboard.Home.HomeFragment
+import com.example.plasma.Dashboard.NoInternetFragment
 import com.example.plasma.Dashboard.Profile.ProfileFragment
 import com.example.plasma.Dashboard.Setting.CovidDetailFragment
 import com.example.plasma.Dashboard.Setting.SettingFragment
@@ -40,9 +48,15 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        checkConnection()
+    }
+
     //Online status for chat...
     override fun onRestart() {
         super.onRestart()
+        checkConnection()
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -53,6 +67,7 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onActionModeStarted(mode: ActionMode?) {
         super.onActionModeStarted(mode)
+        checkConnection()
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -64,6 +79,8 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+
+        checkConnection()
 
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
@@ -116,14 +133,28 @@ class DashboardActivity : AppCompatActivity() {
         ft.commit()
     }
 
-    private  fun updatebadgeCount(count : Int){
-        val itemView = bn.getChildAt(0) as? BottomNavigationItemView
 
-        notificationbadges = LayoutInflater.from(this)
-                .inflate(R.layout.badge_text,itemView,true)
+    private fun setFragmentnoInternet(loginFragment: NoInternetFragment) {
+        var ft: FragmentTransaction = supportFragmentManager.beginTransaction();
+        ft.replace(R.id.main_dashboard_frame,loginFragment)
+        ft.commit()
+    }
+
+    private fun checkConnection() {
+        val manager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfor = manager.activeNetworkInfo
 
 
-        bn?.addView(notificationbadges)
+        if (networkInfor != null) {
+            if(networkInfor.type != ConnectivityManager.TYPE_WIFI && networkInfor.type != ConnectivityManager.TYPE_MOBILE) {
+                Log.i("Internet Connection : ", " No Connection")
+                Toast.makeText(this, "No Internet Connection!", Toast.LENGTH_SHORT).show()
+            }
+        }
+        else{
+            Toast.makeText(this,"No Network Information!",Toast.LENGTH_SHORT).show()
+            setFragmentnoInternet(NoInternetFragment())
+        }
     }
 
 }

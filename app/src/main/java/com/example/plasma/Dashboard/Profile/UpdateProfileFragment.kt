@@ -242,10 +242,11 @@ class UpdateProfileFragment : Fragment() {
 
 
         sub.setOnClickListener(View.OnClickListener {
-            if(name.text.toString().length == 0 || location.text.toString().length == 0 ||
+            if(name.text.toString().length == 0 || loc_city.length == 0 || loc_state.length == 0 ||
                     d.text.toString().length == 0 || Blood.length == 0 || number.text.toString().length == 0
                     || status.length == 0 || sex.length == 0){
                 Toast.makeText(activity,"Please fill all details", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity," "+loc_city+"  "+loc_state,Toast.LENGTH_SHORT).show()
             }
             else if(number.text.toString().length != 10){
                 Toast.makeText(activity,"Wrong number format!", Toast.LENGTH_SHORT).show()
