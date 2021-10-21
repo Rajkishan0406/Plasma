@@ -3,16 +3,18 @@ package com.example.plasma
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class MapAllActivity: AppCompatActivity() , OnMapReadyCallback {
+class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     lateinit var map : GoogleMap
 
@@ -22,6 +24,7 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback {
     lateinit var mAuth: FirebaseAuth
     var id = "" as String
     var current_user = "" as String
+    lateinit var mar : Marker
 
     //Offline status for chat...
     override fun onPause() {
@@ -103,12 +106,16 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback {
                             var axis2: LatLng
                             axis2 = LatLng(ll, lg)
 
-                            if(user_id.equals(id))
-                                map.addMarker(MarkerOptions().position(axis2).title("My Location"))
+                            if(user_id.equals(id)) {
+                                mar = map.addMarker(MarkerOptions().position(axis2).title("My Location"))
+                                mar.tag = id
+                            }
                             else {
-                                 map.addMarker(MarkerOptions().position(axis2).title(city + " " + blood))
+                                 mar = map.addMarker(MarkerOptions().position(axis2).title(city + " " + blood))
+                                 mar.tag = id
                                 }
                             map.moveCamera(CameraUpdateFactory.newLatLng(axis2))
+
 
                         }
                     }
@@ -117,7 +124,19 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback {
             override fun onCancelled(error: DatabaseError) {}
         })
 
+        map.setOnMarkerClickListener(this)
+
+    }
+
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        val clickCount = marker?.tag as String
+
+            Toast.makeText(this, ""+ clickCount, Toast.LENGTH_SHORT).show()
+
+        return false
     }
 
 
 }
+
+
