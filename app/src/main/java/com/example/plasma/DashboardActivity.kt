@@ -33,13 +33,12 @@ class DashboardActivity : AppCompatActivity() {
     lateinit var bn : ChipNavigationBar
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
-    private lateinit var notificationbadges : View
-    private var count = 1 as Int
 
 
     //Offline status for chat...
     override fun onPause() {
         super.onPause()
+        checkConnection()
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -92,7 +91,6 @@ class DashboardActivity : AppCompatActivity() {
 
         bn = findViewById(R.id.main_menu)
 
-        //updatebadgeCount(0)
 
         bn.setOnItemSelectedListener {
             id ->
@@ -145,14 +143,19 @@ class DashboardActivity : AppCompatActivity() {
         val networkInfor = manager.activeNetworkInfo
 
 
+        bn = findViewById(R.id.main_menu)
+
+        bn.visibility = View.VISIBLE
+
+
         if (networkInfor != null) {
             if(networkInfor.type != ConnectivityManager.TYPE_WIFI && networkInfor.type != ConnectivityManager.TYPE_MOBILE) {
-                Log.i("Internet Connection : ", " No Connection")
-                Toast.makeText(this, "No Internet Connection!", Toast.LENGTH_SHORT).show()
+                bn.visibility = View.INVISIBLE
+                setFragmentnoInternet(NoInternetFragment())
             }
         }
         else{
-            Toast.makeText(this,"No Network Information!",Toast.LENGTH_SHORT).show()
+            bn.visibility = View.INVISIBLE
             setFragmentnoInternet(NoInternetFragment())
         }
     }

@@ -1,9 +1,13 @@
 package com.example.plasma.Dashboard.Chat
 
+import android.content.Context
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.LoginFragment
+import com.example.plasma.Dashboard.NoInternetFragment
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -45,6 +49,7 @@ class ChatActivity : AppCompatActivity() {
         id = intent?.getStringExtra("Id").toString()
         Name = intent?.getStringExtra("Name").toString()
 
+
         mAuth = FirebaseAuth.getInstance()
         var user_id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -62,7 +67,8 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
-    private fun setFragment(loginFragment: LoginFragment) {
+
+    private fun setFragmentnoInternet(loginFragment: NoInternetFragment) {
         var ft: FragmentTransaction = supportFragmentManager.beginTransaction();
         ft.replace(R.id.chat_frame,loginFragment)
         ft.commit()
