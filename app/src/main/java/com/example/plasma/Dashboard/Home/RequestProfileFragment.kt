@@ -323,7 +323,7 @@ class RequestProfileFragment : Fragment() {
     private fun setFragmentRules(forgotFragment: RulesAndRegulationFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
-            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+            ft.replace(R.id.profile_frame, forgotFragment)
         }
         if (ft != null) {
             ft.commit()
@@ -333,7 +333,7 @@ class RequestProfileFragment : Fragment() {
     private fun setFragmentChatPage(forgotFragment: ChatPageFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
-            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+            ft.replace(R.id.profile_frame, forgotFragment)
         }
         if (ft != null) {
             ft.commit()
@@ -343,7 +343,7 @@ class RequestProfileFragment : Fragment() {
     private fun setFragmentReport(forgotFragment: ReportFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
-            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+            ft.replace(R.id.profile_frame, forgotFragment)
         }
         if (ft != null) {
             ft.addToBackStack(null).commit()

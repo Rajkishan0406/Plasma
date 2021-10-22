@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plasma"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MapAllActivity"></activity>
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".MapAllActivity" />
         <activity android:name=".Dashboard.Chat.ChatActivity" />
         <activity android:name=".MapActivity" />
 

@@ -1,5 +1,6 @@
 package com.example.plasma
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -131,12 +132,13 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMark
     override fun onMarkerClick(marker: Marker?): Boolean {
         val clickCount = marker?.tag as String
 
-            Toast.makeText(this, ""+ clickCount, Toast.LENGTH_SHORT).show()
+
+        var intent = Intent(this,ProfileActivity::class.java)
+        intent.putExtra("Id",clickCount)
+        startActivity(intent)
 
         return false
     }
-
-
 }
 
 

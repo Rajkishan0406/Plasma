@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Chat.ChatActivity
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
+import com.example.plasma.ProfileActivity
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -41,12 +43,9 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
         holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 var activity = v!!.context as AppCompatActivity
-                val IDF = RequestProfileFragment()
-                var bun : Bundle
-                bun = Bundle()
-                bun.putString("Id",id)
-                IDF.arguments = bun
-                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).commit()
+                var intent = Intent(activity, ProfileActivity::class.java)
+                intent.putExtra("Id",id)
+                activity.startActivity(intent)
             }
         })
 

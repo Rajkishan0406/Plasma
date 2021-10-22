@@ -25,6 +25,7 @@ import com.anstrontechnologies.corehelper.AnstronCoreHelper
 import com.example.plasma.Dashboard.Adapter.ChatAdapter
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.ChatModel
+import com.example.plasma.ProfileActivity
 import com.example.plasma.R
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -252,16 +253,10 @@ class ChatPageFragment : Fragment() {
         })
 
         name.setOnClickListener(View.OnClickListener {
-            val IDF = RequestProfileFragment()
-            var bun: Bundle
-            bun = Bundle()
-            bun.putString("Id", id)
-            IDF.arguments = bun
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.chat_frame, IDF)
-                ?.addToBackStack(
-                    null
-                )?.commit()
-        })
+            var intent = Intent(activity, ProfileActivity::class.java)
+            intent.putExtra("Id",id)
+            startActivity(intent)
+          })
 
         //RecyclerView..
         recyclerview = view.findViewById(R.id.message_recyclerview)
