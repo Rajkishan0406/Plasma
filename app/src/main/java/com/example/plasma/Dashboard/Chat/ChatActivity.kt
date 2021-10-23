@@ -20,6 +20,11 @@ class ChatActivity : AppCompatActivity() {
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
 
+    override fun onStart() {
+        super.onStart()
+        checkConnection()
+    }
+
     override fun onPause() {
         super.onPause()
         mAuth = FirebaseAuth.getInstance()
@@ -73,5 +78,22 @@ class ChatActivity : AppCompatActivity() {
         ft.replace(R.id.chat_frame,loginFragment)
         ft.commit()
     }
+
+
+    private fun checkConnection() {
+        val manager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfor = manager.activeNetworkInfo
+
+        if (networkInfor != null) {
+            if(networkInfor.type != ConnectivityManager.TYPE_WIFI && networkInfor.type != ConnectivityManager.TYPE_MOBILE) {
+                setFragmentnoInternet(NoInternetFragment())
+            }
+        }
+        else{
+            setFragmentnoInternet(NoInternetFragment())
+        }
+
+    }
+
 
 }

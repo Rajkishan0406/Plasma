@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.plasma.DashboardActivity
+import com.example.plasma.MainActivity
 import com.example.plasma.MapActivity
 import com.example.plasma.R
 
@@ -30,7 +31,7 @@ class NoInternetFragment : Fragment() {
         btn.setOnClickListener(View.OnClickListener {
             var ans : Boolean = checkAgain()
             if(ans) {
-                val intent = Intent(getActivity(), DashboardActivity::class.java)
+                val intent = Intent(getActivity(), MainActivity::class.java)
                 getActivity()?.startActivity(intent)
             }
         })
@@ -62,7 +63,7 @@ class NoInternetFragment : Fragment() {
 
         if (networkInfor != null) {
             if(networkInfor.type == ConnectivityManager.TYPE_WIFI || networkInfor.type == ConnectivityManager.TYPE_MOBILE) {
-                var intent = Intent(activity,DashboardActivity::class.java)
+                var intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             }
         }

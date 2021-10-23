@@ -38,7 +38,6 @@ class DashboardActivity : AppCompatActivity() {
     //Offline status for chat...
     override fun onPause() {
         super.onPause()
-        checkConnection()
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -55,7 +54,6 @@ class DashboardActivity : AppCompatActivity() {
     //Online status for chat...
     override fun onRestart() {
         super.onRestart()
-        checkConnection()
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -66,7 +64,6 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onActionModeStarted(mode: ActionMode?) {
         super.onActionModeStarted(mode)
-        checkConnection()
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")

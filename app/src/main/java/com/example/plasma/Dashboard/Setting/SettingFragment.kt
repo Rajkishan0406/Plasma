@@ -46,6 +46,15 @@ class SettingFragment : Fragment() {
     lateinit var text_apply : TextView
     var found = 0
 
+    override fun onResume() {
+        super.onResume()
+        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+        var requestPlasma = pref.getString("Request","0")
+
+        if(requestPlasma.equals("1")) {
+            text_apply.setText("Cancel Plasma Request")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,7 +109,6 @@ class SettingFragment : Fragment() {
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
         var requestPlasma = pref.getString("Request","0")
-        Log.i("Request : "," "+requestPlasma)
 
         if(requestPlasma.equals("1")) {
             text_apply.setText("Cancel Plasma Request")
@@ -108,7 +116,6 @@ class SettingFragment : Fragment() {
 
 
         request.setOnClickListener(View.OnClickListener {
-            Log.i("Clicked"," ho rha hai")
             found = 0
                 if (id != null) {
                     data.child(id).child("Profile").addValueEventListener(object : ValueEventListener {
