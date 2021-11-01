@@ -42,6 +42,8 @@ class SettingFragment : Fragment() {
     lateinit var response_number : TextView
     lateinit var donation_give : CardView
     lateinit var donation_want : CardView
+    lateinit var Aboutplasma : CardView
+    lateinit var developer : CardView
     lateinit var newi : RequestApplyBottomNavFragment
     lateinit var text_apply : TextView
     var found = 0
@@ -75,6 +77,8 @@ class SettingFragment : Fragment() {
         text_apply = view.findViewById(R.id.apply_plasma)
         request = view.findViewById(R.id.request_plasma_btn)
         response_number_card = view.findViewById(R.id.response_number_card)
+        Aboutplasma = view.findViewById(R.id.about_plasma_donation)
+        developer = view.findViewById(R.id.About_Dev)
         response_number = view.findViewById(R.id.response_number)
 
         if (id != null) {
@@ -166,12 +170,36 @@ class SettingFragment : Fragment() {
         })
 
 
+        Aboutplasma.setOnClickListener(View.OnClickListener {
+            setFragmentAboutPlasma(AboutPlasmaFragment())
+        })
 
+        developer.setOnClickListener(View.OnClickListener {
+            setFragmentDeveloper(developerFragment())
+        })
 
         return view
     }
 
+    private fun setFragmentDeveloper(forgotFragment: developerFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
 
+    private fun setFragmentAboutPlasma(forgotFragment: AboutPlasmaFragment) {
+        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.main_dashboard_frame, forgotFragment)
+        }
+        if (ft != null) {
+            ft.addToBackStack(null).commit()
+        }
+    }
 
 
     private fun setFragmentDonation_Give(forgotFragment: Donation_Give_Fragment) {
@@ -180,7 +208,7 @@ class SettingFragment : Fragment() {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)
         }
         if (ft != null) {
-            ft.commit()
+            ft.addToBackStack(null).commit()
         }
     }
 
@@ -190,19 +218,10 @@ class SettingFragment : Fragment() {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)
         }
         if (ft != null) {
-            ft.commit()
+            ft.addToBackStack(null).commit()
         }
     }
 
-    private fun setFragmentCorona(forgotFragment: CovidDetailFragment) {
-        var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
-        if (ft != null) {
-            ft.replace(R.id.main_dashboard_frame, forgotFragment)
-        }
-        if (ft != null) {
-            ft.commit()
-        }
-    }
 
 
 }
