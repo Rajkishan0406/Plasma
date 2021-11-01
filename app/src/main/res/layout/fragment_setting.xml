@@ -103,6 +103,54 @@
 
     </androidx.cardview.widget.CardView>
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/about_plasma_donation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:cardElevation="10dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/donation_give">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/normal_card_background"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.45"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/about_plasma"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/design_default_color_primary"
+                android:text="About Plasma Donation"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/donation_give"
         android:layout_width="match_parent"
@@ -114,7 +162,7 @@
         android:layout_marginRight="8dp"
         app:cardElevation="10dp"
         android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/request_plasma_btn">
+        app:layout_constraintBottom_toTopOf="@+id/donation_want">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -151,18 +199,17 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/corona"
+        android:id="@+id/About_Dev"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:clickable="true"
-        android:visibility="invisible"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="5dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         app:cardElevation="10dp"
         android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/donation_want">
+        app:layout_constraintBottom_toTopOf="@+id/request_plasma_btn">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -181,7 +228,7 @@
                 app:layout_constraintVertical_bias="0.45"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/corona" />
+                app:lottie_rawRes="@raw/developer" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -190,13 +237,16 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/poppins_light"
                 android:textColor="@color/design_default_color_primary"
-                android:text="Corona Update"
+                android:text="About Developer"
                 android:textSize="18dp" />
 
         </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>
+
+
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/donation_want"
@@ -209,7 +259,7 @@
         android:layout_marginRight="8dp"
         app:cardElevation="10dp"
         android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/donation_give">
+        app:layout_constraintBottom_toTopOf="@+id/About_Dev">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -242,7 +292,7 @@
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:textColor="@color/white"
-                        android:text="4"/>
+                        android:text=""/>
 
                 </RelativeLayout>
 

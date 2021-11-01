@@ -76,7 +76,6 @@ class SettingFragment : Fragment() {
         request = view.findViewById(R.id.request_plasma_btn)
         response_number_card = view.findViewById(R.id.response_number_card)
         response_number = view.findViewById(R.id.response_number)
-        corona = view.findViewById(R.id.corona)
 
         if (id != null) {
             data.child(id).child("Donation_Want").addValueEventListener(object : ValueEventListener {
@@ -167,9 +166,7 @@ class SettingFragment : Fragment() {
         })
 
 
-        corona.setOnClickListener(View.OnClickListener {
-           setFragmentCorona(CovidDetailFragment())
-        })
+
 
         return view
     }
