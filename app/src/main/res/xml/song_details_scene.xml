@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="500">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/cross"
+               motion:framePosition="25"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/cross"
+               motion:framePosition="100"
+               android:translationY="-150dp" />
+       </KeyFrameSet>
+        <OnClick motion:targetId="@+id/details_song" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+
+
+        <Constraint
+            android:id="@+id/song_image"
+            motion:layout_constraintLeft_toRightOf="@+id/details_song"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="7.5dp" />
+        <Constraint
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/song_image"
+            android:id="@+id/song_name"
+            android:layout_marginStart="0dp" />
+        <Constraint
+            android:id="@+id/movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintTop_toBottomOf="@+id/song_name"
+            android:layout_marginTop="5dp" />
+        <Constraint
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintTop_toBottomOf="@+id/movie"
+            android:layout_marginTop="5dp" />
+        <Constraint
+            android:id="@+id/release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintTop_toBottomOf="@+id/type"
+            android:layout_marginTop="5dp" />
+        <Constraint
+            motion:layout_constraintLeft_toRightOf="@+id/song_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/song_name"
+            motion:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="8dp"
+            android:id="@+id/singer_name"
+            android:layout_marginStart="0dp" />
+    </ConstraintSet>
+</MotionScene>

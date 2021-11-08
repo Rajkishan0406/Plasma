@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.ForgotPassword
 import com.example.plasma.Dashboard.Profile.ReportFragment
 import com.example.plasma.MainActivity
+import com.example.plasma.MotionUIFragment
 import com.example.plasma.R
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
@@ -171,7 +172,7 @@ class SettingFragment : Fragment() {
 
 
         Aboutplasma.setOnClickListener(View.OnClickListener {
-            setFragmentAboutPlasma(AboutPlasmaFragment())
+            setFragmentAboutPlasma(MotionUIFragment())
         })
 
         developer.setOnClickListener(View.OnClickListener {
@@ -191,7 +192,7 @@ class SettingFragment : Fragment() {
         }
     }
 
-    private fun setFragmentAboutPlasma(forgotFragment: AboutPlasmaFragment) {
+    private fun setFragmentAboutPlasma(forgotFragment: MotionUIFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)

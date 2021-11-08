@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <KeyFrameSet>
+
+           <KeyAttribute
+               motion:motionTarget="@+id/back"
+               motion:framePosition="100"
+               android:translationY="-50dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/cancel"
+               motion:framePosition="100"
+               android:translationY="-50dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/back"
+               motion:framePosition="60"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/cancel"
+               motion:framePosition="60"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/cardStart"
+               motion:framePosition="100"
+               android:alpha="0" />
+       </KeyFrameSet>
+        <OnSwipe motion:touchAnchorId="@+id/linear_layout" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            android:id="@+id/main_image"/>
+        <Constraint
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toBottomOf="@id/linear_layout"
+            android:id="@+id/cardStart" />
+        <Constraint
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:id="@+id/linear_layout" />
+    </ConstraintSet>
+</MotionScene>
