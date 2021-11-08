@@ -3,6 +3,7 @@ package com.example.plasma
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,6 +25,7 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMark
     lateinit var data : DatabaseReference
     lateinit var mAuth: FirebaseAuth
     var id = "" as String
+    var BLOOD = "" as String
     var current_user = "" as String
     lateinit var mar : Marker
 
@@ -55,6 +57,9 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMark
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map_all)
 
+        var pref = PreferenceManager.getDefaultSharedPreferences(this)
+        BLOOD = pref.getString("Blood", "0") as String
+
         mAuth = FirebaseAuth.getInstance()
         user_id = mAuth.currentUser?.uid.toString()
         data = FirebaseDatabase.getInstance().getReference("Details")
@@ -71,8 +76,6 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMark
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapall) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
-
 
     }
 
@@ -91,12 +94,9 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMark
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(snap in snapshot.children){
                     var id = snap.key as String
-                    Log.i("Id : "," "+id)
                     if(snapshot.child(id).hasChild("PlasmaRequest")){
                         var k = snapshot.child(id).child("PlasmaRequest").getValue() as String
-                        Log.i(" Request : "," "+k)
                         if(k.equals("1")){
-
 
                             ll = snapshot.child(id).child("Profile").child("Latitude").getValue() as Double
                             lg = snapshot.child(id).child("Profile").child("Longitute").getValue() as Double
@@ -105,18 +105,18 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMark
 
 
                             var axis2: LatLng
-                            axis2 = LatLng(ll, lg)
-
-                            if(user_id.equals(id)) {
-                                mar = map.addMarker(MarkerOptions().position(axis2).title("My Location"))
-                                mar.tag = id
-                            }
-                            else {
-                                 mar = map.addMarker(MarkerOptions().position(axis2).title(city + " " + blood))
-                                 mar.tag = id
+                            Log.i("Blood : ",""+BLOOD)
+                            if(BLOOD.equals(blood) || BLOOD.equals("0")) {
+                                axis2 = LatLng(ll, lg)
+                                if (user_id.equals(id)) {
+                                    mar = map.addMarker(MarkerOptions().position(axis2).title("My Location"))
+                                    mar.tag = id
+                                } else {
+                                    mar = map.addMarker(MarkerOptions().position(axis2).title(city + " " + blood))
+                                    mar.tag = id
                                 }
-                            map.moveCamera(CameraUpdateFactory.newLatLng(axis2))
-
+                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(axis2,5F))
+                            }
 
                         }
                     }
@@ -140,5 +140,3 @@ class MapAllActivity: AppCompatActivity() , OnMapReadyCallback, GoogleMap.OnMark
         return false
     }
 }
-
-
