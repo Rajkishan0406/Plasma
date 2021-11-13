@@ -18,7 +18,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         app:cardBackgroundColor="@color/blue"
         />
 
@@ -65,6 +65,7 @@
 
 
             <TextView
+                android:id="@+id/resume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Resume"
@@ -112,18 +113,25 @@
         android:layout_marginTop="25dp"
         app:layout_constraintTop_toBottomOf="@+id/first_card_view">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black2"
-            android:text="I have started android development from very early days in college. Havig good command in both Java and Kotlin, also frontendt and backend work as well.
-In recent times i have developed some really great apps some with team and some solo.
-All those projects are available in my github account.
-Apart from development i also have good command in Programming and theory subjects like DBMS and Operating System.
-I am self motivated and highly passinate to work in higher level to enhanced my knowledge."
-            android:padding="5dp"/>
+            android:text="I have been working in android development since 2020. Plasma Donation app is something which came in my mind long back during the end of 2020, but at that point of time I don't know how to create the proper functions and features for this app.
+After thinking alot about all the complex structure i started this project during mid July 2021. Through this project i learned new thinks and some complex backend designing.I am very greatful that i have successfully completed this project within 4 months. It enhance my knowledge in app development and surely in future I develop some more high advance application"
+            />
+
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
@@ -148,6 +156,7 @@ I am self motivated and highly passinate to work in higher level to enhanced my 
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/linkedln"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_margin="8dp"
@@ -155,6 +164,7 @@ I am self motivated and highly passinate to work in higher level to enhanced my 
                 android:src="@drawable/linkedin"/>
 
             <ImageView
+                android:id="@+id/github"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_margin="8dp"
@@ -162,6 +172,7 @@ I am self motivated and highly passinate to work in higher level to enhanced my 
                 android:src="@drawable/github"/>
 
             <ImageView
+                android:id="@+id/instagram"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_margin="8dp"

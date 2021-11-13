@@ -368,7 +368,7 @@ class UpdateProfileFragment : Fragment() {
         var cityName = "" as String
         if(activity != null) {
             var geoCoder = Geocoder(activity, Locale.getDefault())
-            var Address = geoCoder.getFromLocation(lat, long, 1)
+            var Address = geoCoder?.getFromLocation(lat, long, 1)
 
             cityName = Address.get(0).locality
 
