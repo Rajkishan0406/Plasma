@@ -43,13 +43,12 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RAJ KISHAN"
-                android:layout_marginTop="11dp"
-                android:textSize="18dp"
-                android:textColor="@color/black2"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="11dp"
                 android:fontFamily="@font/comfortaa"
-                />
+                android:text="RAJ KISHAN"
+                android:textColor="@color/black2"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/college"
