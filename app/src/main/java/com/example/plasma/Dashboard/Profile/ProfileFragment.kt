@@ -20,6 +20,8 @@ import com.example.plasma.MainActivity
 import com.example.plasma.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -50,11 +52,13 @@ class ProfileFragment : Fragment() {
     lateinit var report_card : NeumorphCardView
     lateinit var progress : ProgressBar
     lateinit var delete : CardView
+    lateinit var datax : DatabaseReference
     lateinit var storage : StorageReference
 
     lateinit var disease : TextView
     lateinit var vc : TextView
     lateinit var report : TextView
+    lateinit var firebaseUser: FirebaseUser
     var progress_status = 0 as Int
     var sex = "" as String
 
@@ -69,6 +73,7 @@ class ProfileFragment : Fragment() {
         requireActivity().window.statusBarColor = Color.WHITE
 
         mAuth = FirebaseAuth.getInstance()
+        firebaseUser = mAuth.currentUser!!
         var id = mAuth.currentUser?.uid as String
         data = FirebaseDatabase.getInstance().getReference("Details").child(id)
         storage = FirebaseStorage.getInstance().getReference(id)
@@ -134,7 +139,6 @@ class ProfileFragment : Fragment() {
                             }
                             else{
                                 pd.setText("Add Personal Details")
-                                Toast.makeText(activity,"Profile not Added",Toast.LENGTH_SHORT).show()
                                 progress.visibility = View.INVISIBLE
                                 progress_status = 1
                             }
@@ -150,7 +154,6 @@ class ProfileFragment : Fragment() {
                 }
                 else{
                     pd.setText("Add Personal Details")
-                    Toast.makeText(activity,"Profile not Added",Toast.LENGTH_SHORT).show()
                     progress.visibility = View.INVISIBLE
                     progress_status = 1
                 }
@@ -289,57 +292,44 @@ class ProfileFragment : Fragment() {
                     .setPositiveButton("Delete") { dialog, which ->
                         Log.i("Message : ", "Deleted")
                         progress.visibility = View.VISIBLE
-                        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
-                        pref.apply {
-                            val editor = pref.edit()
-                            editor.putString("Request", "0")
-                            editor.apply()
-                            Log.i("request", "0")
-                        }
+                        sharedprefdelete()
                         var data: DatabaseReference
-                        var delete_it = 0 as Int
                         data = FirebaseDatabase.getInstance().getReference("Details").child(id)
-                        if (delete_it == 0) {
-                            data.removeValue().addOnCompleteListener(OnCompleteListener {
-                                Log.i("data deleted ","Successfully")
-                                storage.delete().addOnCompleteListener(OnCompleteListener {
-                                    progress.visibility = View.INVISIBLE
-                                    delete_it = 1
-                                    Log.i("image deleted ","Successfully")
-                                    mAuth.currentUser!!.delete().addOnCompleteListener(OnCompleteListener {
-                                        Toast.makeText(activity, "Account Deleted Successfully", Toast.LENGTH_SHORT).show()
-                                        val intent = Intent(getActivity(), MainActivity::class.java)
-                                        getActivity()?.startActivity(intent)
-                                    }).addOnFailureListener { OnFailureListener {
-                                        Toast.makeText(activity,"Please Login again to delete account",Toast.LENGTH_LONG).show()
+                        data.setValue(null).addOnSuccessListener(OnSuccessListener {
+                            FirebaseAuth.getInstance().currentUser?.delete()?.addOnCompleteListener(
+                                OnCompleteListener {
+                                    if(it.isSuccessful){
                                         progress.visibility = View.INVISIBLE
-                                        mAuth.signOut()
-                                    } }
-                                }).addOnFailureListener(OnFailureListener {
-                                    progress.visibility = View.INVISIBLE
-                                    delete_it = 1
-                                    Log.i("image not deleted ","Successfully")
-                                    mAuth.currentUser!!.delete().addOnCompleteListener(OnCompleteListener {
-                                        Toast.makeText(activity, "Account Deleted Successfully", Toast.LENGTH_SHORT).show()
-                                        mAuth.signOut()
+                                        Toast.makeText(activity,"User account deleted successfully",Toast.LENGTH_SHORT).show()
                                         val intent = Intent(getActivity(), MainActivity::class.java)
-                                        getActivity()?.startActivity(intent)
-                                    }).addOnFailureListener { OnFailureListener {
-                                        Toast.makeText(activity,"Please Login again to delete account",Toast.LENGTH_LONG).show()
-                                        progress.visibility = View.INVISIBLE
                                         mAuth.signOut()
-                                    } }
-                                    })
-                            }).addOnFailureListener(OnFailureListener {
-                                progress.visibility = View.INVISIBLE
-                                Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
-                            })
-                        }
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        startActivity(intent)
+                                    } else{
+                                        progress.visibility = View.INVISIBLE
+                                        Toast.makeText(activity,"User need to login again for privacy concern",Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(getActivity(), MainActivity::class.java)
+                                        mAuth.signOut()
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        startActivity(intent)
+                                    }
+                                })
+                        })
                     }
                     .show()
         })
 
         return view
+    }
+
+    private fun sharedprefdelete() {
+        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+        pref.apply {
+            val editor = pref.edit()
+            editor.putString("Request", "0")
+            editor.apply()
+            Log.i("request", "0")
+        }
     }
 
     private fun setFragmentProfileCreation(forgotFragment: UpdateProfileFragment) {
