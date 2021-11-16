@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.plasma.R
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +23,7 @@ class RulesAndRegulationFragment : Fragment() {
 
     lateinit var btn : NeumorphButton
     lateinit var btn2 : NeumorphButton
+    lateinit var frame : RelativeLayout
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -54,6 +57,11 @@ class RulesAndRegulationFragment : Fragment() {
 
         male = view.findViewById(R.id.male_frame)
         female = view.findViewById(R.id.female_frame)
+
+        frame = view.findViewById(R.id.RulesFragment)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        frame.startAnimation(animationx)
+
 
         var bun = Bundle()
         bun = this.requireArguments()

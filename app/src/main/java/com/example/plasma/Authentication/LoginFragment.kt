@@ -13,10 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
@@ -36,6 +33,7 @@ class LoginFragment : Fragment() {
     lateinit var pass : EditText
     lateinit var btn : NeumorphButton
     lateinit var pro : ProgressBar
+    lateinit var frame : FrameLayout
     lateinit var top_card : CardView
     lateinit var forgot : TextView
     lateinit var newi : ForgotPassword
@@ -61,6 +59,8 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_login, container, false)
 
+
+        frame = view.findViewById(R.id.login_frame1)
 
         requireActivity().window.statusBarColor = Color.parseColor("#00B54B")
 

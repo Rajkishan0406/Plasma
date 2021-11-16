@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -52,6 +54,7 @@ class ProfileCreationFragment : Fragment() {
     lateinit var map : CardView
     lateinit var Male_anim : LottieAnimationView
     lateinit var Female_anim : LottieAnimationView
+    lateinit var frame : RelativeLayout
 
     //blood group neumorphCard
     lateinit var a_pos : NeumorphCardView
@@ -97,11 +100,18 @@ class ProfileCreationFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_profile_creation, container, false)
 
+        requireActivity().window.statusBarColor = Color.WHITE
+
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid
         data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
 
         fusedLocationClient = activity?.let { LocationServices.getFusedLocationProviderClient(it) }!!
+
+        frame = view.findViewById(R.id.ProfileCreationFragment)
+
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        frame.startAnimation(animationx)
 
         //blood group addition
         a_pos = view.findViewById(R.id.A_positive)

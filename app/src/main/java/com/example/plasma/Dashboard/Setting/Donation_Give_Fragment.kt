@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.view.animation.AnimationUtils
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Adapter.DonationGiveAdapter
@@ -22,6 +20,7 @@ class Donation_Give_Fragment : Fragment() {
 
     lateinit var recyclerview : RecyclerView
     lateinit var mAuth : FirebaseAuth
+    lateinit var DGLayout : RelativeLayout
     lateinit var data : DatabaseReference
     lateinit var data2 : DatabaseReference
     lateinit var progress : ProgressBar
@@ -37,6 +36,11 @@ class Donation_Give_Fragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         progress = view.findViewById(R.id.progress_donation_give)
         var id = mAuth.currentUser?.uid
+
+        DGLayout = view.findViewById(R.id.DonationGiveFragment)
+
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        DGLayout.startAnimation(animationx)
 
         data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
         data2 = FirebaseDatabase.getInstance().getReference("Details")

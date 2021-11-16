@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
@@ -30,6 +31,7 @@ class UpdateCovidFragment : Fragment() {
     lateinit var upload : ImageView
     lateinit var sub : NeumorphButton
     lateinit var image : CardView
+    lateinit var frame : LinearLayout
     lateinit var date : CardView
     lateinit var dd : TextView
     lateinit var prob : EditText
@@ -57,6 +59,11 @@ class UpdateCovidFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view =  inflater.inflate(R.layout.fragment_update_covid, container, false)
+
+
+        frame = view.findViewById(R.id.linearLayout2)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        frame.startAnimation(animationx)
 
 
         sub = view.findViewById(R.id.submit_update)

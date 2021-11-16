@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -31,6 +32,7 @@ class SignUpFragment : Fragment() {
     lateinit var email : EditText
     lateinit var pass : EditText
     lateinit var con_pass : EditText
+    lateinit var frame : FrameLayout
     lateinit var btn : NeumorphButton
     lateinit var pro : ProgressBar
 
@@ -45,6 +47,9 @@ class SignUpFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
         requireActivity().window.statusBarColor = Color.parseColor("#00B54B")
+
+        frame = view.findViewById(R.id.SignUpFragment)
+
 
         email = view.findViewById(R.id.email)
         pass = view.findViewById(R.id.password)

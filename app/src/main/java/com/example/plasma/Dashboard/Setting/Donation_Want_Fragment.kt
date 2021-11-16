@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +25,7 @@ class Donation_Want_Fragment : Fragment() {
     lateinit var recyclerview : RecyclerView
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
+    lateinit var DWLayout : RelativeLayout
     lateinit var data2 : DatabaseReference
     lateinit var progress : ProgressBar
     lateinit var frame : FrameLayout
@@ -38,6 +41,11 @@ class Donation_Want_Fragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         progress = view.findViewById(R.id.progress_donation_give)
         var id = mAuth.currentUser?.uid
+
+        DWLayout = view.findViewById(R.id.DonationWantFragment)
+
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        DWLayout.startAnimation(animationx)
 
         data = id?.let { FirebaseDatabase.getInstance().getReference("Details").child(it) }!!
         data2 = FirebaseDatabase.getInstance().getReference("Details")

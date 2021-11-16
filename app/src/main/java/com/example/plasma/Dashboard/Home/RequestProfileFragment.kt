@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -46,6 +48,7 @@ class RequestProfileFragment : Fragment() {
     lateinit var vaccination : TextView
     lateinit var disease : TextView
     lateinit var doc : NeumorphCardView
+    lateinit var frame : RelativeLayout
     lateinit var pro :ProgressBar
 
     var imp = 0 as Int
@@ -70,6 +73,9 @@ class RequestProfileFragment : Fragment() {
         var id : String? = bun.getString("Id") as String
 
 
+        frame = view.findViewById(R.id.RequestProfileFragment)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        frame.startAnimation(animationx)
         data = FirebaseDatabase.getInstance().getReference("Details")
         mAuth = FirebaseAuth.getInstance()
         var User_id = mAuth.currentUser?.uid

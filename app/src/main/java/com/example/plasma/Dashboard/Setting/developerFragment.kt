@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.plasma.R
@@ -18,6 +20,7 @@ class developerFragment : Fragment() {
     lateinit var card : CardView
     lateinit var git : ImageView
     lateinit var linkedln : ImageView
+    lateinit var DLayout : LinearLayout
     lateinit var insta : ImageView
     lateinit var resume : TextView
 
@@ -28,6 +31,11 @@ class developerFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_developer, container, false)
 
         requireActivity().window.statusBarColor = Color.parseColor("#048AD3")
+
+        DLayout = view.findViewById(R.id.DeveloperFragment)
+
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        DLayout.startAnimation(animationx)
 
         card = view.findViewById(R.id.contact_card)
         git = view.findViewById(R.id.github)

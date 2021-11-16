@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -33,6 +35,7 @@ class UpdateProfileFragment : Fragment() {
     lateinit var location  :TextView
     lateinit var dob : CardView
     lateinit var map : CardView
+    lateinit var frame : RelativeLayout
     lateinit var d : TextView
     lateinit var number : EditText
     lateinit var yes : NeumorphCardView
@@ -89,6 +92,11 @@ class UpdateProfileFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_update_profile, container, false)
+
+        frame = view.findViewById(R.id.UpdatepersonalData)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        frame.startAnimation(animationx)
+
 
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid

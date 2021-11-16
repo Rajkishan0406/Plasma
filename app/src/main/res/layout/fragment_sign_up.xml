@@ -7,6 +7,7 @@
     tools:context=".Authentication.SignUpFragment">
 
     <FrameLayout
+        android:id="@+id/SignUpFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -4,13 +4,29 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/drawable/gradient1.xml" value="0.2703125" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/badge_text.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_about_plasma.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_chat.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_chat_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_chat_setting.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_covid_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_covid_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_developer.xml" value="0.2" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_donation__give_.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_donation__want_.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_help_chat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_profile_creation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_report.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_request_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_rules_and_regulation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_setting.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_splash.xml" value="0.2" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_update_covid.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_update_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/plasmarequestlayout.xml" value="0.25416666666666665" />
       </map>
     </option>

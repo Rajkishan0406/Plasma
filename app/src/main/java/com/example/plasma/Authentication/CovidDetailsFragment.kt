@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
@@ -31,6 +32,7 @@ class CovidDetailsFragment : Fragment() {
     lateinit var upload : ImageView
     lateinit var sub : NeumorphButton
     lateinit var image : CardView
+    lateinit var frame : androidx.constraintlayout.widget.ConstraintLayout
     lateinit var date : CardView
     lateinit var dd : TextView
     lateinit var prob : EditText
@@ -58,12 +60,16 @@ class CovidDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_covid_details, container, false)
 
+        frame = view.findViewById(R.id.CovidDetails)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        frame.startAnimation(animationx)
 
         skip = view.findViewById(R.id.skip)
         sub = view.findViewById(R.id.submit)
         image = view.findViewById(R.id.image_selector)
         dd = view.findViewById(R.id.date_of_report)
         date = view.findViewById(R.id.calendar)
+
         prob = view.findViewById(R.id.disease)
         dose_one = view.findViewById(R.id.first)
         dose_two = view.findViewById(R.id.second)
