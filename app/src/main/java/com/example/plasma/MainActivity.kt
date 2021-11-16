@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.CovidDetailsFragment
 import com.example.plasma.Authentication.LoginFragment
 import com.example.plasma.Authentication.ProfileCreationFragment
+import com.example.plasma.Authentication.SplashFragment
 import com.example.plasma.Dashboard.NoInternetFragment
 import com.google.firebase.auth.FirebaseAuth
 
@@ -37,11 +38,11 @@ class MainActivity : AppCompatActivity() {
             checkConnection()
 
 
-            setFragment(LoginFragment())
+            setFragment(SplashFragment())
 
     }
 
-    private fun setFragment(loginFragment: LoginFragment) {
+    private fun setFragment(loginFragment: SplashFragment) {
         var ft: FragmentTransaction = supportFragmentManager.beginTransaction();
         ft.replace(R.id.main_auth_frame,loginFragment)
         ft.commit()

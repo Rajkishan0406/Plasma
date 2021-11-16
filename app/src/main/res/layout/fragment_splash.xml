@@ -45,5 +45,16 @@
 
    </LinearLayout>
 
+    <TextView
+        android:id="@+id/app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/other_half"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/red_light"
+        android:fontFamily="@font/comfortaa"
+        android:text="Application"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
