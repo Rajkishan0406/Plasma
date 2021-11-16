@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -32,6 +34,7 @@ class HomeFragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var progress : ProgressBar
     lateinit var Refresh : SwipeRefreshLayout
+    lateinit var HLayout : RelativeLayout
     lateinit var plasmaArrayList : ArrayList<PlasmaRequestModel>
     lateinit var request_size : TextView
     var size = 0 as Int
@@ -46,6 +49,10 @@ class HomeFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_home, container, false)
 
         requireActivity().window.statusBarColor = Color.WHITE
+
+        HLayout = view.findViewById(R.id.HomeFragment)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        HLayout.startAnimation(animationx)
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
 
@@ -85,8 +92,16 @@ class HomeFragment : Fragment() {
                                 var state = plasmarequestSnapshot.child("Profile").child("State").getValue() as String
                                 var blood = plasmarequestSnapshot.child("Profile").child("Blood_Grp").getValue() as String
                                 var id = plasmarequestSnapshot.child("Profile").child("Id").getValue() as String
-                                if (CITY.toString().equals("0") && STATE.toString().equals("0") && BLOOD.toString().equals("0"))
+                                if (CITY.toString().equals("0") && STATE.toString().equals("0") && BLOOD.toString().equals("0")){
                                     plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                                    }
                                 else {
                                     if (CITY.toString().equals(city) && STATE.toString().equals("0") && BLOOD.toString().equals("0"))
                                         plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))

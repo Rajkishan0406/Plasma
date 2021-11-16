@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -38,7 +40,7 @@ class SettingFragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var logout : CardView
     lateinit var request : CardView
-    lateinit var corona : CardView
+    lateinit var SLayout : FrameLayout
     lateinit var response_number_card : CardView
     lateinit var response_number : TextView
     lateinit var donation_give : CardView
@@ -67,6 +69,11 @@ class SettingFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_setting, container, false)
 
         requireActivity().window.statusBarColor = Color.WHITE
+
+        SLayout = view.findViewById(R.id.SettingFragment)
+
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        SLayout.startAnimation(animationx)
 
         mAuth = FirebaseAuth.getInstance()
         var id = mAuth.currentUser?.uid

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@ class ChatFragment : Fragment() {
     lateinit var data : DatabaseReference
     lateinit var data2 : DatabaseReference
     lateinit var card : CardView
+    lateinit var Rlayout : RelativeLayout
     var online = "0" as String
 
     lateinit var chatArrayList : ArrayList<ChatFragmentModel>
@@ -130,6 +132,10 @@ class ChatFragment : Fragment() {
 
 
         requireActivity().window.statusBarColor = Color.parseColor("#048AD3")
+
+        Rlayout = view.findViewById(R.id.ChatFragment)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        Rlayout.startAnimation(animationx)
 
         card = view.findViewById(R.id.upper_card)
 

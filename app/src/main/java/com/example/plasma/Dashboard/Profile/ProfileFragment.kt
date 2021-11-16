@@ -38,6 +38,7 @@ class ProfileFragment : Fragment() {
     lateinit var update_personal : CardView
     lateinit var update_covid : CardView
     lateinit var covid : CardView
+    lateinit var PLayout : LinearLayout
     lateinit var personal_frame : FrameLayout
     lateinit var covid_frame : FrameLayout
     lateinit var Boy : LottieAnimationView
@@ -52,7 +53,6 @@ class ProfileFragment : Fragment() {
     lateinit var report_card : NeumorphCardView
     lateinit var progress : ProgressBar
     lateinit var delete : CardView
-    lateinit var datax : DatabaseReference
     lateinit var storage : StorageReference
 
     lateinit var disease : TextView
@@ -71,6 +71,10 @@ class ProfileFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_profile, container, false)
 
         requireActivity().window.statusBarColor = Color.WHITE
+
+        PLayout = view.findViewById(R.id.profile_layout)
+        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
+        PLayout.startAnimation(animationx)
 
         mAuth = FirebaseAuth.getInstance()
         firebaseUser = mAuth.currentUser!!

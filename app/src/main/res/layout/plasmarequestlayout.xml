@@ -6,9 +6,9 @@
     android:layout_margin="8dp"
     android:clickable="true"
     app:cardBackgroundColor="@color/white"
+    android:layoutAnimation="@anim/layout_animation"
     android:id="@+id/card"
     app:cardElevation="5dp"
-    android:layoutAnimation="@anim/layout_animation"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="8dp">
 

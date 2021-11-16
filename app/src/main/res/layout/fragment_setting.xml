@@ -7,6 +7,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard.Setting.SettingFragment">
 
+    <FrameLayout
+        android:id="@+id/SettingFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/logout_btn"
         android:layout_width="match_parent"
@@ -322,5 +332,9 @@
 
 
     </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
