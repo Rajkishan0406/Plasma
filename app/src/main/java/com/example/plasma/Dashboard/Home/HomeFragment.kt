@@ -94,13 +94,6 @@ class HomeFragment : Fragment() {
                                 var id = plasmarequestSnapshot.child("Profile").child("Id").getValue() as String
                                 if (CITY.toString().equals("0") && STATE.toString().equals("0") && BLOOD.toString().equals("0")){
                                     plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
                                     }
                                 else {
                                     if (CITY.toString().equals(city) && STATE.toString().equals("0") && BLOOD.toString().equals("0"))

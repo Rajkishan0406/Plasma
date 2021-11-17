@@ -27,6 +27,7 @@ import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.ChatModel
 import com.example.plasma.ProfileActivity
 import com.example.plasma.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -414,10 +415,19 @@ class ChatPageFragment : Fragment() {
         })
 
         clear.setOnClickListener(View.OnClickListener {
-            data.child(User_Id).child("Chatting").child(id).child("Message").removeValue()
-            data.child(User_Id).child("Chatting").child(id).child("Last_Message").removeValue()
-            Toast.makeText(activity, "All chats are cleared", Toast.LENGTH_SHORT).show()
-            menu.visibility = View.INVISIBLE
+
+            MaterialAlertDialogBuilder(this.requireContext())
+                .setTitle("Clear All Chat?")
+                .setMessage("Clearing chat will delete all chat. Remember it will delete chat only from your end not from other end")
+                .setNegativeButton("Cancel"){ dialog, which ->
+                    Log.i("Message : ", "Canceled")
+                }
+                .setPositiveButton("Delete") { dialog, which ->
+                    data.child(User_Id).child("Chatting").child(id).child("Message").removeValue()
+                    data.child(User_Id).child("Chatting").child(id).child("Last_Message").removeValue()
+                    Toast.makeText(activity, "All chats are cleared", Toast.LENGTH_SHORT).show()
+                    menu.visibility = View.INVISIBLE
+                }.show()
         })
 
 
