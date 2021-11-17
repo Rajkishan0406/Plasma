@@ -15,6 +15,7 @@ import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.plasma.Dashboard.Chat.ChatActivity
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
@@ -22,6 +23,7 @@ import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.ChatFragmentModel
 import com.example.plasma.Dashboard.Model.ChatModel
 import com.example.plasma.MapActivity
+import com.example.plasma.ProfileActivity
 import com.example.plasma.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.internal.ContextUtils.getActivity
@@ -106,12 +108,9 @@ class ChatFragmentAdapter(var chatfragModel: ArrayList<ChatFragmentModel>, param
         holder.Name_Card.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 var activity = v!!.context as AppCompatActivity
-                val IDF = RequestProfileFragment()
-                var bun : Bundle
-                bun = Bundle()
-                bun.putString("Id",PR.Id)
-                IDF.arguments = bun
-                activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame,IDF).addToBackStack(null).commit()
+                var intent = Intent(activity, ProfileActivity::class.java)
+                intent.putExtra("Id",PR.Id)
+                activity.startActivity(intent)
             }
         })
 
