@@ -315,6 +315,7 @@ class RequestProfileFragment : Fragment() {
                     bun.putString("User_Id", id)
                     bun.putString("Number", number)
                     bun.putInt("Gender", ggender)
+                    bun.putString("Blood",blood.text.toString())
                     IDF.arguments = bun
                     setFragmentRules(IDF)
                 } else {

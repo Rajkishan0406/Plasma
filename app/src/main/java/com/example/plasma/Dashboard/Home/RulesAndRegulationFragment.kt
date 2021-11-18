@@ -18,6 +18,7 @@ import soup.neumorphism.NeumorphButton
 import soup.neumorphism.NeumorphCardView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.log
 
 class RulesAndRegulationFragment : Fragment() {
 
@@ -33,6 +34,8 @@ class RulesAndRegulationFragment : Fragment() {
     var cancer = "-1"
     var Weight = "-1"
     var pregnent = "-1"
+    var current_user_blood_grp = "" as String
+    var blood_grp = "" as String
     lateinit var male : FrameLayout
     lateinit var female : FrameLayout
     // male frame
@@ -68,8 +71,25 @@ class RulesAndRegulationFragment : Fragment() {
         var id : String? = bun.getString("User_Id") as String
         unique = bun.getString("Number") as String
         var gen = bun.getInt("Gender") as Int
+        blood_grp = bun.getString("Blood")!!
 
         Log.i("Gender : "," "+gen)
+
+        mAuth = FirebaseAuth.getInstance()
+        var current_user_id = mAuth.currentUser?.uid
+        data = current_user_id?.let {
+            FirebaseDatabase.getInstance().getReference("Details").child(
+                it
+            )
+        }!!
+        data.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    current_user_blood_grp = snapshot.child("Profile").child("Blood_Grp").getValue() as String
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
 
         if(gen == 1){
             Log.i("Gender : ","Male frame ON ")
@@ -177,12 +197,12 @@ class RulesAndRegulationFragment : Fragment() {
         btn2 = view.findViewById(R.id.donate_female)
 
         btn.setOnClickListener(View.OnClickListener {
-            if(gen.equals("male")){
+            if(gen == 1){
                 var w = 0 as Int
                 if(weight_male.text.toString().length > 0)
                 w = weight_male.text.toString().trim().toInt()
                 if(cancer.equals("-1") || disease.equals("-1") || weight_male.text.toString().length == 0){
-                    Toast.makeText(activity,"please fill the details correctly",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,cancer+ "please fill the details correctly "+disease,Toast.LENGTH_SHORT).show()
                 }
                 else {
                     if (w < 60) {
@@ -192,14 +212,25 @@ class RulesAndRegulationFragment : Fragment() {
                     } else if (disease.equals("1")) {
                         Toast.makeText(activity, "You have some serious disease you can't donate Plasma", Toast.LENGTH_SHORT).show()
                     } else {
-                        if (number2.length > 0) {
-                            if (id != null) {
-                                data.child(id).child("Donation_Want").child(number2).setValue(User_id)
+                        if(blood_grp_check()) {
+                            Toast.makeText(activity,"Your blood group not allowed you to donate plasma to this person",Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            if (number2.length > 0) {
+                                if (id != null) {
+                                    data.child(id).child("Donation_Want").child(number2)
+                                        .setValue(User_id)
+                                }
+                                if (User_id != null) {
+                                    data.child(User_id).child("Donation_Give").child(unique)
+                                        .setValue(id)
+                                }
+                                Toast.makeText(
+                                    activity,
+                                    "Your response is successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-                            if (User_id != null) {
-                                data.child(User_id).child("Donation_Give").child(unique).setValue(id)
-                            }
-                            Toast.makeText(activity, "Your response is successfully", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -221,13 +252,23 @@ class RulesAndRegulationFragment : Fragment() {
                         } else if (pregnent.equals("1")) {
                             Toast.makeText(activity, "You can't donate because of past pregnancy", Toast.LENGTH_SHORT).show()
                         } else {
-                            if (id != null) {
-                                data.child(id).child("Donation_Want").child(number2).setValue(User_id)
+                            if (blood_grp_check()) {
+                                Toast.makeText(activity,"Your blood group not allowed you to donate plasma to this person",Toast.LENGTH_SHORT).show()
+                            } else {
+                                if (id != null) {
+                                    data.child(id).child("Donation_Want").child(number2)
+                                        .setValue(User_id)
+                                }
+                                if (User_id != null) {
+                                    data.child(User_id).child("Donation_Give").child(unique)
+                                        .setValue(id)
+                                }
+                                Toast.makeText(
+                                    activity,
+                                    "Your response is successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-                            if (User_id != null) {
-                                data.child(User_id).child("Donation_Give").child(unique).setValue(id)
-                            }
-                            Toast.makeText(activity, "Your response is successfully", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -235,12 +276,12 @@ class RulesAndRegulationFragment : Fragment() {
         })
 
         btn2.setOnClickListener(View.OnClickListener {
-            if(gen.equals("male")){
+            if(gen == 1){
                 var w = 0 as Int
                 if(weight_male.text.toString().length > 0)
                     w = weight_male.text.toString().trim().toInt()
                 if(cancer.equals("-1") || disease.equals("-1") || weight_male.text.toString().length == 0){
-                    Toast.makeText(activity,"please fill the details correctly",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity," please fill the details correctly ",Toast.LENGTH_SHORT).show()
                 }
                 else {
                     if (w < 60) {
@@ -250,14 +291,25 @@ class RulesAndRegulationFragment : Fragment() {
                     } else if (disease.equals("1")) {
                         Toast.makeText(activity, "You have some serious disease you can't donate Plasma", Toast.LENGTH_SHORT).show()
                     } else {
-                        if (number2.length > 0) {
-                            if (id != null) {
-                                data.child(id).child("Donation_Want").child(number2).setValue(User_id)
+                        if(blood_grp_check()){
+                            Toast.makeText(activity,"Your blood group not allowed you to donate plasma to this person",Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            if (number2.length > 0) {
+                                if (id != null) {
+                                    data.child(id).child("Donation_Want").child(number2)
+                                        .setValue(User_id)
+                                }
+                                if (User_id != null) {
+                                    data.child(User_id).child("Donation_Give").child(unique)
+                                        .setValue(id)
+                                }
+                                Toast.makeText(
+                                    activity,
+                                    "Your response is successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-                            if (User_id != null) {
-                                data.child(User_id).child("Donation_Give").child(unique).setValue(id)
-                            }
-                            Toast.makeText(activity, "Your response is successfully", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -279,13 +331,23 @@ class RulesAndRegulationFragment : Fragment() {
                         } else if (pregnent.equals("1")) {
                             Toast.makeText(activity, "You can't donate because of past pregnancy", Toast.LENGTH_SHORT).show()
                         } else {
-                            if (id != null) {
-                                data.child(id).child("Donation_Want").child(number2).setValue(User_id)
+                            if (blood_grp_check()) {
+                                Toast.makeText(activity,"Your blood group not allowed you to donate plasma to this person",Toast.LENGTH_SHORT).show()
+                            } else {
+                                if (id != null) {
+                                    data.child(id).child("Donation_Want").child(number2)
+                                        .setValue(User_id)
+                                }
+                                if (User_id != null) {
+                                    data.child(User_id).child("Donation_Give").child(unique)
+                                        .setValue(id)
+                                }
+                                Toast.makeText(
+                                    activity,
+                                    "Your response is successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-                            if (User_id != null) {
-                                data.child(User_id).child("Donation_Give").child(unique).setValue(id)
-                            }
-                            Toast.makeText(activity, "Your response is successfully", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -293,6 +355,20 @@ class RulesAndRegulationFragment : Fragment() {
         })
 
         return view;
+    }
+
+    private fun blood_grp_check(): Boolean {
+        if((current_user_blood_grp.equals("A+") || current_user_blood_grp.equals("A-")) && (blood_grp.equals("A+") || blood_grp.equals("A-") || blood_grp.equals("O+") || blood_grp.equals("O-"))) {
+            return false
+        }
+        if((current_user_blood_grp.equals("B+") || current_user_blood_grp.equals("B-")) && (blood_grp.equals("B+") || blood_grp.equals("B-") || blood_grp.equals("O+") || blood_grp.equals("O-")))
+            return false
+        if(blood_grp.equals("O+") || blood_grp.equals("O-"))
+            return false
+        if((blood_grp.equals("AB+") || blood_grp.equals("AB-")) && (current_user_blood_grp.equals("AB+") || current_user_blood_grp.equals("AB-"))) {
+            return false
+        }
+            return true
     }
 
 }
