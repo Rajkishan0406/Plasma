@@ -140,7 +140,11 @@ class UpdateProfileFragment : Fragment() {
 
         bundle = this.requireArguments()
         name.setText(bundle.getString("name"))
-        location.setText(bundle.getString("city")+", "+bundle.getString("state"))
+        var cc = bundle.getString("city") as String
+        if(cc.length > 0)
+            location.setText(bundle.getString("city")+", "+bundle.getString("state"))
+        else
+            location.setText("Location")
         d.setText(bundle.getString("dob"))
         number.setText(bundle.getString("contact"))
         if(bundle.getString("name").toString().length > 0)
@@ -250,11 +254,10 @@ class UpdateProfileFragment : Fragment() {
 
 
         sub.setOnClickListener(View.OnClickListener {
-            if(name.text.toString().length == 0 || loc_city.length == 0 || loc_state.length == 0 ||
+            if(name.text.toString().length == 0 || (cc.length == 0 && loc_city.length == 0 )||
                     d.text.toString().length == 0 || Blood.length == 0 || number.text.toString().length == 0
                     || status.length == 0 || sex.length == 0){
                 Toast.makeText(activity,"Please fill all details", Toast.LENGTH_SHORT).show()
-                Toast.makeText(activity," "+loc_city+"  "+loc_state,Toast.LENGTH_SHORT).show()
             }
             else if(number.text.toString().length != 10){
                 Toast.makeText(activity,"Wrong number format!", Toast.LENGTH_SHORT).show()
@@ -376,9 +379,10 @@ class UpdateProfileFragment : Fragment() {
         var cityName = "" as String
         if(activity != null) {
             var geoCoder = Geocoder(activity, Locale.getDefault())
-            var Address = geoCoder?.getFromLocation(lat, long, 1)
-
-            cityName = Address.get(0).locality
+            if(geoCoder?.getFromLocation(lat,long,1) != null) {
+                var Address = geoCoder?.getFromLocation(lat, long, 1)
+                cityName = Address.get(0).locality
+            }
 
         }
         return cityName

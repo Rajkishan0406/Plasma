@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
@@ -67,12 +68,15 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
 
         holder.msg.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
+                var activity = v!!.context as AppCompatActivity
                 if(!id.equals(User_id) && yes == 1) {
-                    var activity = v!!.context as AppCompatActivity
                     val intent = Intent(activity, ChatActivity::class.java)
                     intent.putExtra("Id",PR.Id)
                     intent.putExtra("Name",PR.Name)
                     activity?.startActivity(intent)
+                }
+                else if(yes == 0){
+                    Toast.makeText(activity,"Please add your profile for chat",Toast.LENGTH_SHORT).show()
                 }
             }
         })

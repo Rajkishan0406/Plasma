@@ -274,7 +274,7 @@ class RequestProfileFragment : Fragment() {
                 setFragmentChatPage(frag)
             }
             if(yes == -1){
-                Toast.makeText(activity,"Please update your profile before message anyone",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Please add your profile for chat",Toast.LENGTH_SHORT).show()
             }
         })
 
