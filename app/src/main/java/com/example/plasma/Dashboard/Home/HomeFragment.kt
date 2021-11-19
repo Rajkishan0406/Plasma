@@ -50,9 +50,6 @@ class HomeFragment : Fragment() {
 
         requireActivity().window.statusBarColor = Color.WHITE
 
-        HLayout = view.findViewById(R.id.HomeFragment)
-        val animationx = AnimationUtils.loadAnimation(activity, R.anim.fragment_trans)
-        HLayout.startAnimation(animationx)
 
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
 

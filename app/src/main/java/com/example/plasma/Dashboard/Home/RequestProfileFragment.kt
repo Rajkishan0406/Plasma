@@ -308,7 +308,10 @@ class RequestProfileFragment : Fragment() {
             var bun : Bundle
             bun = Bundle()
             //Age
-            if(cannot_donate == 1)
+            if(yes == -1){
+                Toast.makeText(activity,"please add your profile",Toast.LENGTH_SHORT).show()
+            }
+            else if(cannot_donate == 1)
                 Toast.makeText(activity,"You can't donate as you already requested one",Toast.LENGTH_SHORT).show()
             else {
                 if (imp >= 18) {

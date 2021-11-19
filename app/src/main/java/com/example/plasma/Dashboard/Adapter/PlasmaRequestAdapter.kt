@@ -75,7 +75,7 @@ class PlasmaRequestAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) :
                     intent.putExtra("Name",PR.Name)
                     activity?.startActivity(intent)
                 }
-                else if(yes == 0){
+                else if(yes == -1){
                     Toast.makeText(activity,"Please add your profile for chat",Toast.LENGTH_SHORT).show()
                 }
             }

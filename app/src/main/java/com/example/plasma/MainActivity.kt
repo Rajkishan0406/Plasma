@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         checkConnection()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkConnection()
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
         if(currentUser != null){
