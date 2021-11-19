@@ -58,23 +58,36 @@ class Donation_Want_Fragment : Fragment() {
 
         var arrlist = arrayListOf<String>()
 
-        data.child("Donation_Want").addValueEventListener(object : ValueEventListener {
+        data.child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(donationSnapshot in snapshot.children) {
-                        var d = donationSnapshot.getValue() as String
-                        arrlist.add(d)
-                        Log.i("id : ",""+d)
-                    }
+                var checker = snapshot.getValue() as String
+                if(checker.equals("1")){
+                    data.child("Donation_Want").addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.exists()){
+                                for(donationSnapshot in snapshot.children) {
+                                    var d = donationSnapshot.getValue() as String
+                                    arrlist.add(d)
+                                    Log.i("id : ",""+d)
+                                }
+                            }
+                            else{
+                                progress.visibility = View.INVISIBLE
+                                frame.visibility = View.VISIBLE
+                            }
+                            reterival(arrlist)
+                        }
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
                 }
                 else{
                     progress.visibility = View.INVISIBLE
                     frame.visibility = View.VISIBLE
                 }
-                reterival(arrlist)
             }
             override fun onCancelled(error: DatabaseError) {}
         })
+
 
 
         return view

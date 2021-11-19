@@ -363,9 +363,10 @@ class ProfileCreationFragment : Fragment() {
         var cityName = "" as String
         if(activity != null) {
             var geoCoder = Geocoder(activity, Locale.getDefault())
-            var Address = geoCoder.getFromLocation(lat, long, 1)
-
-            cityName = Address.get(0).locality
+            if(geoCoder.getFromLocation(lat,long,1) != null) {
+                var Address = geoCoder.getFromLocation(lat, long, 1)
+                cityName = Address.get(0).locality
+            }
         }
 
         return cityName

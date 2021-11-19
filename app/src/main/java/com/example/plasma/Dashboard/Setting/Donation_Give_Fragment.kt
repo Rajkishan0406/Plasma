@@ -1,6 +1,8 @@
 package com.example.plasma.Dashboard.Setting
 
 import android.os.Bundle
+import android.renderscript.Sampler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -54,19 +56,49 @@ class Donation_Give_Fragment : Fragment() {
 
         var arrlist = arrayListOf<String>()
 
+        var cant = 0 as Int
+
+        data.child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var ss = snapshot.getValue() as String
+                if(ss.equals("1"))
+                    cant = 1
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+
         data.child("Donation_Give").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
                         for(donationSnapshot in snapshot.children) {
                             var d = donationSnapshot.getValue() as String
-                            arrlist.add(d)
+                            data2.child(d).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if(snapshot.exists()){
+                                        var checker = snapshot.getValue() as String
+                                        Log.i(checker+" "," "+cant)
+                                        if(checker.equals("1") && cant == 0) {
+                                            arrlist.add(d)
+                                            Log.i("array size : "," "+arrlist.size)
+                                            reterival(arrlist)
+                                            progress.visibility = View.INVISIBLE
+                                            frame.visibility = View.INVISIBLE
+                                            arrlist.clear()
+                                        }
+                                    }
+                                }
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
+                        }
+                        if(arrlist.size == 0){
+                            progress.visibility = View.INVISIBLE
+                            frame.visibility = View.VISIBLE
                         }
                     }
                 else{
                         progress.visibility = View.INVISIBLE
                         frame.visibility = View.VISIBLE
                     }
-                reterival(arrlist)
             }
             override fun onCancelled(error: DatabaseError) {}
         })

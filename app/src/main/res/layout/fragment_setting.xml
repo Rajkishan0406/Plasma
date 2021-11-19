@@ -4,8 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:layout_marginTop="18dp"
+    android:layout_gravity="top"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard.Setting.SettingFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/SettingFragment"
@@ -21,7 +32,7 @@
         android:id="@+id/logout_btn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="18dp"
         app:cardCornerRadius="5dp"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
@@ -284,6 +295,7 @@
                 android:id="@+id/response_number_card"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:visibility="invisible"
                 android:layout_alignParentRight="true"
                 app:cardBackgroundColor="@color/red"
                 android:layout_marginRight="10dp"
@@ -299,10 +311,9 @@
                         android:id="@+id/response_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:textColor="@color/white"
-                        android:text=""/>
+                        android:layout_centerInParent="true"
+                        android:text=""
+                        android:textColor="@color/white" />
 
                 </RelativeLayout>
 
@@ -336,5 +347,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

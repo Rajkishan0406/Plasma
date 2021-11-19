@@ -89,6 +89,19 @@ class SettingFragment : Fragment() {
         developer = view.findViewById(R.id.About_Dev)
         response_number = view.findViewById(R.id.response_number)
 
+        var checker = 0 as Int
+
+        if (id != null) {
+            data.child(id).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                        var ss = snapshot.getValue() as String
+                        if(ss.equals("0"))
+                            checker = 1;
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
+
         if (id != null) {
             data.child(id).child("Donation_Want").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -99,8 +112,13 @@ class SettingFragment : Fragment() {
                             Log.i("id : ",""+d)
                             count++;
                         }
-                        response_number_card.visibility = View.VISIBLE
-                        response_number.setText(count.toString())
+                        if(checker == 0) {
+                            response_number_card.visibility = View.VISIBLE
+                            response_number.setText(count.toString())
+                        }
+                        else{
+                            response_number_card.visibility = View.INVISIBLE
+                        }
                     } else {
                         response_number_card.visibility = View.INVISIBLE
                     }
