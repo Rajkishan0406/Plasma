@@ -15,10 +15,12 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Authentication.SignUpFragment
+import com.example.plasma.Dashboard.Chat.ChatActivity
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Profile.ReportFragment
 import com.example.plasma.DashboardActivity
@@ -266,12 +268,10 @@ class RequestProfileFragment : Fragment() {
 
         msg.setOnClickListener(View.OnClickListener {
             if(!id.equals(User_id) && yes == 1) {
-                var frag = ChatPageFragment()
-                var bun = Bundle()
-                bun.putString("Name", name.text.toString())
-                bun.putString("Id", id)
-                frag.setArguments(bun)
-                setFragmentChatPage(frag)
+                val intent = Intent(activity, ChatActivity::class.java)
+                intent.putExtra("Id",id)
+                intent.putExtra("Name",name.text.toString())
+                activity?.startActivity(intent)
             }
             if(yes == -1){
                 Toast.makeText(activity,"Please add your profile for chat",Toast.LENGTH_SHORT).show()

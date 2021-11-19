@@ -1,6 +1,8 @@
 package com.example.plasma.Dashboard.Setting
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Profile.ReportFragment
@@ -153,6 +156,27 @@ class Donation_W_DetailsFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
 
         var Present_User_Id = mAuth.currentUser?.uid as String
+
+        //call feature
+        call.setOnClickListener(View.OnClickListener {
+            if (activity?.let {
+                    ActivityCompat.checkSelfPermission(it,
+                        android.Manifest.permission.CALL_PHONE)
+                } != PackageManager.PERMISSION_GRANTED) {
+                // request permission
+                activity?.let {
+                    ActivityCompat.requestPermissions(it,
+                        arrayOf(android.Manifest.permission.CALL_PHONE), 101)
+                }
+            }
+            else {
+                if (!id.equals(Present_User_Id)) {
+                    var intent = Intent(Intent.ACTION_CALL)
+                    intent.setData(Uri.parse("tel:" + number))
+                    activity?.startActivity(intent)
+                }
+            }
+        })
 
         msg.setOnClickListener(View.OnClickListener {
             if(!id.equals(Present_User_Id)){

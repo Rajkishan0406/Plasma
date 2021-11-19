@@ -1,5 +1,6 @@
 package com.example.plasma.Dashboard.Adapter
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.plasma.Dashboard.Chat.ChatActivity
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
@@ -46,14 +48,11 @@ class DonationGiveAdapter (var plasmarequest : ArrayList<PlasmaRequestModel>) : 
 
         holder.msg.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                    var activity = v!!.context as AppCompatActivity
-                    val IDF = ChatPageFragment()
-                    var bun: Bundle
-                    bun = Bundle()
-                    bun.putString("Name", PR.Name.toString())
-                    bun.putString("Id", id)
-                    IDF.arguments = bun
-                    activity.supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_frame, IDF).commit()
+                var activity = v!!.context as AppCompatActivity
+                val intent = Intent(activity, ChatActivity::class.java)
+                intent.putExtra("Id",id)
+                intent.putExtra("Name",PR.Name)
+                activity?.startActivity(intent)
             }
         })
 

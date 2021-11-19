@@ -1,6 +1,8 @@
 package com.example.plasma.Dashboard.Setting
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Home.RulesAndRegulationFragment
@@ -183,6 +186,28 @@ class Donation_G_DetailsFragment : Fragment() {
             getActivity()?.startActivity(intent)
         })
 
+        var User_id = mAuth.currentUser!!.uid
+
+        //call feature
+        call.setOnClickListener(View.OnClickListener {
+            if (activity?.let {
+                    ActivityCompat.checkSelfPermission(it,
+                        android.Manifest.permission.CALL_PHONE)
+                } != PackageManager.PERMISSION_GRANTED) {
+                // request permission
+                activity?.let {
+                    ActivityCompat.requestPermissions(it,
+                        arrayOf(android.Manifest.permission.CALL_PHONE), 101)
+                }
+            }
+            else {
+                if (!id.equals(User_id)) {
+                    var intent = Intent(Intent.ACTION_CALL)
+                    intent.setData(Uri.parse("tel:" + number))
+                    activity?.startActivity(intent)
+                }
+            }
+        })
 
         donate.setOnClickListener(View.OnClickListener {
             if (Present_User_Id != null) {

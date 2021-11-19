@@ -62,6 +62,7 @@ class Donation_Want_Fragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var checker = snapshot.getValue() as String
                 if(checker.equals("1")){
+                    arrlist.clear()
                     data.child("Donation_Want").addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if(snapshot.exists()){
