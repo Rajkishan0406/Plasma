@@ -62,7 +62,7 @@
                 android:layout_below="@+id/name"
                 android:layout_marginTop="11dp"
                 android:layout_marginLeft="25dp"
-                android:text="B.Tech from NIT Silchar"/>
+                android:text="B.Tech from NIT Silchar '23"/>
 
 
 

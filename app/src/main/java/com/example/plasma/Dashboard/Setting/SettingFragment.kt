@@ -94,9 +94,11 @@ class SettingFragment : Fragment() {
         if (id != null) {
             data.child(id).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
                         var ss = snapshot.getValue() as String
-                        if(ss.equals("0"))
+                        if (ss.equals("0"))
                             checker = 1;
+                    }
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })

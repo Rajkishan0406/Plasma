@@ -20,6 +20,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.DashboardActivity
 import com.example.plasma.R
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.messaging.FirebaseMessaging
@@ -39,6 +41,8 @@ class LoginFragment : Fragment() {
     lateinit var newi : ForgotPassword
     lateinit var data : DatabaseReference
     var found = 0 as Int
+    lateinit var emaill : TextInputLayout
+    lateinit var passss : TextInputLayout
 
     lateinit var mAuth : FirebaseAuth
 
@@ -54,6 +58,7 @@ class LoginFragment : Fragment() {
         frame = view.findViewById(R.id.login_frame1)
 
         requireActivity().window.statusBarColor = Color.parseColor("#00B54B")
+
 
         if (activity?.let {
                     ActivityCompat.checkSelfPermission(it,
@@ -75,6 +80,8 @@ class LoginFragment : Fragment() {
         email = view.findViewById(R.id.email)
         pass = view.findViewById(R.id.password)
         btn = view.findViewById(R.id.login_btn)
+        emaill = view.findViewById(R.id.emialll)
+        passss = view.findViewById(R.id.passs)
         pro = view.findViewById(R.id.login_progress_bar)
         forgot = view.findViewById(R.id.forgot_password_textview)
 
@@ -84,10 +91,15 @@ class LoginFragment : Fragment() {
             newi.show(childFragmentManager,"bottom sheet")
         })
 
+
         btn.setOnClickListener(View.OnClickListener {
             if(email.text.toString().length == 0 || pass.text.toString().length == 0)
                 Toast.makeText(activity,"Enter email and Password",Toast.LENGTH_SHORT).show()
             else {
+                emaill.isEnabled = false
+                passss.isEnabled = false
+                new_User.isEnabled = false
+                forgot.isEnabled = false
                 pro.visibility = View.VISIBLE
                 mAuth.signInWithEmailAndPassword(email.text.toString(), pass.text.toString())
                     .addOnSuccessListener {
@@ -96,6 +108,10 @@ class LoginFragment : Fragment() {
                         extractPlasmaRequest()
                         startActivity(intent)
                     }.addOnFailureListener {
+                        emaill.isEnabled = true
+                        passss.isEnabled = true
+                        new_User.isEnabled = true
+                        forgot.isEnabled = true
                     Toast.makeText(activity, "" + it.message.toString(), Toast.LENGTH_SHORT).show()
                         pro.visibility = View.INVISIBLE
                 }

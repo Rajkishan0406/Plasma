@@ -18,14 +18,10 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     lateinit var mAuth : FirebaseAuth
+    var run = 0 as Int
 
     public override fun onStart() {
         super.onStart()
-        checkConnection()
-    }
-
-    override fun onResume() {
-        super.onResume()
         checkConnection()
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
@@ -35,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,9 +42,15 @@ class MainActivity : AppCompatActivity() {
 
             checkConnection()
 
-
+            mAuth = FirebaseAuth.getInstance()
+            val currentUser = mAuth.currentUser
+            if(currentUser != null){
+                val intent = Intent(MainActivity@this, DashboardActivity::class.java)
+                startActivity(intent)
+            }
+            else{
             setFragment(SplashFragment())
-
+            }
     }
 
     private fun setFragment(loginFragment: SplashFragment) {
