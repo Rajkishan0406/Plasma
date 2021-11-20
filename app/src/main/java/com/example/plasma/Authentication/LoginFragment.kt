@@ -42,15 +42,6 @@ class LoginFragment : Fragment() {
 
     lateinit var mAuth : FirebaseAuth
 
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        if(currentUser != null){
-            val intent = Intent(getActivity(), DashboardActivity::class.java)
-            getActivity()?.startActivity(intent)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
