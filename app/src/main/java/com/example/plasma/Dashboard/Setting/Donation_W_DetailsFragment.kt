@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
+import com.example.plasma.Dashboard.Chat.ChatActivity
 import com.example.plasma.Dashboard.Chat.ChatPageFragment
 import com.example.plasma.Dashboard.Profile.ReportFragment
 import com.example.plasma.MapActivity
@@ -180,13 +181,10 @@ class Donation_W_DetailsFragment : Fragment() {
 
         msg.setOnClickListener(View.OnClickListener {
             if(!id.equals(Present_User_Id)){
-                val IDF = ChatPageFragment()
-                var bun: Bundle
-                bun = Bundle()
-                bun.putString("Name", name.text.toString())
-                bun.putString("Id", id)
-                IDF.arguments = bun
-                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_dashboard_frame, IDF)?.commit()
+                val intent = Intent(activity, ChatActivity::class.java)
+                intent.putExtra("Id",id)
+                intent.putExtra("Name",name.text.toString())
+                activity?.startActivity(intent)
             }
         })
 

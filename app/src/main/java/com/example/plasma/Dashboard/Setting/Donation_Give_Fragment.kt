@@ -28,6 +28,7 @@ class Donation_Give_Fragment : Fragment() {
     lateinit var progress : ProgressBar
     lateinit var frame : FrameLayout
     lateinit var donationArrayList : ArrayList<PlasmaRequestModel>
+    var hashset = hashSetOf<String>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -55,6 +56,7 @@ class Donation_Give_Fragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(activity)
 
         var arrlist = arrayListOf<String>()
+        hashset.clear()
 
         var cant = 0 as Int
 
@@ -77,13 +79,13 @@ class Donation_Give_Fragment : Fragment() {
                                     if(snapshot.exists()){
                                         var checker = snapshot.getValue() as String
                                         Log.i(checker+" "," "+cant)
-                                        if(checker.equals("1") && cant == 0) {
+                                        if(checker.equals("1") && cant == 0 && !hashset.contains(d)) {
                                             arrlist.add(d)
+                                            hashset.add(d)
                                             Log.i("array size : "," "+arrlist.size)
                                             reterival(arrlist)
                                             progress.visibility = View.INVISIBLE
                                             frame.visibility = View.INVISIBLE
-                                            arrlist.clear()
                                         }
                                     }
                                 }

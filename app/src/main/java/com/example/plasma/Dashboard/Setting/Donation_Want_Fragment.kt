@@ -30,6 +30,8 @@ class Donation_Want_Fragment : Fragment() {
     lateinit var progress : ProgressBar
     lateinit var frame : FrameLayout
     lateinit var donationArrayList : ArrayList<PlasmaRequestModel>
+    var hashset = hashSetOf<String>()
+    var hashSet2 = hashSetOf<PlasmaRequestModel>()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +59,7 @@ class Donation_Want_Fragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(activity)
 
         var arrlist = arrayListOf<String>()
+        hashset.clear()
 
         data.child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -68,8 +71,11 @@ class Donation_Want_Fragment : Fragment() {
                             if(snapshot.exists()){
                                 for(donationSnapshot in snapshot.children) {
                                     var d = donationSnapshot.getValue() as String
-                                    arrlist.add(d)
-                                    Log.i("id : ",""+d)
+                                    if(!hashset.contains(d)) {
+                                        arrlist.add(d)
+                                        Log.i("id : ",""+d)
+                                    }
+                                    hashset.add(d)
                                 }
                             }
                             else{
@@ -97,6 +103,7 @@ class Donation_Want_Fragment : Fragment() {
     }
 
     private fun reterival(d: ArrayList<String>) {
+        Log.i("length : ",""+d.size)
         donationArrayList = arrayListOf<PlasmaRequestModel>()
         for (a: String in d) {
             data2.child(a).addValueEventListener(object : ValueEventListener {
@@ -108,11 +115,13 @@ class Donation_Want_Fragment : Fragment() {
                         var state = snapshot.child("Profile").child("State").getValue() as String
                         var blood = snapshot.child("Profile").child("Blood_Grp").getValue() as String
                         var id = snapshot.child("Profile").child("Id").getValue() as String
+                        var put = PlasmaRequestModel(name,city,state,blood,id)
                         if(request.equals("0"))
-                            donationArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
+                            donationArrayList.add(put)
                     }
                     val adapter = DonationWantAdapter(donationArrayList)
                     recyclerview.adapter = adapter
+                    d.clear()
                     progress.visibility = View.INVISIBLE
                 }
 
