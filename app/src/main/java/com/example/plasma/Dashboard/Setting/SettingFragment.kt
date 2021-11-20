@@ -197,7 +197,7 @@ class SettingFragment : Fragment() {
 
 
         Aboutplasma.setOnClickListener(View.OnClickListener {
-            setFragmentAboutPlasma(MotionUIFragment())
+            setFragmentAboutPlasma(AboutPlasmaFragment())
         })
 
         developer.setOnClickListener(View.OnClickListener {
@@ -217,7 +217,7 @@ class SettingFragment : Fragment() {
         }
     }
 
-    private fun setFragmentAboutPlasma(forgotFragment: MotionUIFragment) {
+    private fun setFragmentAboutPlasma(forgotFragment: AboutPlasmaFragment) {
         var ft: FragmentTransaction? = getFragmentManager()?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.main_dashboard_frame, forgotFragment)

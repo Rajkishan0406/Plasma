@@ -1,17 +1,436 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/AboutPlasmaFragment"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
+    android:padding="2dp"
     tools:context=".Dashboard.Setting.AboutPlasmaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:text="About Plasma Fragment" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:padding="2dp"
+      android:layout_height="match_parent">
 
-</RelativeLayout>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          app:cardCornerRadius="12dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:padding="2dp"
+          app:cardElevation="15dp"
+          android:layout_marginBottom="15dp"
+          app:cardBackgroundColor="@color/profile"
+          android:layout_height="wrap_content">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/question1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginRight="8dp"
+                  android:textColor="@color/black"
+                  android:fontFamily="@font/poppins_regular"
+                  android:text="What is Plasma?"
+                  android:textSize="18dp"/>
+
+              <TextView
+                  android:id="@+id/answer1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/text_color_primary"
+                  android:textSize="16dp"
+                  android:layout_below="@+id/question1"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="15dp"
+                  android:layout_marginTop="2dp"
+                  android:text="Plasma is the clear, straw-colored liquid portion of blood that remains after red blood cells, white blood cells, platelets and other cellular components are removed. It is the single largest component of human blood, comprising about 55 percent, and contains water, salts, enzymes, antibodies and other proteins."/>
+
+
+          </RelativeLayout>
+
+
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          app:cardCornerRadius="12dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:padding="2dp"
+          app:cardElevation="15dp"
+          android:layout_marginBottom="15dp"
+          app:cardBackgroundColor="@color/profile"
+          android:layout_height="wrap_content">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/question2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginRight="8dp"
+                  android:textColor="@color/black"
+                  android:fontFamily="@font/poppins_regular"
+                  android:text="How does plasma donation differ from blood donation?"
+                  android:textSize="18dp"/>
+
+              <TextView
+                  android:id="@+id/answer2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/text_color_primary"
+                  android:textSize="16dp"
+                  android:layout_below="@+id/question2"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="15dp"
+                  android:layout_marginTop="2dp"
+                  android:text="In plasma donation, as opposed to blood donation, only plasma is extracted and the other components of blood are returned to the body.All plasma proteins lost by you due to donation will be formed again in 24-72 hours."
+                  />
+
+          </RelativeLayout>
+
+
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          app:cardCornerRadius="12dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:padding="2dp"
+          app:cardElevation="15dp"
+          android:layout_marginBottom="15dp"
+          app:cardBackgroundColor="@color/profile"
+          android:layout_height="wrap_content">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/question3"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginRight="8dp"
+                  android:textColor="@color/black"
+                  android:fontFamily="@font/poppins_regular"
+                  android:text="How many people would be benefitted by one person’s donation?"
+                  android:textSize="18dp"/>
+
+              <TextView
+                  android:id="@+id/answer3"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/text_color_primary"
+                  android:textSize="16dp"
+                  android:layout_below="@+id/question3"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="15dp"
+                  android:layout_marginTop="2dp"
+                  android:text="Each plasma donation would be used to treat 2 patients. The bank collects 500 ml of plasma, depending on weight."
+                  />
+
+          </RelativeLayout>
+
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          app:cardCornerRadius="12dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:padding="2dp"
+          app:cardElevation="15dp"
+          android:layout_marginBottom="15dp"
+          app:cardBackgroundColor="@color/profile"
+          android:layout_height="wrap_content">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/question4"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginRight="8dp"
+                  android:textColor="@color/black"
+                  android:fontFamily="@font/poppins_regular"
+                  android:text="who can donate plasma?"
+                  android:textSize="18dp"/>
+
+              <TextView
+                  android:id="@+id/answer41"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/text_color_primary"
+                  android:textSize="16dp"
+                  android:layout_below="@+id/question4"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="1dp"
+                  android:layout_marginTop="2dp"
+                  android:text="Those who had the disease, but have recovered at least 14 days before the donation can be considered — although doctors prefer a time of three weeks between recovery and donation."
+                  />
+
+              <TextView
+                  android:id="@+id/answer42"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="1dp"
+                  android:layout_below="@id/answer41"
+                  android:textColor="@color/text_color_primary"
+                  android:textSize="16dp"
+                  android:text="People between the ages of 18 and 60, and weighing not less than 50 kg are eligible. Women who have given birth are not eligible, as the antibodies they produce during pregnancy (after being exposed to the blood of the foetus) can interfere with lung function."/>
+
+              <TextView
+                  android:id="@+id/answer43"
+                  android:layout_below="@id/answer42"
+                  android:layout_width="match_parent"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="15dp"
+                  android:textColor="@color/text_color_primary"
+                  android:textSize="16dp"
+                  android:layout_height="wrap_content"
+                  android:text="People with comorbidities such as diabetes, hypertension, and cancer are also excluded. Once you reach the centre, a doctor will take a detailed medical history and conduct a physical examination (Height, Weight, Blood Pressure, Temperature, adequate veins for phlebotomy)."/>
+
+          </RelativeLayout>
+
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          app:cardCornerRadius="12dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:padding="2dp"
+          app:cardElevation="15dp"
+          android:layout_marginBottom="15dp"
+          app:cardBackgroundColor="@color/profile"
+          android:layout_height="wrap_content">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/question5"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginRight="8dp"
+                  android:textColor="@color/black"
+                  android:fontFamily="@font/poppins_regular"
+                  android:text="How often can a recovered patient donate plasma?"
+                  android:textSize="18dp"/>
+
+              <TextView
+                  android:id="@+id/answer5"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/text_color_primary"
+                  android:textSize="16dp"
+                  android:layout_below="@+id/question5"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="15dp"
+                  android:layout_marginTop="2dp"
+                  android:text="500 ml of plasma can be donated every two weeks, while blood can be donated once in three months. “This is safer with very little stress on the body. Plasma can be stored for a year, as frozen plasma will still have antibodies. The antibody level doesn’t decrease in a person’s body."
+                  />
+
+          </RelativeLayout>
+
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          app:cardCornerRadius="12dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:padding="2dp"
+          app:cardElevation="15dp"
+          android:layout_marginBottom="15dp"
+          app:cardBackgroundColor="@color/profile"
+          android:layout_height="wrap_content">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/question6"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginRight="8dp"
+                  android:textColor="@color/black"
+                  android:fontFamily="@font/poppins_regular"
+                  android:text="Blood Group Compatabale"
+                  android:textSize="18dp"/>
+
+              <TextView
+                  android:id="@+id/answer61"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/red_light"
+                  android:textSize="18dp"
+                  android:fontFamily="@font/poppins_semibold"
+                  android:layout_below="@+id/question6"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="1dp"
+                  android:layout_marginTop="2dp"
+                  android:text="A   :  A,AB"
+                  />
+
+              <TextView
+                  android:id="@+id/answer62"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/red_light"
+                  android:textSize="18dp"
+                  android:fontFamily="@font/poppins_semibold"
+                  android:layout_below="@+id/answer61"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="1dp"
+                  android:layout_marginTop="2dp"
+                  android:text="B   :  B,AB"
+                  />
+
+              <TextView
+                  android:id="@+id/answer63"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/red_light"
+                  android:textSize="18dp"
+                  android:fontFamily="@font/poppins_semibold"
+                  android:layout_below="@+id/answer62"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="1dp"
+                  android:layout_marginTop="2dp"
+                  android:text="O   :  A,B,O,AB"
+                  />
+
+              <TextView
+                  android:id="@+id/answer64"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/red_light"
+                  android:textSize="18dp"
+                  android:fontFamily="@font/poppins_semibold"
+                  android:layout_below="@+id/answer63"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="15dp"
+                  android:layout_marginTop="2dp"
+                  android:text="AB  :  AB"
+                  />
+
+
+
+          </RelativeLayout>
+
+      </com.google.android.material.card.MaterialCardView>
+
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginBottom="15dp"
+          app:cardCornerRadius="5dp"
+          app:cardBackgroundColor="@color/healthy_card_background">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <TextView
+                  android:id="@+id/more_site"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="List of websites for information on plasma donation:"
+                  android:textColor="@color/black"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginTop="5dp"
+                  android:layout_marginBottom="5dp"
+                  android:fontFamily="@font/poppins_regular"/>
+
+              <TextView
+                  android:id="@+id/site1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/blue"
+                  android:fontFamily="@font/comfortaa"
+                  android:layout_marginLeft="5dp"
+                  android:layout_below="@+id/more_site"
+                  android:layout_marginTop="2dp"
+                  android:text="covidplasma.online/"/>
+
+
+              <TextView
+                  android:id="@+id/site2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/blue"
+                  android:layout_marginLeft="5dp"
+                  android:fontFamily="@font/comfortaa"
+                  android:layout_below="@+id/site1"
+                  android:layout_marginTop="2dp"
+                  android:text="https://dhoondh.com"/>
+
+
+              <TextView
+                  android:id="@+id/site3"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/blue"
+                  android:layout_marginLeft="5dp"
+                  android:fontFamily="@font/comfortaa"
+                  android:layout_marginBottom="8dp"
+                  android:layout_below="@+id/site2"
+                  android:layout_marginTop="2dp"
+                  android:text="http://needplasma.in/"/>
+
+          </RelativeLayout>
+
+      </com.google.android.material.card.MaterialCardView>
+
+  </LinearLayout>
+
+</ScrollView>

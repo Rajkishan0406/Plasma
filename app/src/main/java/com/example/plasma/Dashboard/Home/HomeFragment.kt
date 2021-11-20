@@ -19,6 +19,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.airbnb.lottie.LottieAnimationView
 import com.example.plasma.Dashboard.Adapter.PlasmaRequestAdapter
 import com.example.plasma.Dashboard.Model.PlasmaRequestModel
 import com.example.plasma.MapActivity
@@ -38,6 +39,7 @@ class HomeFragment : Fragment() {
     lateinit var plasmaArrayList : ArrayList<PlasmaRequestModel>
     lateinit var request_size : TextView
     var size = 0 as Int
+    lateinit var lottie : LottieAnimationView
     lateinit var map : CardView
     lateinit var frag : FilterFragment
     lateinit var filter : TextView
