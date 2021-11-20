@@ -19,6 +19,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.plasma.R
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -35,6 +36,9 @@ class SignUpFragment : Fragment() {
     lateinit var frame : FrameLayout
     lateinit var btn : NeumorphButton
     lateinit var pro : ProgressBar
+    lateinit var emailll : TextInputLayout
+    lateinit var passs : TextInputLayout
+    lateinit var passs2 : TextInputLayout
 
     lateinit var mAuth : FirebaseAuth
     lateinit var data : DatabaseReference
@@ -52,6 +56,9 @@ class SignUpFragment : Fragment() {
 
 
         email = view.findViewById(R.id.email)
+        emailll = view.findViewById(R.id.emialll)
+        passs = view.findViewById(R.id.passworddd)
+        passs2 = view.findViewById(R.id.passworddd2)
         pass = view.findViewById(R.id.password)
         con_pass = view.findViewById(R.id.password_conf)
         btn = view.findViewById(R.id.signup_btn)
@@ -84,12 +91,18 @@ class SignUpFragment : Fragment() {
 
     private fun SignUp(email: String, password: String) {
             mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
+                emailll.isEnabled = false
+                pass.isEnabled = false
+                passs2.isEnabled = false
                 FcmToken()
                 Toast.makeText(activity,"Signup Successfull",Toast.LENGTH_SHORT).show()
                 pro.visibility = View.INVISIBLE
                 setFragmentProfile(ProfileCreationFragment())
             }.addOnFailureListener {
                 Toast.makeText(activity,""+it.message.toString(),Toast.LENGTH_SHORT).show()
+                emailll.isEnabled = true
+                pass.isEnabled = true
+                passs2.isEnabled = true
                 pro.visibility = View.INVISIBLE
             }
     }
