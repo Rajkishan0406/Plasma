@@ -59,29 +59,35 @@ class Donation_Give_Fragment : Fragment() {
 
         data.child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                var checker = snapshot.getValue() as String
-                if(checker.equals("0")){
-                    arrlist.clear()
-                    data.child("Donation_Give").addValueEventListener(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if(snapshot.exists()){
-                                for(donationSnapshot in snapshot.children) {
-                                    var d = donationSnapshot.getValue() as String
-                                    arrlist.add(d)
-                                    Log.i("id : ",""+d)
+                if(snapshot.exists()) {
+                    var checker = snapshot.getValue() as String
+                    if (checker.equals("0")) {
+                        arrlist.clear()
+                        data.child("Donation_Give")
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if (snapshot.exists()) {
+                                        for (donationSnapshot in snapshot.children) {
+                                            var d = donationSnapshot.getValue() as String
+                                            arrlist.add(d)
+                                            Log.i("id : ", "" + d)
+                                        }
+                                    } else {
+                                        progress.visibility = View.INVISIBLE
+                                        frame.visibility = View.VISIBLE
+                                    }
+                                    reterival(arrlist)
                                 }
-                            }
-                            else{
-                                progress.visibility = View.INVISIBLE
-                                frame.visibility = View.VISIBLE
-                            }
-                            reterival(arrlist)
-                        }
-                        override fun onCancelled(error: DatabaseError) {}
-                    })
+
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
+                    } else {
+                        Log.i("frame : ", "visible")
+                        progress.visibility = View.INVISIBLE
+                        frame.visibility = View.VISIBLE
+                    }
                 }
                 else{
-                    Log.i("frame : ","visible")
                     progress.visibility = View.INVISIBLE
                     frame.visibility = View.VISIBLE
                 }
