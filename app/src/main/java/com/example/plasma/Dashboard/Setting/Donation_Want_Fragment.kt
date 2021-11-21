@@ -30,8 +30,9 @@ class Donation_Want_Fragment : Fragment() {
     lateinit var progress : ProgressBar
     lateinit var frame : FrameLayout
     lateinit var donationArrayList : ArrayList<PlasmaRequestModel>
-    var hashset = hashSetOf<String>()
-    var hashSet2 = hashSetOf<PlasmaRequestModel>()
+    var go = 0 as Int
+    var valid = 0 as Int
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -58,8 +59,9 @@ class Donation_Want_Fragment : Fragment() {
         recyclerview.setHasFixedSize(true)
         recyclerview.layoutManager = LinearLayoutManager(activity)
 
+
         var arrlist = arrayListOf<String>()
-        hashset.clear()
+
 
         data.child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -71,11 +73,8 @@ class Donation_Want_Fragment : Fragment() {
                             if(snapshot.exists()){
                                 for(donationSnapshot in snapshot.children) {
                                     var d = donationSnapshot.getValue() as String
-                                    if(!hashset.contains(d)) {
                                         arrlist.add(d)
                                         Log.i("id : ",""+d)
-                                    }
-                                    hashset.add(d)
                                 }
                             }
                             else{
@@ -97,7 +96,6 @@ class Donation_Want_Fragment : Fragment() {
 
 
 
-        return view
 
         return view
     }
