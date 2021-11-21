@@ -9,13 +9,35 @@ import com.example.plasma.Authentication.LoginFragment
 import com.example.plasma.Authentication.SignUpFragment
 import com.example.plasma.Dashboard.Home.RequestProfileFragment
 import com.example.plasma.Dashboard.NoInternetFragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class ProfileActivity : AppCompatActivity() {
 
 
+    lateinit var mAuth : FirebaseAuth
+    lateinit var data : DatabaseReference
+
     override fun onStart() {
         super.onStart()
         checkConnection()
+        mAuth = FirebaseAuth.getInstance()
+        var id = mAuth.currentUser?.uid
+        data = FirebaseDatabase.getInstance().getReference("Details")
+        if (id != null) {
+            data.child(id).child("Online").setValue("1")
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        mAuth = FirebaseAuth.getInstance()
+        var id = mAuth.currentUser?.uid
+        data = FirebaseDatabase.getInstance().getReference("Details")
+        if (id != null) {
+            data.child(id).child("Online").setValue("1")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -56,51 +56,35 @@ class Donation_Give_Fragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(activity)
 
         var arrlist = arrayListOf<String>()
-        hashset.clear()
-
-        var cant = 0 as Int
 
         data.child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                var ss = snapshot.getValue() as String
-                if(ss.equals("1"))
-                    cant = 1
-            }
-            override fun onCancelled(error: DatabaseError) {}
-        })
-
-        data.child("Donation_Give").addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()){
-                        for(donationSnapshot in snapshot.children) {
-                            var d = donationSnapshot.getValue() as String
-                            data2.child(d).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if(snapshot.exists()){
-                                        var checker = snapshot.getValue() as String
-                                        Log.i(checker+" "," "+cant)
-                                        if(checker.equals("1") && cant == 0 && !hashset.contains(d)) {
-                                            arrlist.add(d)
-                                            hashset.add(d)
-                                            Log.i("array size : "," "+arrlist.size)
-                                            reterival(arrlist)
-                                            progress.visibility = View.INVISIBLE
-                                            frame.visibility = View.INVISIBLE
-                                        }
-                                    }
+                var checker = snapshot.getValue() as String
+                if(checker.equals("0")){
+                    arrlist.clear()
+                    data.child("Donation_Give").addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.exists()){
+                                for(donationSnapshot in snapshot.children) {
+                                    var d = donationSnapshot.getValue() as String
+                                    arrlist.add(d)
+                                    Log.i("id : ",""+d)
                                 }
-                                override fun onCancelled(error: DatabaseError) {}
-                            })
+                            }
+                            else{
+                                progress.visibility = View.INVISIBLE
+                                frame.visibility = View.VISIBLE
+                            }
+                            reterival(arrlist)
                         }
-                        if(arrlist.size == 0){
-                            progress.visibility = View.INVISIBLE
-                            frame.visibility = View.VISIBLE
-                        }
-                    }
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
+                }
                 else{
-                        progress.visibility = View.INVISIBLE
-                        frame.visibility = View.VISIBLE
-                    }
+                    Log.i("frame : ","visible")
+                    progress.visibility = View.INVISIBLE
+                    frame.visibility = View.VISIBLE
+                }
             }
             override fun onCancelled(error: DatabaseError) {}
         })
