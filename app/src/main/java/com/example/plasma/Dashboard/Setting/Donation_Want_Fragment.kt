@@ -87,6 +87,7 @@ class Donation_Want_Fragment : Fragment() {
                     })
                 }
                 else{
+                    Log.i("frame : ","visible")
                     progress.visibility = View.INVISIBLE
                     frame.visibility = View.VISIBLE
                 }
@@ -121,6 +122,8 @@ class Donation_Want_Fragment : Fragment() {
                     recyclerview.adapter = adapter
                     d.clear()
                     progress.visibility = View.INVISIBLE
+                    if(donationArrayList.size == 0)
+                        frame.visibility = View.VISIBLE
                 }
 
                 override fun onCancelled(error: DatabaseError) {}

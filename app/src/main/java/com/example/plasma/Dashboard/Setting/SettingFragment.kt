@@ -96,8 +96,10 @@ class SettingFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()) {
                         var ss = snapshot.getValue() as String
-                        if (ss.equals("0"))
+                        if (ss.equals("1"))
                             checker = 1;
+                        else
+                            response_number_card.visibility = View.INVISIBLE
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {}
@@ -112,18 +114,23 @@ class SettingFragment : Fragment() {
                         for(donationSnapshot in snapshot.children) {
                             var d = donationSnapshot.getValue() as String
                             Log.i("id : ",""+d)
-                            count++;
+                            data.child(d).child("PlasmaRequest").addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if(snapshot.exists()){
+                                        var ss = snapshot.getValue() as String
+                                        if(ss.equals("0") && checker == 1) {
+                                            count++
+                                            response_number_card.visibility = View.VISIBLE
+                                            response_number.setText(count.toString())
+                                        }
+                                    }
+                                }
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
                         }
-                        if(checker == 0) {
-                            response_number_card.visibility = View.VISIBLE
-                            response_number.setText(count.toString())
-                        }
-                        else{
-                            response_number_card.visibility = View.INVISIBLE
-                        }
-                    } else {
-                        response_number_card.visibility = View.INVISIBLE
                     }
+                    if(checker == 1)
+                        response_number_card.visibility = View.INVISIBLE
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
