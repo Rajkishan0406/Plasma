@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
     lateinit var HLayout : RelativeLayout
     lateinit var plasmaArrayList : ArrayList<PlasmaRequestModel>
     lateinit var request_size : TextView
+    lateinit var no_data_animation : LottieAnimationView
     var size = 0 as Int
     lateinit var lottie : LottieAnimationView
     lateinit var map : CardView
@@ -56,6 +57,7 @@ class HomeFragment : Fragment() {
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
 
         mAuth = FirebaseAuth.getInstance()
+        no_data_animation = view.findViewById(R.id.nodata_animation)
         progress = view.findViewById(R.id.progress_load)
         Refresh = view.findViewById(R.id.refresh)
         request_size = view.findViewById(R.id.total_count)
@@ -113,10 +115,14 @@ class HomeFragment : Fragment() {
                             }
                         }
                     }
+                    var x = plasmaArrayList.size as Int
+                    if(x == 0) {
+                        no_data_animation.visibility = View.VISIBLE
+                        recyclerview.visibility = View.INVISIBLE
+                    }
                     val adapter = PlasmaRequestAdapter(plasmaArrayList)
                     recyclerview.adapter = adapter
                     progress.visibility = View.INVISIBLE
-                    var x = plasmaArrayList.size as Int
                     request_size.setText("Total Request : " + x)
                 }
             }

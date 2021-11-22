@@ -167,14 +167,17 @@
     </RelativeLayout>
 
 
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_plasma_request"
@@ -182,8 +185,25 @@
                 android:layoutAnimation="@anim/layout_animation"
                 android:layout_height="match_parent" />
 
+
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/nodata_animation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible"
+                android:layout_marginBottom="10dp"
+                android:padding="1dp"
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/nodata" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
