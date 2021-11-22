@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/DonationWantFragment"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard.Setting.Donation_Want_Fragment">
 
@@ -17,6 +18,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_response"
         android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content"
         app:cardCornerRadius="0dp"
         app:cardElevation="9dp">

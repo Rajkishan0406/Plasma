@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/drawable/gradient1.xml" value="0.2703125" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/badge_text.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/chat_layout.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/donationgivelayout.xml" value="0.25271739130434784" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_about_plasma.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_chat.xml" value="0.25416666666666665" />
@@ -13,7 +14,9 @@
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_covid_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_covid_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_developer.xml" value="0.264" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_donation__g__details.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_donation__give_.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_donation__w__details.xml" value="0.24864130434782608" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_donation__want_.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_forgot_password.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_help_chat.xml" value="0.25416666666666665" />
@@ -30,6 +33,7 @@
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_update_covid.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/fragment_update_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/layout/plasmarequestlayout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Raj Kishan/AndroidStudioProjects/Plasma/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

@@ -5,12 +5,12 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
         android:title="Home"
-        app:cnb_iconColor="@color/home"/>
+        app:cnb_iconColor="@color/chat"/>
     <item
         android:id="@+id/chat"
         android:icon="@drawable/ic_baseline_chat_bubble_outline_24"
         android:title="Chat"
-        app:cnb_iconColor="@color/chat"/>
+        app:cnb_iconColor="@color/home"/>
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_user"

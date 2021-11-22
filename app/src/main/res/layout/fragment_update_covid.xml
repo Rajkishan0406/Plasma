@@ -23,6 +23,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="18dp"
             android:clickable="true"
+            app:cardBackgroundColor="@color/white"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="8dp"
             app:cardElevation="10dp">
@@ -44,6 +45,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_primary"
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Upload Recent Covid Test Report"
@@ -149,6 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="5dp"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <TextView
@@ -164,6 +167,7 @@
                     android:id="@+id/first_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_primary"
                     android:layout_marginLeft="25dp"
                     android:text="First Dose" />
 
@@ -171,6 +175,7 @@
                     android:id="@+id/second_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_primary"
                     android:layout_marginLeft="25dp"
                     android:text="Second Dose" />
 

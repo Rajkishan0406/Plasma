@@ -54,10 +54,11 @@ class ChatPageFragment : Fragment() {
     lateinit var unblock_card : CardView
     lateinit var setting : ImageView
     lateinit var menu : CardView
-    lateinit var msg_card : TextInputLayout
     lateinit var block : CardView
     lateinit var clear : CardView
     //lateinit var theme : CardView
+    lateinit var msg_card : TextInputLayout
+    lateinit var progress : ProgressBar
     lateinit var help : CardView
     lateinit var theme_back : RelativeLayout
     lateinit var image : ImageView
@@ -125,6 +126,7 @@ class ChatPageFragment : Fragment() {
         msg_card = view.findViewById(R.id.msg_card)
         block_card = view.findViewById(R.id.block_card)
         unblock_card = view.findViewById(R.id.unblock_card)
+        progress = view.findViewById(R.id.progress_in_chat_fragment)
         setting = view.findViewById(R.id.setting)
         menu = view.findViewById(R.id.menu_card)
         block = view.findViewById(R.id.block)
@@ -432,6 +434,9 @@ class ChatPageFragment : Fragment() {
 
 
         image.setOnClickListener(View.OnClickListener {
+            progress.visibility = View.VISIBLE
+            msg_card.isEnabled = false
+            image.isEnabled = false
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, pickImage)
         })
@@ -447,10 +452,14 @@ class ChatPageFragment : Fragment() {
             val sdf = SimpleDateFormat("yyyy_MM_dd_HH:mm:ss")
             val d = sdf.format(Date())
             Toast.makeText(activity, "Sending...", Toast.LENGTH_SHORT).show()
-            storage =
-                    FirebaseStorage.getInstance().reference.child("Message")
-                            .child(d)
+            //show a sending dialog
+            storage = FirebaseStorage.getInstance().reference.child("Message").child(d)
             storeimage(User_Id, id)
+        }
+        else{
+            progress.visibility = View.INVISIBLE
+            msg_card.isEnabled = true
+            image.isEnabled = true
         }
     }
 
@@ -476,14 +485,16 @@ class ChatPageFragment : Fragment() {
                     da.child(id).child("Chatting").child(User_id).child("Last_Message").setValue("r" + d + "Image File")
                 }
                 Log.i("image upload : ", "Successfull")
+                progress.visibility = View.INVISIBLE
+                msg_card.isEnabled = true
+                image.isEnabled = true
             }
                     .addOnFailureListener(){
-                        Toast.makeText(
-                            activity,
-                            "Some thing went wrong!! please try again",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(activity, "Some thing went wrong!! please try again", Toast.LENGTH_SHORT).show()
                         Log.i("image upload : ", "Fail")
+                        progress.visibility = View.INVISIBLE
+                        msg_card.isEnabled = true
+                        image.isEnabled = true
                         }
         }
     }
