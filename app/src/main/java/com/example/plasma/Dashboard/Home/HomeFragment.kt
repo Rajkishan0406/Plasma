@@ -126,11 +126,7 @@ class HomeFragment : Fragment() {
                     request_size.setText("Total Request : " + x)
                 }
             }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
 
 

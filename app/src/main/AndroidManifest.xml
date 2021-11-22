@@ -12,9 +12,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_baseline_format_color_reset_24"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_baseline_format_color_reset_24"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plasma"
         android:usesCleartextTraffic="true">
