@@ -29,6 +29,21 @@ Plasma Donation app helps to find out nearby recipient just in few steps
 
 ## Map Feature
 
-With just a click you can add your current location and able to track other request location and find near by recipient
+With just a click you can add your current location. 
+User are able to track other recipient location and find near by one.
+One can find the best route from his current location to the recipient location using Google Map.
+One can also Filter recipient on the basis of location and blood group
+
+## Profile
+
+User Profile contains
+
+- Blood Group
+- Location
+- Contact Number
+- Date of birth
+- Covid details and other
+
+User can hide their contact number from other user and can block a user from reaching them
 
 
