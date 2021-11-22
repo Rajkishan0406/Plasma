@@ -37,8 +37,7 @@ User can create thier account by using his personal email id. If in case user fo
 
 With just a click you can add your current location. 
 User are able to track other recipient location and find near by one.
-One can find the best route from his current location to the recipient location using Google Map.
-One can also Filter recipient on the basis of location and blood group
+One can find the best route from his current location to the recipient location using Google Map and also Filter recipient on the basis of location and blood group
 
 ## Profile
 
