@@ -27,6 +27,10 @@ Plasma Donation app helps to find out nearby recipient just in few steps
   <img height="300px" src="https://user-images.githubusercontent.com/65487416/142901221-11d193c4-d29a-46e4-8303-92f5aa96b2b6.jpg"/>
 </p>
 
+## Authentication
+
+User can create thier account by using his personal email id. If in case user forgot their password, then user can change their password by using their personal email id.
+
 ## Map Feature
 
 With just a click you can add your current location. 
@@ -44,6 +48,19 @@ User Profile contains
 - Date of birth
 - Covid details and other
 
-User can hide their contact number from other user and can block a user from reaching them
+User can hide their contact number from other user.
+
+## Chatting
+
+Features in Chatting are : 
+- User can send text and image both
+- can block a person from texting
+- clear all chat with just one click
+- delete a particular message
+- last message seen 
+- online / offine status
+- reply on a particlar text
+
+Chatting contain all advance fetaure which a messaging app can contain
 
 
