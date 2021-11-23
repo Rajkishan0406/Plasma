@@ -45,38 +45,12 @@ class HomeFragment : Fragment() {
     lateinit var frag : FilterFragment
     lateinit var filter : TextView
 
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_home, container, false)
-
-        requireActivity().window.statusBarColor = Color.WHITE
-
-
+    override fun onStart() {
+        super.onStart()
         var pref = PreferenceManager.getDefaultSharedPreferences(activity)
 
         mAuth = FirebaseAuth.getInstance()
-        no_data_animation = view.findViewById(R.id.nodata_animation)
-        progress = view.findViewById(R.id.progress_load)
-        Refresh = view.findViewById(R.id.refresh)
-        request_size = view.findViewById(R.id.total_count)
-        map = view.findViewById(R.id.mapAll)
         data = FirebaseDatabase.getInstance().getReference("Details")
-
-        recyclerview = view.findViewById(R.id.recyclerview_plasma_request)
-        recyclerview.setHasFixedSize(true)
-        recyclerview.layoutManager = LinearLayoutManager(activity)
-
-        plasmaArrayList = arrayListOf<PlasmaRequestModel>()
-
-        filter = view.findViewById(R.id.filter)
-
-        frag = FilterFragment()
-        filter.setOnClickListener(View.OnClickListener {
-            frag.show(childFragmentManager,"bottom sheet")
-        })
-
         data.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 plasmaArrayList.clear()
@@ -95,7 +69,7 @@ class HomeFragment : Fragment() {
                                 var id = plasmarequestSnapshot.child("Profile").child("Id").getValue() as String
                                 if (CITY.toString().equals("0") && STATE.toString().equals("0") && BLOOD.toString().equals("0")){
                                     plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
-                                    }
+                                }
                                 else {
                                     if (CITY.toString().equals(city) && STATE.toString().equals("0") && BLOOD.toString().equals("0"))
                                         plasmaArrayList.add(PlasmaRequestModel(name, city, state, blood, id))
@@ -127,6 +101,39 @@ class HomeFragment : Fragment() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {}
+        })
+
+    }
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        var view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        requireActivity().window.statusBarColor = Color.WHITE
+
+
+        var pref = PreferenceManager.getDefaultSharedPreferences(activity)
+
+        mAuth = FirebaseAuth.getInstance()
+        no_data_animation = view.findViewById(R.id.nodata_animation)
+        progress = view.findViewById(R.id.progress_load)
+        Refresh = view.findViewById(R.id.refresh)
+        request_size = view.findViewById(R.id.total_count)
+        map = view.findViewById(R.id.mapAll)
+        data = FirebaseDatabase.getInstance().getReference("Details")
+
+        recyclerview = view.findViewById(R.id.recyclerview_plasma_request)
+        recyclerview.setHasFixedSize(true)
+        recyclerview.layoutManager = LinearLayoutManager(activity)
+
+        plasmaArrayList = arrayListOf<PlasmaRequestModel>()
+
+        filter = view.findViewById(R.id.filter)
+
+        frag = FilterFragment()
+        filter.setOnClickListener(View.OnClickListener {
+            frag.show(childFragmentManager,"bottom sheet")
         })
 
 

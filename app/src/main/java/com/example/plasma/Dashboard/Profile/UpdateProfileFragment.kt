@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import soup.neumorphism.NeumorphButton
 import soup.neumorphism.NeumorphCardView
+import java.lang.Exception
 import java.util.*
 
 class UpdateProfileFragment : Fragment() {
@@ -304,7 +305,6 @@ class UpdateProfileFragment : Fragment() {
         )
 
         map.setOnClickListener(View.OnClickListener {
-            Toast.makeText(activity,"Make sure your GPS location is ON!",Toast.LENGTH_SHORT).show()
             fetchLocation()
         })
 
@@ -370,19 +370,20 @@ class UpdateProfileFragment : Fragment() {
                 location.setText(loc_city+", "+loc_state)
                 change = 1
             }
-            else
-                Toast.makeText(activity,"Please make sure your gps location is ON!",Toast.LENGTH_SHORT).show()
         }
     }
     private fun getCityName(lat : Double , long : Double) : String {
 
         var cityName = "" as String
         if(activity != null) {
-            var geoCoder = Geocoder(activity, Locale.getDefault())
-            Log.i("GeoCoder : "," "+geoCoder.getFromLocation(lat,long,1))
-            if(geoCoder?.getFromLocation(lat,long,1) != null) {
-                var Address = geoCoder?.getFromLocation(lat, long, 1)
+
+            try {
+                var geoCoder = Geocoder(activity, Locale.getDefault())
+                var Address = geoCoder.getFromLocation(lat, long, 1)
                 cityName = Address.get(0).locality
+            }catch (e : Exception){
+                Toast.makeText(activity,"Server or Network API error! Please try again later",Toast.LENGTH_LONG).show()
+                cityName = "----------"
             }
 
         }
@@ -393,10 +394,15 @@ class UpdateProfileFragment : Fragment() {
             var stateName = "" as String
 
         if(activity != null) {
-            var geoCoder = Geocoder(activity, Locale.getDefault())
-            var Address = geoCoder.getFromLocation(lat, long, 1)
-
-            stateName = Address.get(0).adminArea
+            try {
+                var geoCoder = Geocoder(activity, Locale.getDefault())
+                var Address = geoCoder.getFromLocation(lat, long, 1)
+                stateName = Address.get(0).adminArea
+                loc_city = Address.get(0).locality
+            }catch (e : Exception){
+                Toast.makeText(activity,"Server or Network API error! Please try again later",Toast.LENGTH_LONG).show()
+                stateName = "----------"
+            }
 
         }
         return stateName

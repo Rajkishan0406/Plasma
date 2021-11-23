@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import soup.neumorphism.NeumorphButton
 import soup.neumorphism.NeumorphCardView
+import java.lang.Exception
 import java.util.*
 import java.util.jar.Manifest
 
@@ -362,10 +363,13 @@ class ProfileCreationFragment : Fragment() {
 
         var cityName = "" as String
         if(activity != null) {
-            var geoCoder = Geocoder(activity, Locale.getDefault())
-            if(geoCoder.getFromLocation(lat,long,1) != null) {
+            try {
+                var geoCoder = Geocoder(activity, Locale.getDefault())
                 var Address = geoCoder.getFromLocation(lat, long, 1)
                 cityName = Address.get(0).locality
+            }catch (e : Exception){
+                Toast.makeText(activity,"Server or Network API error! Please try again later",Toast.LENGTH_LONG).show()
+                cityName = "----------"
             }
         }
 
@@ -375,10 +379,15 @@ class ProfileCreationFragment : Fragment() {
 
         var stateName = "" as String
         if(activity != null) {
-            var geoCoder = Geocoder(activity, Locale.getDefault())
-            var Address = geoCoder.getFromLocation(lat, long, 1)
-
-            stateName = Address.get(0).adminArea
+            try {
+                var geoCoder = Geocoder(activity, Locale.getDefault())
+                var Address = geoCoder.getFromLocation(lat, long, 1)
+                stateName = Address.get(0).adminArea
+                loc_city = Address.get(0).locality
+            }catch (e : Exception){
+                Toast.makeText(activity,"Server or Network API error! Please try again later",Toast.LENGTH_LONG).show()
+                stateName = "----------"
+            }
         }
 
         return stateName
