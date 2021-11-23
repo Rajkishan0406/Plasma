@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Authentication.LoginFragment">
@@ -44,10 +45,12 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/image_cardview"
                 android:layout_width="70dp"
                 android:layout_centerHorizontal="true"
                 app:cardCornerRadius="50dp"
-                android:layout_marginTop="100dp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginTop="70dp"
                 android:layout_height="70dp">
 
                 <ImageView
@@ -58,34 +61,44 @@
             </androidx.cardview.widget.CardView>
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_cardview"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/comfortaa"
+                android:textSize="18dp"
+                android:text="Plasma Donation"/>
 
                     <TextView
                         android:id="@+id/forgot_password_textview"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginBottom="80dp"
                         android:layout_marginRight="25dp"
                         android:text="Forgot Password?"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textAlignment="center"
+                        android:textAlignment="textEnd"
+                        android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/purple_700"
                         android:textSize="15dp" />
 
-                    <TextView
-                        android:id="@+id/New_User_textview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginBottom="80dp"
-                        android:layout_alignParentBottom="true"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="New User"
-                        android:textAlignment="center"
-                        android:textColor="@color/purple_700"
-                        android:textSize="15dp" />
+            <TextView
+                android:id="@+id/New_User_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="80dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="New User"
+                android:textColor="@color/purple_700"
+                android:textSize="15dp" />
 
 
 
@@ -192,22 +205,22 @@
 
                     <soup.neumorphism.NeumorphButton
                         android:id="@+id/login_btn"
+                        style="@style/Widget.Neumorph.Button"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        style="@style/Widget.Neumorph.Button"
-                        android:layout_marginRight="50dp"
-                        android:fontFamily="@font/poppins_light"
+                        android:layout_alignParentBottom="true"
                         android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins_light"
                         android:text="Login"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/design_default_color_primary"
+                        android:textSize="25dp"
                         app:neumorph_backgroundColor="@color/normal_card_background"
                         app:neumorph_lightSource="rightTop"
-                        android:textColor="@color/design_default_color_primary"
-                        app:neumorph_shapeType="basin"
-                        android:textSize="25dp"
-                        android:textAllCaps="false"
-                        android:textAlignment="center"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="10dp">
+                        app:neumorph_shapeType="flat">
 
 
                     </soup.neumorphism.NeumorphButton>

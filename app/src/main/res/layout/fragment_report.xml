@@ -2,17 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".Dashboard.Profile.ReportFragment">
-
-    <ProgressBar
-        android:id="@+id/progress_image"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:visibility="visible"
-        android:layout_marginBottom="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"/>
 
     <com.ortiz.touchview.TouchImageView
         android:id="@+id/report_image"
@@ -22,5 +14,13 @@
         android:layout_centerVertical="true"/>
 
 
+    <ProgressBar
+        android:id="@+id/progress_image"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

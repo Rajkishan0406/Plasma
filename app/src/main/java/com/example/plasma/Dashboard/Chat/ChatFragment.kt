@@ -68,7 +68,6 @@ class ChatFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(activity)
         chatArrayList = arrayListOf<ChatFragmentModel>()
 
-
         var nodata = 0 as Int
         var User_Id = mAuth.currentUser?.uid
         data = FirebaseDatabase.getInstance().getReference("Details")
