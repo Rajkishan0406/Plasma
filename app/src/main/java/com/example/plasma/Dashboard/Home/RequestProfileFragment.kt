@@ -166,7 +166,6 @@ class RequestProfileFragment : Fragment() {
                         var cal = Calendar.getInstance().get(Calendar.YEAR)
                         year = year.substring(year.toString().length - 4, year.toString().length)
                         var Year = cal - year.toInt()
-                        imp = cal - year.toInt()
                         age.setText("Age : "+Year)
                         if(snapshot.hasChild("Sex")) {
                             sex = snapshot.child("Sex").getValue() as String
@@ -257,8 +256,13 @@ class RequestProfileFragment : Fragment() {
         if (User_id != null) {
             data.child(User_id).child("Profile").addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists())
+                    if(snapshot.exists()) {
                         yes = 1
+                        var Y = snapshot.child("DOB").getValue() as String
+                        var cal = Calendar.getInstance().get(Calendar.YEAR)
+                        Y = Y.substring(Y.toString().length - 4, Y.toString().length)
+                        imp = cal - Y.toInt()
+                    }
                     else
                         yes = -1
                 }

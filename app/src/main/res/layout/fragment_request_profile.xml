@@ -458,7 +458,7 @@
         app:neumorph_lightSource="rightTop"
         app:neumorph_backgroundColor="@color/normal_card_background"
         android:textColor="@color/design_default_color_primary"
-        app:neumorph_shapeType="basin"
+        app:neumorph_shapeType="flat"
         android:textSize="22dp"
         android:textAllCaps="false"
         android:textAlignment="center"

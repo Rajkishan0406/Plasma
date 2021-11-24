@@ -369,7 +369,7 @@ class ProfileCreationFragment : Fragment() {
                 cityName = Address.get(0).locality
             }catch (e : Exception){
                 Toast.makeText(activity,"Server or Network API error! Please try again later",Toast.LENGTH_LONG).show()
-                cityName = "----------"
+                cityName = "" + lat
             }
         }
 
@@ -385,8 +385,10 @@ class ProfileCreationFragment : Fragment() {
                 stateName = Address.get(0).adminArea
                 loc_city = Address.get(0).locality
             }catch (e : Exception){
-                Toast.makeText(activity,"Server or Network API error! Please try again later",Toast.LENGTH_LONG).show()
-                stateName = "----------"
+                if(stateName.length == 0) {
+                    Toast.makeText(activity,"Server or Network API error! Please try again later", Toast.LENGTH_LONG).show()
+                    stateName = "" +  long
+                }
             }
         }
 
